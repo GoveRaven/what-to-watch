@@ -6,10 +6,8 @@ type MainProps = {
   relaseDate: string;
 };
 
-function App({title, genre, relaseDate}: MainProps): JSX.Element {
-  return (
-    <Main title={title} genre={genre} relaseDate={relaseDate} />
-  );
+function App({ title, genre, relaseDate }: MainProps): JSX.Element {
+  return <Main title={title} genre={genre} relaseDate={relaseDate} />;
 }
 
 export default App;

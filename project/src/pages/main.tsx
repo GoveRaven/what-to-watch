@@ -1,32 +1,32 @@
-import { FilmCard } from "../components/filmCard";
+import { FilmCard } from '../components/filmCard';
 
-const width = "280";
-const height = "175";
+const width = '280';
+const height = '175';
 const films: string[] = [
-  "Fantastic Beasts: The Crimes of Grindelwald",
-  "Bohemian Rhapsody",
-  "Macbeth",
-  "Aviator",
-  "We need to talk about Kevin",
-  "What We Do in the Shadows",
-  "Revenant",
-  "Johnny English",
-  "Shutter Island",
-  "Pulp Fiction",
-  "No Country for Old Men",
-  "Snatch",
-  "Moonrise Kingdom",
-  "Seven Years in Tibet",
-  "Midnight Special",
-  "War of the Worlds",
-  "Dardjeeling Limited",
-  "Orlando",
-  "Mindhunter",
-  "Midnight Special",
+  'Fantastic Beasts: The Crimes of Grindelwald',
+  'Bohemian Rhapsody',
+  'Macbeth',
+  'Aviator',
+  'We need to talk about Kevin',
+  'What We Do in the Shadows',
+  'Revenant',
+  'Johnny English',
+  'Shutter Island',
+  'Pulp Fiction',
+  'No Country for Old Men',
+  'Snatch',
+  'Moonrise Kingdom',
+  'Seven Years in Tibet',
+  'Midnight Special',
+  'War of the Worlds',
+  'Dardjeeling Limited',
+  'Orlando',
+  'Mindhunter',
+  'Midnight Special',
 ];
 
 function makeSrc(filmName: string): string {
-  return filmName.replaceAll(":", "").split(" ").join("-");
+  return filmName.replaceAll(':', '').split(' ').join('-');
 }
 
 type MainProps = {

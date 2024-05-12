@@ -268,12 +268,7 @@ function Main({ title, genre, releaseDate }: MainProps): JSX.Element {
 
           <div className="catalog__films-list">
             {films.map((name) => (
-              <FilmCard
-                name={name}
-                width={width}
-                height={height}
-                key={name}
-              />
+              <FilmCard name={name} width={width} height={height} key={name} />
             ))}
           </div>
 
@@ -302,4 +297,4 @@ function Main({ title, genre, releaseDate }: MainProps): JSX.Element {
   );
 }
 
-export { Main, type MainProps};
+export { Main, type MainProps };

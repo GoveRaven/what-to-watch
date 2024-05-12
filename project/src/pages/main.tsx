@@ -2,7 +2,7 @@ import { FilmCard } from '../components/filmCard';
 
 const width = '280';
 const height = '175';
-const films: string[] = [
+const films = [
   'Fantastic Beasts: The Crimes of Grindelwald',
   'Bohemian Rhapsody',
   'Macbeth',

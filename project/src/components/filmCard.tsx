@@ -1,16 +1,18 @@
 type FilmCardProps = {
   name: string;
-  src: string;
   width: string;
   height: string;
-  key: string
 };
 
-function FilmCard({ name, src, width, height, key}: FilmCardProps) {
+function makeSrc(filmName: string): string {
+  return filmName.replaceAll(':', '').split(' ').join('-');
+}
+
+function FilmCard({ name, width, height}: FilmCardProps) {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
-        <img src={`img/${src}.jpg`} alt={name} width={width} height={height} />
+        <img src={`img/${makeSrc(name)}.jpg`} alt={name} width={width} height={height} />
       </div>
       <h3 className="small-film-card__title">
         <a className="small-film-card__link" href="film-page.html">

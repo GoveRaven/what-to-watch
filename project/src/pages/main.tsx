@@ -25,10 +25,6 @@ const films: string[] = [
   'Midnight Special',
 ];
 
-function makeSrc(filmName: string): string {
-  return filmName.replaceAll(':', '').split(' ').join('-');
-}
-
 type MainProps = {
   title: string;
   genre: string;
@@ -273,7 +269,6 @@ function Main({ title, genre, releaseDate }: MainProps): JSX.Element {
           <div className="catalog__films-list">
             {films.map((name) => (
               <FilmCard
-                src={makeSrc(name)}
                 name={name}
                 width={width}
                 height={height}

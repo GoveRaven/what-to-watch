@@ -1,13 +1,9 @@
-import { Main } from '../../pages/main';
+import { Main, MainProps } from '../../pages/main';
 
-type MainProps = {
-  title: string;
-  genre: string;
-  relaseDate: string;
-};
+type AppProps = MainProps
 
-function App({ title, genre, relaseDate }: MainProps): JSX.Element {
-  return <Main title={title} genre={genre} relaseDate={relaseDate} />;
+function App({ title, genre, releaseDate }: AppProps): JSX.Element {
+  return <Main title={title} genre={genre} releaseDate={releaseDate} />;
 }
 
 export default App;

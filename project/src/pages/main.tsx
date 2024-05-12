@@ -32,10 +32,10 @@ function makeSrc(filmName: string): string {
 type MainProps = {
   title: string;
   genre: string;
-  relaseDate: string;
+  releaseDate: string;
 };
 
-function Main({ title, genre, relaseDate }: MainProps): JSX.Element {
+function Main({ title, genre, releaseDate }: MainProps): JSX.Element {
   return (
     <>
       <div className="visually-hidden">
@@ -184,7 +184,7 @@ function Main({ title, genre, relaseDate }: MainProps): JSX.Element {
               <h2 className="film-card__title">{title}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{relaseDate}</span>
+                <span className="film-card__year">{releaseDate}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -307,4 +307,4 @@ function Main({ title, genre, relaseDate }: MainProps): JSX.Element {
   );
 }
 
-export { Main };
+export { Main, type MainProps};

@@ -25,13 +25,13 @@ const films = [
   'Midnight Special',
 ];
 
-type MainProps = {
+export type MainProps = {
   title: string;
   genre: string;
   releaseDate: string;
 };
 
-function Main({ title, genre, releaseDate }: MainProps): JSX.Element {
+export function Main({ title, genre, releaseDate }: MainProps): JSX.Element {
   return (
     <>
       <div className="visually-hidden">
@@ -296,5 +296,3 @@ function Main({ title, genre, releaseDate }: MainProps): JSX.Element {
     </>
   );
 }
-
-export { Main, type MainProps };

@@ -8,7 +8,7 @@ function makeSrc(movieName: string): string {
   return movieName.replaceAll(':', '').split(' ').join('-');
 }
 
-function FilmCard({ name, width, height }: FilmCardProps) {
+export function FilmCard({ name, width, height }: FilmCardProps) {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
@@ -27,5 +27,3 @@ function FilmCard({ name, width, height }: FilmCardProps) {
     </article>
   );
 }
-
-export { FilmCard };

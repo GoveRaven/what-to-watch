@@ -1,4 +1,4 @@
-function MoviePage(): JSX.Element {
+export function MoviePage(): JSX.Element {
   return (
     <>
       <div className="visually-hidden">
@@ -330,5 +330,3 @@ function MoviePage(): JSX.Element {
     </>
   );
 }
-
-export { MoviePage };

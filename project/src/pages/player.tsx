@@ -1,4 +1,4 @@
-function Player(): JSX.Element {
+export function Player(): JSX.Element {
   return (
     <>
       <div className="visually-hidden">
@@ -131,5 +131,3 @@ function Player(): JSX.Element {
     </>
   );
 }
-
-export { Player };

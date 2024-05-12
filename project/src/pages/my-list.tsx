@@ -1,4 +1,4 @@
-function MyList(): JSX.Element {
+export function MyList(): JSX.Element {
   return (
     <>
       <div className="visually-hidden">
@@ -285,5 +285,3 @@ function MyList(): JSX.Element {
     </>
   );
 }
-
-export { MyList };

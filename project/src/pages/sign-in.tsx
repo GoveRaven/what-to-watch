@@ -1,4 +1,4 @@
-function SignIn(): JSX.Element {
+export function SignIn(): JSX.Element {
   return (
     <>
       <div className="visually-hidden">
@@ -160,5 +160,3 @@ function SignIn(): JSX.Element {
     </>
   );
 }
-
-export { SignIn };

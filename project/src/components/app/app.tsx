@@ -5,7 +5,7 @@ import { AddReview } from '../../pages/add-review';
 import { Main, MainProps } from '../../pages/main';
 import { MoviePage } from '../../pages/movie';
 import { MyList } from '../../pages/my-list';
-import { PageNotFound } from '../../pages/page-not-found';
+import { PageNotFound } from '../../pages/not-found';
 import { Player } from '../../pages/player';
 import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';

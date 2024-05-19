@@ -1,4 +1,4 @@
-export enum AppRoutes {
+export enum RoutesConsts {
   Main = '/',
   SignIn = '/login',
   MyList = '/myList',
@@ -7,8 +7,3 @@ export enum AppRoutes {
   Player = '/player/:id',
 }
 
-export enum AuthorizationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN',
-}

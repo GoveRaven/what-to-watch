@@ -8,7 +8,7 @@ import { MyList } from '../../pages/my-list';
 import { PageNotFound } from '../../pages/page-not-found';
 import { Player } from '../../pages/player';
 import { SignIn } from '../../pages/sign-in';
-import { PrivateRoute } from './private-route';
+import { PrivateRoute } from '../private-route';
 
 type AppProps = MainProps;
 

@@ -25,7 +25,7 @@ function App({ title, genre, releaseDate }: AppProps): JSX.Element {
         <Route
           path={AppRoutes.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
               <MyList />
             </PrivateRoute>
           }

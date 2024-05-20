@@ -1,4 +1,4 @@
-import { RoutesConsts } from '../consts/Routes';
+import { AppRoutes } from '../consts/routes';
 import { AuthorizationStatus } from '../consts/authhorization-status';
 import { Navigate } from 'react-router-dom';
 
@@ -14,6 +14,6 @@ export function PrivateRoute({
   return authorizationStatus === AuthorizationStatus.Auth ? (
     children
   ) : (
-    <Navigate to={RoutesConsts.SignIn} />
+    <Navigate to={AppRoutes.SignIn} />
   );
 }

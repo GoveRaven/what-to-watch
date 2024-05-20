@@ -1,4 +1,4 @@
-export enum RoutesConsts {
+export enum AppRoutes {
   Main = '/',
   SignIn = '/login',
   MyList = '/myList',
@@ -6,4 +6,3 @@ export enum RoutesConsts {
   AddReview = '/films/:id/review',
   Player = '/player/:id',
 }
-

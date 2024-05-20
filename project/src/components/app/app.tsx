@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { RoutesConsts } from '../../consts/Routes';
+import { AppRoutes } from '../../consts/routes';
 import { AuthorizationStatus } from '../../consts/authhorization-status';
 import { AddReview } from '../../pages/add-review';
 import { Main, MainProps } from '../../pages/main';
 import { MoviePage } from '../../pages/movie';
 import { MyList } from '../../pages/my-list';
-import { PageNotFound } from '../../pages/not-found';
+import { NotFound } from '../../pages/not-found';
 import { Player } from '../../pages/player';
 import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
@@ -17,24 +17,24 @@ function App({ title, genre, releaseDate }: AppProps): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route
-          path={RoutesConsts.Main}
+          path={AppRoutes.Main}
           element={
             <Main title={title} genre={genre} releaseDate={releaseDate} />
           }
         />
-        <Route path={RoutesConsts.SignIn} element={<SignIn />} />
+        <Route path={AppRoutes.SignIn} element={<SignIn />} />
         <Route
-          path={RoutesConsts.MyList}
+          path={AppRoutes.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
               <MyList />
             </PrivateRoute>
           }
         />
-        <Route path={RoutesConsts.Film} element={<MoviePage />} />
-        <Route path={RoutesConsts.AddReview} element={<AddReview />} />
-        <Route path={RoutesConsts.Player} element={<Player />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route path={AppRoutes.Film} element={<MoviePage />} />
+        <Route path={AppRoutes.AddReview} element={<AddReview />} />
+        <Route path={AppRoutes.Player} element={<Player />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

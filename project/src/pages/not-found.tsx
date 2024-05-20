@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export function PageNotFound(): JSX.Element {
+export function NotFound(): JSX.Element {
   return (
     <>
       <h1>404 not found</h1>

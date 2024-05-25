@@ -153,10 +153,7 @@ export function AddReview({ film }: AddReviewProps): JSX.Element {
             />
           </div>
         </div>
-
-        <div className="add-review">
-          <ReviewForm />
-        </div>
+        <ReviewForm />
       </section>
     </>
   );

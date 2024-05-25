@@ -105,7 +105,11 @@ export function Player({ film }: PlayerProps): JSX.Element {
           poster={film.previewImage}
         />
 
-        <button type="button" className="player__exit" onClick={() => navigate(AppRoutes.Main)}>
+        <button
+          type="button"
+          className="player__exit"
+          onClick={() => navigate(AppRoutes.Main)}
+        >
           Exit
         </button>
 

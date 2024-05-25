@@ -15,7 +15,7 @@ export function FilmList({ films }: FilmListProps): JSX.Element {
         <FilmCard
           name={film.name}
           previewImage={film.previewImage}
-          id = {film.id}
+          id={film.id}
           key={film.id}
         />
       ))}

@@ -168,7 +168,10 @@ export function MoviePage(): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={AppRoutes.AddReview} className="btn film-card__button">
+                <Link
+                  to={AppRoutes.AddReview}
+                  className="btn film-card__button"
+                >
                   Add review
                 </Link>
               </div>

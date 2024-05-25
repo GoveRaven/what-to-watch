@@ -9,6 +9,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App title="The Grand Budapest Hotel" genre="Drama" releaseDate="2014" films={films}/>
+    <App
+      title="The Grand Budapest Hotel"
+      genre="Drama"
+      releaseDate="2014"
+      films={films}
+    />
   </React.StrictMode>
 );

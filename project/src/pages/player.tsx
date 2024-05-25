@@ -1,4 +1,14 @@
-export function Player(): JSX.Element {
+import { useNavigate } from 'react-router-dom';
+import { TFilm } from '../types/films';
+import { AppRoutes } from '../consts/routes';
+
+type PlayerProps = {
+  film: TFilm;
+};
+
+export function Player({ film }: PlayerProps): JSX.Element {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="visually-hidden">
@@ -90,12 +100,12 @@ export function Player(): JSX.Element {
 
       <div className="player">
         <video
-          src="#"
+          src={film.videoLink}
           className="player__video"
-          poster="img/player-poster.jpg"
+          poster={film.previewImage}
         />
 
-        <button type="button" className="player__exit">
+        <button type="button" className="player__exit" onClick={() => navigate(AppRoutes.Main)}>
           Exit
         </button>
 

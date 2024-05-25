@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { TFilm } from '../types/films';
-import { AppRoutes } from '../consts/routes';
 
 type PlayerProps = {
   film: TFilm;
@@ -108,7 +107,7 @@ export function Player({ film }: PlayerProps): JSX.Element {
         <button
           type="button"
           className="player__exit"
-          onClick={() => navigate(AppRoutes.Main)}
+          onClick={() => navigate(-1)}
         >
           Exit
         </button>

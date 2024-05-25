@@ -1,4 +1,9 @@
+import { Link, useNavigate } from 'react-router-dom';
+import { AppRoutes } from '../consts/routes';
+
 export function MoviePage(): JSX.Element {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="visually-hidden">
@@ -109,11 +114,11 @@ export function MoviePage(): JSX.Element {
 
           <header className="page-header film-card__head">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to={AppRoutes.Main} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <ul className="user-block">
@@ -145,6 +150,7 @@ export function MoviePage(): JSX.Element {
                 <button
                   className="btn btn--play film-card__button"
                   type="button"
+                  onClick={() => navigate(AppRoutes.Player)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -154,6 +160,7 @@ export function MoviePage(): JSX.Element {
                 <button
                   className="btn btn--list film-card__button"
                   type="button"
+                  onClick={() => navigate(AppRoutes.MyList)}
                 >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
@@ -161,9 +168,9 @@ export function MoviePage(): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">
+                <Link to={AppRoutes.AddReview} className="btn film-card__button">
                   Add review
-                </a>
+                </Link>
               </div>
             </div>
           </div>

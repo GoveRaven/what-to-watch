@@ -7,7 +7,7 @@ type FilmListProps = {
 };
 
 export function FilmList({ films }: FilmListProps): JSX.Element {
-  // const [activeCard, setActiveCard] = useState();
+  // const [activeCardID, setActiveCardID] = useState();
 
   return (
     <div className="catalog__films-list">

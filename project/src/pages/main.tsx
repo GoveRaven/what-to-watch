@@ -255,7 +255,7 @@ export function Main({
           </ul>
 
           <div className="catalog__films-list">
-            <FilmList films={films} key="List" />
+            <FilmList films={films}/>
           </div>
 
           <div className="catalog__more">

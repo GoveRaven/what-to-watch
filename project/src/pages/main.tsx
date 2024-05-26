@@ -1,37 +1,23 @@
-import { FilmCard } from '../components/filmCard';
-
-const width = '280';
-const height = '175';
-const films = [
-  'Fantastic Beasts: The Crimes of Grindelwald',
-  'Bohemian Rhapsody',
-  'Macbeth',
-  'Aviator',
-  'We need to talk about Kevin',
-  'What We Do in the Shadows',
-  'Revenant',
-  'Johnny English',
-  'Shutter Island',
-  'Pulp Fiction',
-  'No Country for Old Men',
-  'Snatch',
-  'Moonrise Kingdom',
-  'Seven Years in Tibet',
-  'Midnight Special',
-  'War of the Worlds',
-  'Dardjeeling Limited',
-  'Orlando',
-  'Mindhunter',
-  'Midnight Special',
-];
+import { useNavigate } from 'react-router-dom';
+import { FilmList } from '../components/films-list';
+import { TFilm } from '../types/films';
+import { AppRoutes } from '../consts/routes';
 
 export type MainProps = {
   title: string;
   genre: string;
   releaseDate: string;
+  films: TFilm[];
 };
 
-export function Main({ title, genre, releaseDate }: MainProps): JSX.Element {
+export function Main({
+  title,
+  genre,
+  releaseDate,
+  films,
+}: MainProps): JSX.Element {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="visually-hidden">
@@ -187,6 +173,7 @@ export function Main({ title, genre, releaseDate }: MainProps): JSX.Element {
                 <button
                   className="btn btn--play film-card__button"
                   type="button"
+                  onClick={() => navigate(AppRoutes.Player)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -267,9 +254,7 @@ export function Main({ title, genre, releaseDate }: MainProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            {films.map((name) => (
-              <FilmCard name={name} width={width} height={height} key={name} />
-            ))}
+            <FilmList films={films}/>
           </div>
 
           <div className="catalog__more">

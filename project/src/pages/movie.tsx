@@ -1,12 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AppRoutes } from '../consts/routes';
 import { TFilm } from '../types/films';
+import { makePathWithParams } from '../utils/makePath';
 
 type MoviePageProps = {
   film: TFilm;
 };
 
-export function MoviePage(props: MoviePageProps): JSX.Element {
+export function MoviePage({ film }: MoviePageProps): JSX.Element {
   const navigate = useNavigate();
   const {
     name,
@@ -19,8 +20,13 @@ export function MoviePage(props: MoviePageProps): JSX.Element {
     starring,
     genre,
     released,
-    backgroundColor,
-  } = props.film;
+    // TODO: Не забыть использовать
+    // backgroundColor,
+  } = film;
+
+  const { id } = useParams();
+  const playerRoute = makePathWithParams(AppRoutes.Player, { id });
+  const reviewRoute = makePathWithParams(AppRoutes.AddReview, { id });
 
   return (
     <>
@@ -119,7 +125,10 @@ export function MoviePage(props: MoviePageProps): JSX.Element {
         </svg>
       </div>
 
-      <section className="film-card film-card--full" style={{backgroundColor: backgroundColor}}>
+      <section
+        className="film-card film-card--full"
+        // style={{ backgroundColor: backgroundColor }}
+      >
         <div className="film-card__hero">
           <div className="film-card__bg">
             <img src={backgroundImage} alt="The Grand Budapest Hotel" />
@@ -165,7 +174,7 @@ export function MoviePage(props: MoviePageProps): JSX.Element {
                 <button
                   className="btn btn--play film-card__button"
                   type="button"
-                  onClick={() => navigate(AppRoutes.Player)}
+                  onClick={() => navigate(playerRoute)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -182,10 +191,7 @@ export function MoviePage(props: MoviePageProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link
-                  to={AppRoutes.AddReview}
-                  className="btn film-card__button"
-                >
+                <Link to={reviewRoute} className="btn film-card__button">
                   Add review
                 </Link>
               </div>

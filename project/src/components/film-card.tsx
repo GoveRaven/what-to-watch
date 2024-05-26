@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '../consts/routes';
+import { useState } from 'react';
+import { makePathWithParams } from '../utils/makePath';
 
 type FilmCardProps = {
   name: string;
@@ -8,9 +10,14 @@ type FilmCardProps = {
 };
 
 export function FilmCard({ name, previewImage, id }: FilmCardProps) {
-  const to = `${AppRoutes.Film}${id}`;
+  const [, setActiveCardID] = useState<number | null>();
+  const to = makePathWithParams(AppRoutes.Film, { id });
   return (
-    <article className="small-film-card catalog__films-card">
+    <article
+      className="small-film-card catalog__films-card"
+      onPointerEnter={() => setActiveCardID(id)}
+      onPointerLeave={() => setActiveCardID(null)}
+    >
       <div className="small-film-card__image">
         <img src={previewImage} alt={name} width="280" height="175" />
       </div>

@@ -17,6 +17,7 @@ export function FilmList({ films }: FilmListProps): JSX.Element {
           previewImage={film.previewImage}
           id={film.id}
           key={film.id}
+          video={film.previewVideoLink}
         />
       ))}
     </div>

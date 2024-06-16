@@ -14,16 +14,16 @@ export function FilmCard({ name, previewImage, id, video }: FilmCardProps) {
   const [activeCardID, setActiveCardID] = useState<number | null>(null);
   const to = makePathWithParams(AppRoutes.Film, { id });
 
-  let timer: number;
+  let timerID: number;
 
   return (
     <article
       className="small-film-card catalog__films-card"
       onPointerEnter={() => {
-        timer = setTimeout(setActiveCardID, 1000, id);
+        timerID = setTimeout(setActiveCardID, 1000, id);
       }}
       onPointerLeave={() => {
-        clearTimeout(timer);
+        clearTimeout(timerID);
         setActiveCardID(null);
       }}
     >

@@ -2,6 +2,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AppRoutes } from '../consts/routes';
 import { TFilm } from '../types/films';
 import { makePathWithParams } from '../utils/makePath';
+import { Tabs } from '../components/tabs/tabs';
+import { reviews } from '../mocks/reviews';
 
 type MoviePageProps = {
   film: TFilm;
@@ -13,11 +15,6 @@ export function MoviePage({ film }: MoviePageProps): JSX.Element {
     name,
     posterImage,
     backgroundImage,
-    description,
-    rating,
-    scoresCount,
-    director,
-    starring,
     genre,
     released,
     // TODO: Не забыть использовать
@@ -211,47 +208,7 @@ export function MoviePage({ film }: MoviePageProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <nav className="film-nav film-card__nav">
-                <ul className="film-nav__list">
-                  <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">
-                      Overview
-                    </a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">
-                      Details
-                    </a>
-                  </li>
-                  <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">
-                      Reviews
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div className="film-rating">
-                <div className="film-rating__score">{rating}</div>
-                <p className="film-rating__meta">
-                  <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">
-                    {scoresCount} ratings
-                  </span>
-                </p>
-              </div>
-
-              <div className="film-card__text">
-                <p>{description}</p>
-
-                <p className="film-card__director">
-                  <strong>Director: {director}</strong>
-                </p>
-
-                <p className="film-card__starring">
-                  <strong>Starring: {starring}</strong>
-                </p>
-              </div>
+              <Tabs film={film} reviews={reviews} />
             </div>
           </div>
         </div>

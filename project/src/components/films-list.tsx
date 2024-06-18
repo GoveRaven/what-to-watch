@@ -4,10 +4,18 @@ import { TFilm } from '../types/films';
 
 type FilmListProps = {
   films: TFilm[];
+  isMoviePage: boolean;
 };
 
-export function FilmList({ films }: FilmListProps): JSX.Element {
+export function FilmList({
+  films,
+  isMoviePage,
+}: FilmListProps): JSX.Element {
   // const [activeCardID, setActiveCardID] = useState();
+
+  if (isMoviePage) {
+    films.length = 4;
+  }
 
   return (
     <div className="catalog__films-list">

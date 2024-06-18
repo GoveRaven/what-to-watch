@@ -210,7 +210,7 @@ export function MoviePage({ film }: MoviePageProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <Tabs film={film} reviews={reviews} />
+              <Tabs film={film} reviews={reviews}/>
             </div>
           </div>
         </div>
@@ -219,7 +219,7 @@ export function MoviePage({ film }: MoviePageProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={films} isMoviePage />
+          <FilmList films={films} isMoviePage genre={genre}/>
           {/* <div className="catalog__films-list">
             <article className="small-film-card catalog__films-card">
               <div className="small-film-card__image">

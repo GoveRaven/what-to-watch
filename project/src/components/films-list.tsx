@@ -5,16 +5,20 @@ import { TFilm } from '../types/films';
 type FilmListProps = {
   films: TFilm[];
   isMoviePage: boolean;
+  genre?: string;
 };
 
 export function FilmList({
   films,
   isMoviePage,
+  genre,
 }: FilmListProps): JSX.Element {
   // const [activeCardID, setActiveCardID] = useState();
 
   if (isMoviePage) {
-    films.length = 4;
+    films = films
+      .filter((film) => film.genre === genre && films.length)
+      .slice(0, 4);
   }
 
   return (

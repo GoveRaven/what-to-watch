@@ -4,6 +4,8 @@ import { TFilm } from '../types/films';
 import { makePathWithParams } from '../utils/makePath';
 import { Tabs } from '../components/tabs/tabs';
 import { reviews } from '../mocks/reviews';
+import { FilmList } from '../components/films-list';
+import { films } from '../mocks/films';
 
 type MoviePageProps = {
   film: TFilm;
@@ -217,8 +219,8 @@ export function MoviePage({ film }: MoviePageProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__films-list">
+          <FilmList films={films} isMoviePage />
+          {/* <div className="catalog__films-list">
             <article className="small-film-card catalog__films-card">
               <div className="small-film-card__image">
                 <img
@@ -282,7 +284,7 @@ export function MoviePage({ film }: MoviePageProps): JSX.Element {
                 </a>
               </h3>
             </article>
-          </div>
+          </div> */}
         </section>
 
         <footer className="page-footer">

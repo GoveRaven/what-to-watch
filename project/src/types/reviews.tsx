@@ -1,4 +1,4 @@
-export type TReviews = {
+export type TReview = {
   comment: string;
   date: string;
   id: number;
@@ -7,4 +7,4 @@ export type TReviews = {
     id: number;
     name: string;
   };
-}[];
+};

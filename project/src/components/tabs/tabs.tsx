@@ -1,5 +1,5 @@
 import { TFilm } from '../../types/films';
-import { TReviews } from '../../types/reviews';
+import { TReview } from '../../types/reviews';
 import { useState } from 'react';
 import { Overview } from './overview';
 import { Details } from './details';
@@ -7,7 +7,7 @@ import { Reviews } from './reviews';
 
 type TabsProps = {
   film: TFilm;
-  reviews: TReviews;
+  reviews: TReview[];
 };
 
 export enum TabsName {
@@ -32,7 +32,11 @@ export function Tabs({ film, reviews }: TabsProps): JSX.Element {
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className={`film-nav__item ${activeTab === TabsName.OVERVIEW && 'film-nav__item--active'}`}>
+          <li
+            className={`film-nav__item ${
+              activeTab === TabsName.OVERVIEW && 'film-nav__item--active'
+            }`}
+          >
             <button
               className="film-nav__link"
               onClick={() => setActiveTab(TabsName.OVERVIEW)}
@@ -40,7 +44,11 @@ export function Tabs({ film, reviews }: TabsProps): JSX.Element {
               Overview
             </button>
           </li>
-          <li className={`film-nav__item ${activeTab === TabsName.DETAILS && 'film-nav__item--active'}`}>
+          <li
+            className={`film-nav__item ${
+              activeTab === TabsName.DETAILS && 'film-nav__item--active'
+            }`}
+          >
             <button
               className="film-nav__link"
               onClick={() => setActiveTab(TabsName.DETAILS)}
@@ -48,7 +56,11 @@ export function Tabs({ film, reviews }: TabsProps): JSX.Element {
               Details
             </button>
           </li>
-          <li className={`film-nav__item ${activeTab === TabsName.REVIEWS && 'film-nav__item--active'}`}>
+          <li
+            className={`film-nav__item ${
+              activeTab === TabsName.REVIEWS && 'film-nav__item--active'
+            }`}
+          >
             <button
               className="film-nav__link"
               onClick={() => setActiveTab(TabsName.REVIEWS)}

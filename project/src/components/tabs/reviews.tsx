@@ -1,7 +1,7 @@
-import { TReviews } from '../../types/reviews';
+import { TReview } from '../../types/reviews';
 
 type TReviewsProps = {
-  reviews: TReviews;
+  reviews: TReview[];
 };
 
 function getDate(date: string) {

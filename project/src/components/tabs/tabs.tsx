@@ -11,13 +11,13 @@ type TabsProps = {
 };
 
 export enum TabsName {
-  overview = 'Overview',
-  details = 'Details',
-  reviews = 'Reviews',
+  OVERVIEW = 'Overview',
+  DETAILS = 'Details',
+  REVIEWS = 'Reviews',
 }
 
 export function Tabs({ film, reviews }: TabsProps): JSX.Element {
-  const [activeTab, setActiveTab] = useState(TabsName.overview);
+  const [activeTab, setActiveTab] = useState(TabsName.OVERVIEW);
   const {
     genre,
     released,
@@ -32,33 +32,33 @@ export function Tabs({ film, reviews }: TabsProps): JSX.Element {
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li className={`film-nav__item ${activeTab === TabsName.overview && 'film-nav__item--active'}`}>
+          <li className={`film-nav__item ${activeTab === TabsName.OVERVIEW && 'film-nav__item--active'}`}>
             <button
               className="film-nav__link"
-              onClick={() => setActiveTab(TabsName.overview)}
+              onClick={() => setActiveTab(TabsName.OVERVIEW)}
             >
               Overview
             </button>
           </li>
-          <li className={`film-nav__item ${activeTab === TabsName.details && 'film-nav__item--active'}`}>
+          <li className={`film-nav__item ${activeTab === TabsName.DETAILS && 'film-nav__item--active'}`}>
             <button
               className="film-nav__link"
-              onClick={() => setActiveTab(TabsName.details)}
+              onClick={() => setActiveTab(TabsName.DETAILS)}
             >
               Details
             </button>
           </li>
-          <li className={`film-nav__item ${activeTab === TabsName.reviews && 'film-nav__item--active'}`}>
+          <li className={`film-nav__item ${activeTab === TabsName.REVIEWS && 'film-nav__item--active'}`}>
             <button
               className="film-nav__link"
-              onClick={() => setActiveTab(TabsName.reviews)}
+              onClick={() => setActiveTab(TabsName.REVIEWS)}
             >
               Reviews
             </button>
           </li>
         </ul>
       </nav>
-      {activeTab === TabsName.overview && (
+      {activeTab === TabsName.OVERVIEW && (
         <Overview
           rating={rating}
           scoresCount={scoresCount}
@@ -67,7 +67,7 @@ export function Tabs({ film, reviews }: TabsProps): JSX.Element {
           starring={starring}
         />
       )}
-      {activeTab === TabsName.details && (
+      {activeTab === TabsName.DETAILS && (
         <Details
           director={director}
           starring={starring}
@@ -76,7 +76,7 @@ export function Tabs({ film, reviews }: TabsProps): JSX.Element {
           released={released}
         />
       )}
-      {activeTab === TabsName.reviews && <Reviews reviews={reviews} />}
+      {activeTab === TabsName.REVIEWS && <Reviews reviews={reviews} />}
     </div>
   );
 }

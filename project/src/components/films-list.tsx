@@ -17,7 +17,7 @@ export function FilmList({
 
   if (isMoviePage) {
     films = films
-      .filter((film) => film.genre === genre && films.length)
+      .filter((film) => film.genre === genre)
       .slice(0, 4);
   }
 

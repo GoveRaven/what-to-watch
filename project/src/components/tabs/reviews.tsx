@@ -5,7 +5,7 @@ type TReviewsProps = {
 };
 
 function getDate(date: string) {
-  const fullDate: Date = new Date(date);
+  const fullDate = new Date(date);
   const months = [
     'January',
     'February',

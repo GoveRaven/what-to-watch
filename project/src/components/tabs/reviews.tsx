@@ -4,27 +4,28 @@ type TReviewsProps = {
   reviews: TReviews;
 };
 
+function getDate(date: string) {
+  const fullDate: Date = new Date(date);
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  return `${
+    months[fullDate.getMonth()]
+  } ${fullDate.getDate()} ,${fullDate.getFullYear()}`;
+}
+
 export function Reviews({ reviews }: TReviewsProps) {
-  function getDate(date: string) {
-    const fullDate: Date = new Date(Date.parse(date));
-    const mounth = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-    return `${
-      mounth[fullDate.getMonth()]
-    } ${fullDate.getDate()} ,${fullDate.getFullYear()}`;
-  }
   return (
     <>
       {/* // TODO

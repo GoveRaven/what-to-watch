@@ -13,7 +13,6 @@ export function FilmList({
   isMoviePage,
   genre,
 }: FilmListProps): JSX.Element {
-  // const [activeCardID, setActiveCardID] = useState();
 
   if (isMoviePage) {
     films = films

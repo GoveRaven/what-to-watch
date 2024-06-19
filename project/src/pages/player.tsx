@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { TFilm } from '../types/films';
 
-type PlayerProps = {
+type TPlayerProps = {
   film: TFilm;
 };
 
-export function Player({ film }: PlayerProps): JSX.Element {
+export function Player({ film }: TPlayerProps): JSX.Element {
   const navigate = useNavigate();
 
   return (

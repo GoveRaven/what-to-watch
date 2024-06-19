@@ -7,11 +7,11 @@ import { reviews } from '../mocks/reviews';
 import { FilmList } from '../components/films-list';
 import { films } from '../mocks/films';
 
-type MoviePageProps = {
+type TMoviePageProps = {
   film: TFilm;
 };
 
-export function MoviePage({ film }: MoviePageProps): JSX.Element {
+export function MoviePage({ film }: TMoviePageProps): JSX.Element {
   const navigate = useNavigate();
   const {
     name,

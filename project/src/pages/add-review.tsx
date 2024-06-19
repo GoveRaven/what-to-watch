@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { AppRoutes } from '../consts/routes';
 import { ReviewForm } from '../components/review-form';
 
-type AddReviewProps = {
+type TAddReviewProps = {
   film: TFilm;
 };
 
-export function AddReview({ film }: AddReviewProps): JSX.Element {
+export function AddReview({ film }: TAddReviewProps): JSX.Element {
   return (
     <>
       <div className="visually-hidden">

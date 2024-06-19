@@ -2,7 +2,7 @@ import { FilmCard } from './film-card';
 import { TFilm } from '../types/films';
 // import { useState } from 'react';
 
-type FilmListProps = {
+type TFilmListProps = {
   films: TFilm[];
   isMoviePage: boolean;
   genre?: string;
@@ -12,7 +12,7 @@ export function FilmList({
   films,
   isMoviePage,
   genre,
-}: FilmListProps): JSX.Element {
+}: TFilmListProps): JSX.Element {
 
   if (isMoviePage) {
     films = films

@@ -1,4 +1,4 @@
-type DetailsProps = {
+type TDetailsProps = {
   director: string;
   starring: string[];
   runTime: number;
@@ -18,7 +18,7 @@ export function Details({
   runTime,
   genre,
   released,
-}: DetailsProps) {
+}: TDetailsProps) {
   return (
     <div className="film-card__text film-card__row">
       <div className="film-card__text-col">

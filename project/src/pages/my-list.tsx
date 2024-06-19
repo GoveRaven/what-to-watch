@@ -3,11 +3,11 @@ import { TFilm } from '../types/films';
 import { Link } from 'react-router-dom';
 import { AppRoutes } from '../consts/routes';
 
-type MyListProps = {
+type TMyListProps = {
   films: TFilm[];
 };
 
-export function MyList({ films }: MyListProps): JSX.Element {
+export function MyList({ films }: TMyListProps): JSX.Element {
   return (
     <>
       <div className="visually-hidden">

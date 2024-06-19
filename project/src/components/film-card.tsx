@@ -2,15 +2,15 @@ import { Link } from 'react-router-dom';
 import { AppRoutes } from '../consts/routes';
 import { useState } from 'react';
 import { makePathWithParams } from '../utils/makePath';
-import { VideoPlayer, VideoPlayerProps } from './video-player';
+import { VideoPlayer, TVideoPlayerProps } from './video-player';
 
-type FilmCardProps = {
+type TFilmCardProps = {
   name: string;
   previewImage: string;
   id: number;
-} & VideoPlayerProps;
+} & TVideoPlayerProps;
 
-export function FilmCard({ name, previewImage, id, video }: FilmCardProps) {
+export function FilmCard({ name, previewImage, id, video }: TFilmCardProps) {
   const [activeCardID, setActiveCardID] = useState<number | null>(null);
   const to = makePathWithParams(AppRoutes.Film, { id });
 

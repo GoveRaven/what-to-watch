@@ -5,7 +5,7 @@ import { Overview } from './overview';
 import { Details } from './details';
 import { Reviews } from './reviews';
 
-type TabsProps = {
+type TTabsProps = {
   film: TFilm;
   reviews: TReview[];
 };
@@ -16,7 +16,7 @@ export enum TabsName {
   REVIEWS = 'Reviews',
 }
 
-export function Tabs({ film, reviews }: TabsProps): JSX.Element {
+export function Tabs({ film, reviews }: TTabsProps): JSX.Element {
   const [activeTab, setActiveTab] = useState(TabsName.OVERVIEW);
   const {
     genre,

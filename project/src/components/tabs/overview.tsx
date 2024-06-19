@@ -1,4 +1,4 @@
-export type OverviewProps = {
+export type TOverviewProps = {
   rating: number;
   scoresCount: number;
   description: string;
@@ -12,7 +12,7 @@ export function Overview({
   description,
   director,
   starring,
-}: OverviewProps) {
+}: TOverviewProps) {
   function addStarring(): string {
     let result = '';
     for (let i = 0; i < starring.length; i++) {

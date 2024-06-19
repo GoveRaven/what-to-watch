@@ -3,7 +3,7 @@ import { FilmList } from '../components/films-list';
 import { TFilm } from '../types/films';
 import { AppRoutes } from '../consts/routes';
 
-export type MainProps = {
+export type TMainProps = {
   title: string;
   genre: string;
   releaseDate: string;
@@ -15,7 +15,7 @@ export function Main({
   genre,
   releaseDate,
   films,
-}: MainProps): JSX.Element {
+}: TMainProps): JSX.Element {
   const navigate = useNavigate();
 
   return (

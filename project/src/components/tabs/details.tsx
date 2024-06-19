@@ -6,6 +6,12 @@ type DetailsProps = {
   released: number;
 };
 
+function culcRunTime(runTime: number): string {
+  const hours = Math.floor(runTime / 60);
+  const minutes = runTime - hours * 60;
+  return `${hours}h ${minutes}m`;
+}
+
 export function Details({
   director,
   starring,
@@ -13,12 +19,6 @@ export function Details({
   genre,
   released,
 }: DetailsProps) {
-  function culcRunTime(): string {
-    const hours = Math.floor(runTime / 60);
-    const minutes = runTime - hours * 60;
-    return `${hours}h ${minutes}m`;
-  }
-
   return (
     <div className="film-card__text film-card__row">
       <div className="film-card__text-col">
@@ -40,7 +40,9 @@ export function Details({
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{culcRunTime()}</span>
+          <span className="film-card__details-value">
+            {culcRunTime(runTime)}
+          </span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>

@@ -26,30 +26,47 @@ function getDate(date: string) {
 }
 
 export function Reviews({ reviews }: TReviewsProps) {
+  const halfOfReviews = Math.ceil(reviews.length / 2);
+  const reviews1 = reviews.slice(0, halfOfReviews);
+  const reviews2 = reviews.slice(halfOfReviews);
   return (
-    <>
-      {/* // TODO
-    Сделать ревью в двух колонках */}
-      {reviews.map((review) => (
-        <div className="film-card__reviews film-card__row" key={review.id}>
-          <div className="film-card__reviews-col">
-            <div className="review">
-              <blockquote className="review__quote">
-                <p className="review__text">{review.comment}</p>
+    <div className="film-card__reviews film-card__row">
+      <div className="film-card__reviews-col">
+        {reviews1.map((review) => (
+          <div className="review" key={review.id}>
+            <blockquote className="review__quote">
+              <p className="review__text">{review.comment}</p>
 
-                <footer className="review__details">
-                  <cite className="review__author">{review.user.name}</cite>
-                  <time className="review__date" dateTime={review.date}>
-                    {getDate(review.date)}
-                  </time>
-                </footer>
-              </blockquote>
+              <footer className="review__details">
+                <cite className="review__author">{review.user.name}</cite>
+                <time className="review__date" dateTime={review.date}>
+                  {getDate(review.date)}
+                </time>
+              </footer>
+            </blockquote>
 
-              <div className="review__rating">{review.rating}</div>
-            </div>
+            <div className="review__rating">{review.rating}</div>
           </div>
-        </div>
-      ))}
-    </>
+        ))}
+      </div>
+      <div className="film-card__reviews-col">
+        {reviews2.map((review) => (
+          <div className="review" key={review.id}>
+            <blockquote className="review__quote">
+              <p className="review__text">{review.comment}</p>
+
+              <footer className="review__details">
+                <cite className="review__author">{review.user.name}</cite>
+                <time className="review__date" dateTime={review.date}>
+                  {getDate(review.date)}
+                </time>
+              </footer>
+            </blockquote>
+
+            <div className="review__rating">{review.rating}</div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

@@ -219,7 +219,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={films} isMoviePage genre={genre}/>
+          <FilmList films={films} genre={genre}/>
         </section>
 
         <footer className="page-footer">

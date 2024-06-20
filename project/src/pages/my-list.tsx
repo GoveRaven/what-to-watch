@@ -130,7 +130,7 @@ export function MyList({ films }: TMyListProps): JSX.Element {
 
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <FilmList films={films} isMoviePage={false} />
+          <FilmList films={films} />
         </section>
 
         <footer className="page-footer">

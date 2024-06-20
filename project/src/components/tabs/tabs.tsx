@@ -32,42 +32,21 @@ export function Tabs({ film, reviews }: TTabsProps): JSX.Element {
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
-          <li
-            className={`film-nav__item ${
-              activeTab === TabsName.OVERVIEW && 'film-nav__item--active'
-            }`}
-          >
-            <button
-              className="film-nav__link"
-              onClick={() => setActiveTab(TabsName.OVERVIEW)}
+          {Object.values(TabsName).map((tabName) => (
+            <li
+              key={tabName}
+              className={`film-nav__item${
+                activeTab === tabName ? ' film-nav__item--active' : ''
+              }`}
             >
-              Overview
-            </button>
-          </li>
-          <li
-            className={`film-nav__item ${
-              activeTab === TabsName.DETAILS && 'film-nav__item--active'
-            }`}
-          >
-            <button
-              className="film-nav__link"
-              onClick={() => setActiveTab(TabsName.DETAILS)}
-            >
-              Details
-            </button>
-          </li>
-          <li
-            className={`film-nav__item ${
-              activeTab === TabsName.REVIEWS && 'film-nav__item--active'
-            }`}
-          >
-            <button
-              className="film-nav__link"
-              onClick={() => setActiveTab(TabsName.REVIEWS)}
-            >
-              Reviews
-            </button>
-          </li>
+              <button
+                className="film-nav__link"
+                onClick={() => setActiveTab(tabName)}
+              >
+                {tabName}
+              </button>
+            </li>
+          ))}
         </ul>
       </nav>
       {activeTab === TabsName.OVERVIEW && (

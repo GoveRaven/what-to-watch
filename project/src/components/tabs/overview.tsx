@@ -13,16 +13,6 @@ export function Overview({
   director,
   starring,
 }: TOverviewProps) {
-  function addStarring(): string {
-    let result = '';
-    for (let i = 0; i < starring.length; i++) {
-      i + 1 === starring.length
-        ? (result += `${starring[i]} `)
-        : (result += `${starring[i]}, `);
-    }
-    return result;
-  }
-
   return (
     <>
       <div className="film-rating">
@@ -41,7 +31,7 @@ export function Overview({
         </p>
 
         <p className="film-card__starring">
-          <strong>Starring: {addStarring()}</strong>
+          <strong>Starring: {starring.join(', ')}</strong>
         </p>
       </div>
     </>

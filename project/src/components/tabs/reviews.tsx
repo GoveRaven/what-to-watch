@@ -30,30 +30,26 @@ export function Reviews({ reviews }: TReviewsProps) {
     <>
       {/* // TODO
     Сделать ревью в двух колонках */}
-      {reviews.map((review) => {
-        const { comment, date, id: reviewId, rating, user } = review;
-        const { name } = user;
-        return (
-          <div className="film-card__reviews film-card__row" key={reviewId}>
-            <div className="film-card__reviews-col">
-              <div className="review">
-                <blockquote className="review__quote">
-                  <p className="review__text">{comment}</p>
+      {reviews.map((review) => (
+        <div className="film-card__reviews film-card__row" key={review.id}>
+          <div className="film-card__reviews-col">
+            <div className="review">
+              <blockquote className="review__quote">
+                <p className="review__text">{review.comment}</p>
 
-                  <footer className="review__details">
-                    <cite className="review__author">{name}</cite>
-                    <time className="review__date" dateTime={date}>
-                      {getDate(date)}
-                    </time>
-                  </footer>
-                </blockquote>
+                <footer className="review__details">
+                  <cite className="review__author">{review.user.name}</cite>
+                  <time className="review__date" dateTime={review.date}>
+                    {getDate(review.date)}
+                  </time>
+                </footer>
+              </blockquote>
 
-                <div className="review__rating">{rating}</div>
-              </div>
+              <div className="review__rating">{review.rating}</div>
             </div>
           </div>
-        );
-      })}
+        </div>
+      ))}
     </>
   );
 }

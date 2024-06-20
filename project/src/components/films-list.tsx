@@ -1,23 +1,20 @@
 import { FilmCard } from './film-card';
 import { TFilm } from '../types/films';
-// import { useState } from 'react';
+import { matchPath, useLocation } from 'react-router-dom';
+import { AppRoutes } from '../consts/routes';
 
 type TFilmListProps = {
   films: TFilm[];
-  isMoviePage: boolean;
   genre?: string;
 };
 
-export function FilmList({
-  films,
-  isMoviePage,
-  genre,
-}: TFilmListProps): JSX.Element {
+export function FilmList({ films, genre }: TFilmListProps): JSX.Element {
+  const location = useLocation();
+  const pathname = location.pathname;
+  const match = matchPath(AppRoutes.Film, pathname);
 
-  if (isMoviePage) {
-    films = films
-      .filter((film) => film.genre === genre)
-      .slice(0, 4);
+  if (match) {
+    films = films.filter((film) => film.genre === genre).slice(0, 4);
   }
 
   return (

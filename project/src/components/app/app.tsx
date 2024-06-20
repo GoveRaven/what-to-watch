@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoutes } from '../../consts/routes';
 import { AuthorizationStatus } from '../../consts/authhorization-status';
 import { AddReview } from '../../pages/add-review';
-import { Main, TMainProps as TMainProps } from '../../pages/main';
+import { Main, TMainProps } from '../../pages/main';
 import { MoviePage } from '../../pages/movie';
 import { MyList } from '../../pages/my-list';
 import { NotFound } from '../../pages/not-found';

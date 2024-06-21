@@ -82,22 +82,22 @@ input {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-[type="button"],
-[type="reset"],
-[type="submit"],
+[type='button'],
+[type='reset'],
+[type='submit'],
 button {
   -webkit-appearance: button;
 }
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner,
 button::-moz-focus-inner {
   border-style: none;
   padding: 0;
 }
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring,
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring,
 button:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
@@ -116,22 +116,22 @@ progress {
 textarea {
   overflow: auto;
 }
-[type="checkbox"],
-[type="radio"],
+[type='checkbox'],
+[type='radio'],
 legend {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
 }
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button {
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
   height: auto;
 }
-[type="search"] {
+[type='search'] {
   -webkit-appearance: textfield;
   outline-offset: -2px;
 }
-[type="search"]::-webkit-search-decoration {
+[type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 ::-webkit-file-upload-button {
@@ -269,7 +269,7 @@ main {
   display: flex;
 }
 .breadcrumbs__item:not(:last-child)::after {
-  content: "/";
+  content: '/';
   margin-left: 5px;
   margin-right: 5px;
   font-size: 17px;
@@ -376,7 +376,7 @@ main {
   transition: font-weight;
 }
 .catalog__genres-link::after {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 1;
   left: 0;
@@ -516,7 +516,7 @@ main {
   right: 0;
 }
 .film-card__bg::after {
-  content: "";
+  content: '';
   z-index: 1;
   background: rgba(0, 0, 0, 0.4);
 }
@@ -531,7 +531,7 @@ main {
 .film-card__bg img {
   -o-object-position: center top;
   object-position: center top;
-  font-family: "object-fit:cover;object-position:center top";
+  font-family: 'object-fit:cover;object-position:center top';
 }
 .film-card__head {
   margin-bottom: 40px;
@@ -574,7 +574,7 @@ main {
   transform: translateY(40px);
 }
 .film-card__poster img {
-  font-family: "object-fit:cover";
+  font-family: 'object-fit:cover';
 }
 .film-card__desc {
   -webkit-box-flex: 1;
@@ -582,7 +582,7 @@ main {
   flex-grow: 1;
 }
 .film-card__title {
-  font-family: "Arial Black", sans-serif;
+  font-family: 'Arial Black', sans-serif;
   font-size: 32px;
   line-height: 45px;
   margin: 0 0 7px;
@@ -593,7 +593,7 @@ main {
   margin: 0 0 20px;
 }
 .film-card__genre::after {
-  content: "·";
+  content: '·';
   margin-left: 4px;
   margin-right: 4px;
 }
@@ -714,12 +714,14 @@ main {
 .film-nav__link {
   display: block;
   color: #eee5b5;
+  background: none;
+  border: none;
   text-decoration: none;
   position: relative;
   padding-bottom: 19px;
 }
 .film-nav__link::after {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 1;
   left: 0;
@@ -760,7 +762,7 @@ main {
   font-weight: 700;
 }
 .film-rating__level::after {
-  content: "·";
+  content: '·';
   margin-left: 4px;
   margin-right: 4px;
   font-weight: 400;
@@ -811,7 +813,7 @@ main {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  font-family: "object-fit:cover";
+  font-family: 'object-fit:cover';
   object-fit: cover;
 }
 .player__exit {
@@ -972,7 +974,7 @@ main {
   padding-right: 0;
 }
 .rating__label::after {
-  content: "★";
+  content: '★';
   display: block;
   font-size: 32px;
   line-height: 36px;
@@ -1022,7 +1024,7 @@ main {
   flex-shrink: 0;
 }
 .review__date::before {
-  content: "·";
+  content: '·';
   margin-left: 4px;
   margin-right: 4px;
 }
@@ -1168,7 +1170,7 @@ main {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-  font-family: "object-fit:cover";
+  font-family: 'object-fit:cover';
   object-fit: cover;
 }
 .small-film-card__image {
@@ -1177,7 +1179,7 @@ main {
   height: 175px;
 }
 .small-film-card__image::after {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 1;
   top: 0;

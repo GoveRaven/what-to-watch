@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoutes } from '../../consts/routes';
 import { AuthorizationStatus } from '../../consts/authhorization-status';
 import { AddReview } from '../../pages/add-review';
-import { Main, MainProps } from '../../pages/main';
+import { Main, TMainProps } from '../../pages/main';
 import { MoviePage } from '../../pages/movie';
 import { MyList } from '../../pages/my-list';
 import { NotFound } from '../../pages/not-found';
@@ -10,9 +10,9 @@ import { Player } from '../../pages/player';
 import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
 
-type AppProps = MainProps;
+type TAppProps = TMainProps;
 
-function App({ title, genre, releaseDate, films }: AppProps): JSX.Element {
+function App({ title, genre, releaseDate, films }: TAppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -36,7 +36,7 @@ function App({ title, genre, releaseDate, films }: AppProps): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route path={AppRoutes.Film} element={<MoviePage film={films[0]}/>} />
+        <Route path={AppRoutes.Film} element={<MoviePage film={films[0]} />} />
         <Route
           path={AppRoutes.AddReview}
           element={<AddReview film={films[0]} />}

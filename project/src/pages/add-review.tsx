@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { AppRoutes } from '../consts/routes';
 import { ReviewForm } from '../components/review-form';
 
-type AddReviewProps = {
+type TAddReviewProps = {
   film: TFilm;
 };
 
-export function AddReview({ film }: AddReviewProps): JSX.Element {
+export function AddReview({ film }: TAddReviewProps): JSX.Element {
   return (
     <>
       <div className="visually-hidden">
@@ -122,7 +122,7 @@ export function AddReview({ film }: AddReviewProps): JSX.Element {
                   </Link>
                 </li>
                 <li className="breadcrumbs__item">
-                  <a className="breadcrumbs__link">Add review</a>
+                  <a href='#' className="breadcrumbs__link">Add review</a>
                 </li>
               </ul>
             </nav>
@@ -139,7 +139,7 @@ export function AddReview({ film }: AddReviewProps): JSX.Element {
                 </div>
               </li>
               <li className="user-block__item">
-                <a className="user-block__link">Sign out</a>
+                <a href='#' className="user-block__link">Sign out</a>
               </li>
             </ul>
           </header>

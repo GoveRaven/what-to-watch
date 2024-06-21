@@ -1,8 +1,4 @@
-import { TReview } from '../../types/reviews';
-
-type TReviewsProps = {
-  reviews: TReview[];
-};
+import { TReviewsProps } from './reviews';
 
 function getDate(date: string) {
   const fullDate = new Date(date);

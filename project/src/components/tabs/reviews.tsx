@@ -1,7 +1,7 @@
 import { TReview } from '../../types/reviews';
 import { ReviewColumn } from './reviews-column';
 
-type TReviewsProps = {
+export type TReviewsProps = {
   reviews: TReview[];
 };
 

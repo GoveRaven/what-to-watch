@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { FilmList } from '../components/films-list';
 import { TFilm } from '../types/films';
 import { AppRoutes } from '../consts/routes';
+import { GenresList } from '../components/genreList';
+import { useAppSelector } from '../hooks';
 
 export type TMainProps = {
   title: string;
@@ -17,6 +19,7 @@ export function Main({
   films,
 }: TMainProps): JSX.Element {
   const navigate = useNavigate();
+  const filmsFromStore = useAppSelector((state) => state.films);
 
   return (
     <>
@@ -127,7 +130,7 @@ export function Main({
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a href='#' className="logo__link">
+            <a href="#" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -146,7 +149,9 @@ export function Main({
               </div>
             </li>
             <li className="user-block__item">
-              <a href='#' className="user-block__link">Sign out</a>
+              <a href="#" className="user-block__link">
+                Sign out
+              </a>
             </li>
           </ul>
         </header>
@@ -199,62 +204,9 @@ export function Main({
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="/#" className="catalog__genres-link">
-                All genres
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Comedies
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Crime
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Documentary
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Dramas
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Horror
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Kids & Family
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Romance
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Sci-Fi
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Thrillers
-              </a>
-            </li>
-          </ul>
-
+          <GenresList films={films} />
           <div className="catalog__films-list">
-            <FilmList films={films} />
+            <FilmList films={filmsFromStore} />
           </div>
 
           <div className="catalog__more">
@@ -266,7 +218,7 @@ export function Main({
 
         <footer className="page-footer">
           <div className="logo">
-            <a href='#' className="logo__link logo__link--light">
+            <a href="#" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>

@@ -370,6 +370,8 @@ main {
   display: block;
   color: #dfcf77;
   text-decoration: none;
+  background: none;
+  border: none;
   position: relative;
   padding-bottom: 15px;
   -webkit-transition: font-weight;
@@ -390,6 +392,7 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   -webkit-box-align: start;

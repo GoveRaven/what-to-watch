@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { FilmList } from '../components/films-list';
 import { TFilm } from '../types/films';
 import { AppRoutes } from '../consts/routes';
-import { GenresList } from '../components/genreList';
+import { GenresList } from '../components/genres-list';
 import { useAppSelector } from '../hooks';
 
 export type TMainProps = {

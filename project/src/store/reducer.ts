@@ -1,9 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeGenre, actualizeFilmsList } from './actions';
 import { films } from '../mocks/films';
+import { DEFAULT_GENRE } from '../consts/store';
 
 const initialState = {
-  genre: 'All genres',
+  genre: DEFAULT_GENRE,
   films: films,
 };
 
@@ -13,7 +14,7 @@ export const reducer = createReducer(initialState, (builder) => {
       state.genre = action.payload;
     })
     .addCase(actualizeFilmsList, (state, action) => {
-      if (state.genre === 'All genres') {
+      if (state.genre === DEFAULT_GENRE) {
         state.films = initialState.films;
       } else {
         state.films = initialState.films.filter(

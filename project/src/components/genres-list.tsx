@@ -1,3 +1,4 @@
+import { DEFAULT_GENRE } from '../consts/store';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { changeGenre, actualizeFilmsList } from '../store/actions';
 import { TFilm } from '../types/films';
@@ -7,7 +8,7 @@ type TGenresList = {
 };
 
 export function GenresList({ films }: TGenresList) {
-  const genres = ['All genres'];
+  const genres = [DEFAULT_GENRE];
   const dispatch = useAppDispatch();
   const activeGenre = useAppSelector((state) => state.genre);
 

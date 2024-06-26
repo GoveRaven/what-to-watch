@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { FilmList } from '../components/films-list';
-import { TFilm } from '../types/films';
 import { AppRoutes } from '../consts/routes';
 import { GenresList } from '../components/genres-list';
 import { useAppSelector } from '../hooks';
@@ -9,14 +8,12 @@ export type TMainProps = {
   title: string;
   genre: string;
   releaseDate: string;
-  films: TFilm[];
 };
 
 export function Main({
   title,
   genre,
   releaseDate,
-  films,
 }: TMainProps): JSX.Element {
   const navigate = useNavigate();
   const filmsFromStore = useAppSelector((state) => state.films);
@@ -204,7 +201,7 @@ export function Main({
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenresList films={films} />
+          <GenresList films={filmsFromStore} />
           <div className="catalog__films-list">
             <FilmList films={filmsFromStore} />
           </div>

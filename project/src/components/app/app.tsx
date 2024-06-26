@@ -9,8 +9,11 @@ import { NotFound } from '../../pages/not-found';
 import { Player } from '../../pages/player';
 import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
+import { TFilm } from '../../types/films';
 
-type TAppProps = TMainProps;
+type TAppProps = TMainProps & {
+  films: TFilm[]
+};
 
 function App({ title, genre, releaseDate, films }: TAppProps): JSX.Element {
   return (
@@ -23,7 +26,6 @@ function App({ title, genre, releaseDate, films }: TAppProps): JSX.Element {
               title={title}
               genre={genre}
               releaseDate={releaseDate}
-              films={films}
             />
           }
         />

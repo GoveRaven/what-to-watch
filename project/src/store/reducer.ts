@@ -6,6 +6,7 @@ import { DEFAULT_GENRE } from '../consts/store';
 const initialState = {
   genre: DEFAULT_GENRE,
   films: films,
+  defaultFilmsList: films
 };
 
 export const reducer = createReducer(initialState, (builder) => {

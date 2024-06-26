@@ -10,14 +10,14 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <Provider store={store}>
-    <React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
       <App
         title="The Grand Budapest Hotel"
         genre="Drama"
         releaseDate="2014"
         films={films}
       />
-    </React.StrictMode>
-  </Provider>
+    </Provider>
+  </React.StrictMode>
 );

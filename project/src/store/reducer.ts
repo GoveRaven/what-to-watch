@@ -13,7 +13,7 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(changeGenre, (state, action) => {
       state.genre = action.payload;
     })
-    .addCase(actualizeFilmsList, (state, action) => {
+    .addCase(actualizeFilmsList, (state) => {
       if (state.genre === DEFAULT_GENRE) {
         state.films = initialState.films;
       } else {

@@ -8,14 +8,15 @@ type TGenresList = {
 };
 
 export function GenresList({ films }: TGenresList) {
-  const genres = [DEFAULT_GENRE];
+  const genresSet = new Set([DEFAULT_GENRE]);
   const dispatch = useAppDispatch();
   const activeGenre = useAppSelector((state) => state.genre);
 
-  films.map((film) => genres.includes(film.genre) || genres.push(film.genre));
+  films.map((film) => genresSet.add(film.genre));
+  const genresArr = Array.from(genresSet);
   return (
     <ul className="catalog__genres-list">
-      {genres.map((genre) => (
+      {genresArr.map((genre) => (
         <li
           className={`catalog__genres-item${
             activeGenre === genre ? ' catalog__genres-item--active' : ''

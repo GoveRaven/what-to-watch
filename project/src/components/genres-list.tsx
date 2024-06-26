@@ -12,7 +12,7 @@ export function GenresList({ films }: TGenresList) {
   const dispatch = useAppDispatch();
   const activeGenre = useAppSelector((state) => state.genre);
 
-  films.map((film) => genresSet.add(film.genre));
+  films.forEach((film) => genresSet.add(film.genre));
   const genresArr = Array.from(genresSet);
   return (
     <ul className="catalog__genres-list">

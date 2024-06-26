@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { changeGenre, FilterFilmsByGenre } from '../store/actions';
+import { changeGenre, actualizeFilmsList } from '../store/actions';
 import { TFilm } from '../types/films';
 
 type TGenresList = {
@@ -25,7 +25,7 @@ export function GenresList({ films }: TGenresList) {
             className="catalog__genres-link"
             onClick={() => {
               dispatch(changeGenre(genre));
-              dispatch(FilterFilmsByGenre());
+              dispatch(actualizeFilmsList());
             }}
           >
             {genre}

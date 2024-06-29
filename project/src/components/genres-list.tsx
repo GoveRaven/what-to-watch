@@ -13,10 +13,10 @@ export function GenresList({ films }: TGenresList) {
   const activeGenre = useAppSelector((state) => state.genre);
 
   films.forEach((film) => genresSet.add(film.genre));
-  const genresArr = Array.from(genresSet);
+  const genres = Array.from(genresSet);
   return (
     <ul className="catalog__genres-list">
-      {genresArr.map((genre) => (
+      {genres.map((genre) => (
         <li
           className={`catalog__genres-item${
             activeGenre === genre ? ' catalog__genres-item--active' : ''

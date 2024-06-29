@@ -9,24 +9,20 @@ import { NotFound } from '../../pages/not-found';
 import { Player } from '../../pages/player';
 import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
-import { TFilm } from '../../types/films';
+import { useAppSelector } from '../../hooks';
 
-type TAppProps = TMainProps & {
-  films: TFilm[]
-};
+type TAppProps = TMainProps
 
-function App({ title, genre, releaseDate, films }: TAppProps): JSX.Element {
+function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
+  const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoutes.Main}
           element={
-            <Main
-              title={title}
-              genre={genre}
-              releaseDate={releaseDate}
-            />
+            <Main title={title} genre={genre} releaseDate={releaseDate} />
           }
         />
         <Route path={AppRoutes.SignIn} element={<SignIn />} />
@@ -34,16 +30,16 @@ function App({ title, genre, releaseDate, films }: TAppProps): JSX.Element {
           path={AppRoutes.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <MyList films={films} />
+              <MyList films={defaultFilmsList} />
             </PrivateRoute>
           }
         />
-        <Route path={AppRoutes.Film} element={<MoviePage film={films[0]} />} />
+        <Route path={AppRoutes.Film} element={<MoviePage film={defaultFilmsList[0]} />} />
         <Route
           path={AppRoutes.AddReview}
-          element={<AddReview film={films[0]} />}
+          element={<AddReview film={defaultFilmsList[0]} />}
         />
-        <Route path={AppRoutes.Player} element={<Player film={films[0]} />} />
+        <Route path={AppRoutes.Player} element={<Player film={defaultFilmsList[0]} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

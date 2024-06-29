@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FilmList } from '../components/films-list';
-import { AppRoutes } from '../consts/routes';
 import { GenresList } from '../components/genres-list';
+import { ShowMoreButton } from '../components/showMoreButton';
+import { AppRoutes } from '../consts/routes';
 import { useAppSelector } from '../hooks';
 
 export type TMainProps = {
@@ -10,14 +12,15 @@ export type TMainProps = {
   releaseDate: string;
 };
 
-export function Main({
-  title,
-  genre,
-  releaseDate,
-}: TMainProps): JSX.Element {
+export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
   const navigate = useNavigate();
   const filmsFromStore = useAppSelector((state) => state.films);
   const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
+  const [lengthOfSshowedFilms, setLengtOfSshowedFilms] = useState(8);
+
+  function addFilmsInList() {
+    setLengtOfSshowedFilms(lengthOfSshowedFilms + 8);
+  }
 
   return (
     <>
@@ -202,16 +205,15 @@ export function Main({
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <GenresList films={defaultFilmsList} />
-          <div className="catalog__films-list">
-            <FilmList films={filmsFromStore} />
-          </div>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-              Show more
-            </button>
-          </div>
+          <GenresList
+            films={defaultFilmsList}
+            onGenreChange={() => (setLengtOfSshowedFilms(8))}
+          />
+          <FilmList films={filmsFromStore.slice(0, lengthOfSshowedFilms)} />
+          <ShowMoreButton
+            needHide={lengthOfSshowedFilms >= filmsFromStore.length}
+            onClickAction={addFilmsInList}
+          />
         </section>
 
         <footer className="page-footer">

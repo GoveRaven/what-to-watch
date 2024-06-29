@@ -212,7 +212,7 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
             onGenreChange={() => setShownCount(NUMBER_ADDED_MOVIES)}
           />
           <FilmList films={films.slice(0, shownCount)} />
-          {showButton && <ShowMoreButton onClickAction={addFilmsInList} />}
+          {showButton && <ShowMoreButton onClick={addFilmsInList} />}
         </section>
 
         <footer className="page-footer">

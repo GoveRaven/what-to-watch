@@ -1,13 +1,13 @@
 type TShowMoreButtonProps = {
-  onClickAction: VoidFunction;
+  onClick: VoidFunction;
 };
 
 export function ShowMoreButton({
-  onClickAction,
+  onClick,
 }: TShowMoreButtonProps) {
   return (
     <div className="catalog__more">
-      <button className="catalog__button" type="button" onClick={onClickAction}>
+      <button className="catalog__button" type="button" onClick={onClick}>
         Show more
       </button>
     </div>

@@ -1,22 +1,28 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FilmList } from '../components/films-list';
-import { TFilm } from '../types/films';
+import { GenresList } from '../components/genres-list';
+import { ShowMoreButton } from '../components/showMoreButton';
 import { AppRoutes } from '../consts/routes';
+import { DEFAULT_SHOWN_COUNT } from '../consts/films';
+import { useAppSelector } from '../hooks';
 
 export type TMainProps = {
   title: string;
   genre: string;
   releaseDate: string;
-  films: TFilm[];
 };
 
-export function Main({
-  title,
-  genre,
-  releaseDate,
-  films,
-}: TMainProps): JSX.Element {
+export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
   const navigate = useNavigate();
+  const films = useAppSelector((state) => state.films);
+  const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
+  const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
+  const showMoreButton = shownCount <= films.length;
+
+  function showMoreFilms() {
+    setShownCount(shownCount + DEFAULT_SHOWN_COUNT);
+  }
 
   return (
     <>
@@ -127,7 +133,7 @@ export function Main({
 
         <header className="page-header film-card__head">
           <div className="logo">
-            <a href='#' className="logo__link">
+            <a href="#" className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -146,7 +152,9 @@ export function Main({
               </div>
             </li>
             <li className="user-block__item">
-              <a href='#' className="user-block__link">Sign out</a>
+              <a href="#" className="user-block__link">
+                Sign out
+              </a>
             </li>
           </ul>
         </header>
@@ -199,74 +207,17 @@ export function Main({
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="/#" className="catalog__genres-link">
-                All genres
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Comedies
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Crime
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Documentary
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Dramas
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Horror
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Kids & Family
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Romance
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Sci-Fi
-              </a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="/#" className="catalog__genres-link">
-                Thrillers
-              </a>
-            </li>
-          </ul>
-
-          <div className="catalog__films-list">
-            <FilmList films={films} />
-          </div>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-              Show more
-            </button>
-          </div>
+          <GenresList
+            films={defaultFilmsList}
+            onGenreChange={() => setShownCount(DEFAULT_SHOWN_COUNT)}
+          />
+          <FilmList films={films.slice(0, shownCount)} />
+          {showMoreButton && <ShowMoreButton onClick={showMoreFilms} />}
         </section>
 
         <footer className="page-footer">
           <div className="logo">
-            <a href='#' className="logo__link logo__link--light">
+            <a href="#" className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>

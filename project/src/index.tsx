@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './components/app/app';
-import { films } from './mocks/films';
 import { Provider } from 'react-redux';
+import App from './components/app/app';
 import { store } from './store';
 
 const root = ReactDOM.createRoot(
@@ -16,7 +15,6 @@ root.render(
         title="The Grand Budapest Hotel"
         genre="Drama"
         releaseDate="2014"
-        films={films}
       />
     </Provider>
   </React.StrictMode>

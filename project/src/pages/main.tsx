@@ -16,11 +16,11 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
   const navigate = useNavigate();
   const filmsFromStore = useAppSelector((state) => state.films);
   const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
-  const [lengthOfSshowedFilms, setLengtOfSshowedFilms] = useState(8);
-  const showButton = lengthOfSshowedFilms <= filmsFromStore.length;
+  const [shownCount, setShownCount] = useState(8);
+  const showButton = shownCount <= filmsFromStore.length;
 
   function addFilmsInList() {
-    setLengtOfSshowedFilms(lengthOfSshowedFilms + 8);
+    setShownCount(shownCount + 8);
   }
 
   return (
@@ -208,9 +208,9 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList
             films={defaultFilmsList}
-            onGenreChange={() => setLengtOfSshowedFilms(8)}
+            onGenreChange={() => setShownCount(8)}
           />
-          <FilmList films={filmsFromStore.slice(0, lengthOfSshowedFilms)} />
+          <FilmList films={filmsFromStore.slice(0, shownCount)} />
           {showButton && <ShowMoreButton onClickAction={addFilmsInList} />}
         </section>
 

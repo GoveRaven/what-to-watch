@@ -15,10 +15,10 @@ export type TMainProps = {
 
 export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
   const navigate = useNavigate();
-  const filmsFromStore = useAppSelector((state) => state.films);
+  const films = useAppSelector((state) => state.films);
   const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
   const [shownCount, setShownCount] = useState(NUMBER_ADDED_MOVIES);
-  const showButton = shownCount <= filmsFromStore.length;
+  const showButton = shownCount <= films.length;
 
   function addFilmsInList() {
     setShownCount(shownCount + NUMBER_ADDED_MOVIES);
@@ -211,7 +211,7 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
             films={defaultFilmsList}
             onGenreChange={() => setShownCount(NUMBER_ADDED_MOVIES)}
           />
-          <FilmList films={filmsFromStore.slice(0, shownCount)} />
+          <FilmList films={films.slice(0, shownCount)} />
           {showButton && <ShowMoreButton onClickAction={addFilmsInList} />}
         </section>
 

@@ -11,7 +11,7 @@ import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
 import { useAppSelector } from '../../hooks';
 
-type TAppProps = TMainProps
+type TAppProps = TMainProps;
 
 function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
   const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
@@ -34,12 +34,18 @@ function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route path={AppRoutes.Film} element={<MoviePage film={defaultFilmsList[0]} />} />
+        <Route
+          path={AppRoutes.Film}
+          element={<MoviePage film={defaultFilmsList[0]} />}
+        />
         <Route
           path={AppRoutes.AddReview}
           element={<AddReview film={defaultFilmsList[0]} />}
         />
-        <Route path={AppRoutes.Player} element={<Player film={defaultFilmsList[0]} />} />
+        <Route
+          path={AppRoutes.Player}
+          element={<Player film={defaultFilmsList[0]} />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

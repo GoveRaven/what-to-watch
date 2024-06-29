@@ -5,9 +5,10 @@ import { TFilm } from '../types/films';
 
 type TGenresList = {
   films: TFilm[];
+  onGenreChange: VoidFunction;
 };
 
-export function GenresList({ films }: TGenresList) {
+export function GenresList({ films, onGenreChange }: TGenresList) {
   const genresSet = new Set([DEFAULT_GENRE]);
   const dispatch = useAppDispatch();
   const activeGenre = useAppSelector((state) => state.genre);
@@ -28,6 +29,7 @@ export function GenresList({ films }: TGenresList) {
             onClick={() => {
               dispatch(changeGenre(genre));
               dispatch(actualizeFilmsList());
+              onGenreChange();
             }}
           >
             {genre}

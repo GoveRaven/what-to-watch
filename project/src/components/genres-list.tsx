@@ -1,4 +1,4 @@
-import { DEFAULT_GENRE } from '../consts/store';
+import { DEFAULT_GENRE } from '../consts/films';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { changeGenre, actualizeFilmsList } from '../store/actions';
 import { TFilm } from '../types/films';

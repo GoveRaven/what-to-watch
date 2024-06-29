@@ -4,8 +4,8 @@ import { FilmList } from '../components/films-list';
 import { GenresList } from '../components/genres-list';
 import { ShowMoreButton } from '../components/showMoreButton';
 import { AppRoutes } from '../consts/routes';
+import { NUMBER_ADDED_MOVIES } from '../consts/films';
 import { useAppSelector } from '../hooks';
-import { NUMBER_ADDED_MOVIES } from '../consts/filmList';
 
 export type TMainProps = {
   title: string;

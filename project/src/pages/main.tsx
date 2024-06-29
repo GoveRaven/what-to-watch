@@ -17,6 +17,7 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
   const filmsFromStore = useAppSelector((state) => state.films);
   const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
   const [lengthOfSshowedFilms, setLengtOfSshowedFilms] = useState(8);
+  const showButton = lengthOfSshowedFilms <= filmsFromStore.length;
 
   function addFilmsInList() {
     setLengtOfSshowedFilms(lengthOfSshowedFilms + 8);
@@ -207,13 +208,10 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList
             films={defaultFilmsList}
-            onGenreChange={() => (setLengtOfSshowedFilms(8))}
+            onGenreChange={() => setLengtOfSshowedFilms(8)}
           />
           <FilmList films={filmsFromStore.slice(0, lengthOfSshowedFilms)} />
-          <ShowMoreButton
-            needHide={lengthOfSshowedFilms >= filmsFromStore.length}
-            onClickAction={addFilmsInList}
-          />
+          {showButton && <ShowMoreButton onClickAction={addFilmsInList} />}
         </section>
 
         <footer className="page-footer">

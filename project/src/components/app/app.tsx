@@ -10,11 +10,17 @@ import { Player } from '../../pages/player';
 import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
 import { useAppSelector } from '../../hooks';
+import { Loader } from '../loader';
 
 type TAppProps = TMainProps;
 
 function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
   const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
+  const isFilmsLoading = useAppSelector((state) => state.isFilmsLoading);
+
+  if (isFilmsLoading) {
+    return <Loader />;
+  }
 
   return (
     <BrowserRouter>

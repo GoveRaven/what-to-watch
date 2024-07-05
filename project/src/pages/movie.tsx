@@ -5,7 +5,7 @@ import { makePathWithParams } from '../utils/makePath';
 import { Tabs } from '../components/tabs/tabs';
 import { reviews } from '../mocks/reviews';
 import { FilmList } from '../components/films-list';
-import { films } from '../mocks/films';
+import { useAppSelector } from '../hooks';
 
 type TMoviePageProps = {
   film: TFilm;
@@ -26,6 +26,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
   const { id } = useParams();
   const playerRoute = makePathWithParams(AppRoutes.Player, { id });
   const reviewRoute = makePathWithParams(AppRoutes.AddReview, { id });
+  const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
 
   return (
     <>
@@ -156,7 +157,9 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
                 </div>
               </li>
               <li className="user-block__item">
-                <a href='#' className="user-block__link">Sign out</a>
+                <a href="#" className="user-block__link">
+                  Sign out
+                </a>
               </li>
             </ul>
           </header>
@@ -210,7 +213,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <Tabs film={film} reviews={reviews}/>
+              <Tabs film={film} reviews={reviews} />
             </div>
           </div>
         </div>
@@ -219,7 +222,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={films} genre={genre}/>
+          <FilmList films={defaultFilmsList} genre={genre} name={name} />
         </section>
 
         <footer className="page-footer">

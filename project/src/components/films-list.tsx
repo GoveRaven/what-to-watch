@@ -6,15 +6,18 @@ import { AppRoutes } from '../consts/routes';
 type TFilmListProps = {
   films: TFilm[];
   genre?: string;
+  name?: string;
 };
 
-export function FilmList({ films, genre }: TFilmListProps): JSX.Element {
+export function FilmList({ films, genre, name }: TFilmListProps): JSX.Element {
   const location = useLocation();
   const pathname = location.pathname;
   const match = matchPath(AppRoutes.Film, pathname);
 
   if (match) {
-    films = films.filter((film) => film.genre === genre).slice(0, 4);
+    films = films
+      .filter((film) => film.genre === genre && film.name !== name)
+      .slice(0, 4);
   }
 
   return (

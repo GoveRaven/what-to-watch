@@ -214,7 +214,6 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
           <FilmList films={films.slice(0, shownCount)} />
           {showMoreButton && <ShowMoreButton onClick={showMoreFilms} />}
         </section>
-
         <footer className="page-footer">
           <div className="logo">
             <a href="#" className="logo__link logo__link--light">

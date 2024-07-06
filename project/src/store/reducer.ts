@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   changeGenre,
   actualizeFilmsList,
-  loadFilms,
+  setFilms,
   setFilmsLoadingStatus,
 } from './actions';
 import { DEFAULT_GENRE } from '../consts/films';
@@ -39,7 +39,7 @@ export const reducer = createReducer(initialState, (builder) => {
         );
       }
     })
-    .addCase(loadFilms, (state, action) => {
+    .addCase(setFilms, (state, action) => {
       state.films = action.payload;
       state.defaultFilmsList = action.payload;
     })

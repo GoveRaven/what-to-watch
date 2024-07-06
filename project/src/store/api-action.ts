@@ -3,7 +3,7 @@ import { TAppDispatch, TState } from '../types/store';
 import { AxiosInstance } from 'axios';
 import { TFilm } from '../types/films';
 import { APIRoute } from '../consts/routes';
-import { loadFilms, setFilmsLoadingStatus } from './actions';
+import { setFilms, setFilmsLoadingStatus } from './actions';
 
 export const fetchFilmAction = createAsyncThunk<
   void,
@@ -16,6 +16,6 @@ export const fetchFilmAction = createAsyncThunk<
 >('data/fetchFilms', async (_arg, { dispatch, extra: api }) => {
   dispatch(setFilmsLoadingStatus(true));
   const { data } = await api.get<TFilm[]>(APIRoute.Films);
-  dispatch(loadFilms(data));
+  dispatch(setFilms(data));
   dispatch(setFilmsLoadingStatus(false));
 });

@@ -16,9 +16,9 @@ type TAppProps = TMainProps;
 
 function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
   const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
-  const isFilmsLoading = useAppSelector((state) => state.isFilmsLoading);
+  const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
 
-  if (isFilmsLoading) {
+  if (areFilmsLoading) {
     return <Loader />;
   }
 

@@ -13,7 +13,7 @@ type TInitialState = {
   genre: string;
   films: TFilm[];
   defaultFilmsList: TFilm[];
-  isFilmsLoading: boolean;
+  areFilmsLoading: boolean;
   AuthStatus: AuthorizationStatus;
 };
 
@@ -21,7 +21,7 @@ const initialState: TInitialState = {
   genre: DEFAULT_GENRE,
   films: [],
   defaultFilmsList: [],
-  isFilmsLoading: true,
+  areFilmsLoading: true,
   AuthStatus: AuthorizationStatus.Unknown,
 };
 
@@ -44,6 +44,6 @@ export const reducer = createReducer(initialState, (builder) => {
       state.defaultFilmsList = action.payload;
     })
     .addCase(setFilmsLoadingStatus, (state, action) => {
-      state.isFilmsLoading = action.payload;
+      state.areFilmsLoading = action.payload;
     });
 });

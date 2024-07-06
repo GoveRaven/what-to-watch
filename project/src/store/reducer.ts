@@ -21,7 +21,7 @@ const initialState: TInitialState = {
   genre: DEFAULT_GENRE,
   films: [],
   defaultFilmsList: [],
-  areFilmsLoading: true,
+  areFilmsLoading: false,
   AuthStatus: AuthorizationStatus.Unknown,
 };
 

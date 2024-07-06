@@ -1,12 +1,12 @@
 import axios, { AxiosInstance } from 'axios';
 
-const backendUrl = 'https://10.react.htmlacademy.pro/wtw';
-const requestTimeout = 5000;
+const BACKEND_URL = 'https://10.react.htmlacademy.pro/wtw';
+const REQUEST_TIMEOUT = 5000;
 
 export const createApi = (): AxiosInstance => {
   const api = axios.create({
-    baseURL: backendUrl ,
-    timeout: requestTimeout,
+    baseURL: BACKEND_URL ,
+    timeout: REQUEST_TIMEOUT,
   });
   return api;
 };

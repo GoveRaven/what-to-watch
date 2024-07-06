@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AppRoutes } from '../consts/routes';
+import { AppRoute } from '../consts/routes';
 import { useState } from 'react';
 import { makePathWithParams } from '../utils/makePath';
 import { VideoPlayer, TVideoPlayerProps } from './video-player';
@@ -12,7 +12,7 @@ type TFilmCardProps = {
 
 export function FilmCard({ name, previewImage, id, video }: TFilmCardProps) {
   const [activeCardID, setActiveCardID] = useState<number | null>(null);
-  const to = makePathWithParams(AppRoutes.Film, { id });
+  const to = makePathWithParams(AppRoute.Film, { id });
 
   let timerID: number;
 

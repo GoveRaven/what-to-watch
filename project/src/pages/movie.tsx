@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { AppRoutes } from '../consts/routes';
+import { AppRoute } from '../consts/routes';
 import { TFilm } from '../types/films';
 import { makePathWithParams } from '../utils/makePath';
 import { Tabs } from '../components/tabs/tabs';
@@ -24,8 +24,8 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
   } = film;
 
   const { id } = useParams();
-  const playerRoute = makePathWithParams(AppRoutes.Player, { id });
-  const reviewRoute = makePathWithParams(AppRoutes.AddReview, { id });
+  const playerRoute = makePathWithParams(AppRoute.Player, { id });
+  const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
   const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
 
   return (
@@ -138,7 +138,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
 
           <header className="page-header film-card__head">
             <div className="logo">
-              <Link to={AppRoutes.Main} className="logo__link">
+              <Link to={AppRoute.Main} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>

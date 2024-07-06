@@ -1,6 +1,6 @@
 import { TFilm } from '../types/films';
 import { Link } from 'react-router-dom';
-import { AppRoutes } from '../consts/routes';
+import { AppRoute } from '../consts/routes';
 import { ReviewForm } from '../components/review-form';
 
 type TAddReviewProps = {
@@ -107,7 +107,7 @@ export function AddReview({ film }: TAddReviewProps): JSX.Element {
 
           <header className="page-header">
             <div className="logo">
-              <Link to={AppRoutes.Main} className="logo__link">
+              <Link to={AppRoute.Main} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
@@ -117,12 +117,14 @@ export function AddReview({ film }: TAddReviewProps): JSX.Element {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={AppRoutes.Film} className="breadcrumbs__link">
+                  <Link to={AppRoute.Film} className="breadcrumbs__link">
                     {film.name}
                   </Link>
                 </li>
                 <li className="breadcrumbs__item">
-                  <a href='#' className="breadcrumbs__link">Add review</a>
+                  <a href="#" className="breadcrumbs__link">
+                    Add review
+                  </a>
                 </li>
               </ul>
             </nav>
@@ -139,7 +141,9 @@ export function AddReview({ film }: TAddReviewProps): JSX.Element {
                 </div>
               </li>
               <li className="user-block__item">
-                <a href='#' className="user-block__link">Sign out</a>
+                <a href="#" className="user-block__link">
+                  Sign out
+                </a>
               </li>
             </ul>
           </header>

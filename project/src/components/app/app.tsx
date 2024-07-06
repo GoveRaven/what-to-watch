@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppRoutes } from '../../consts/routes';
+import { AppRoute } from '../../consts/routes';
 import { AuthorizationStatus } from '../../consts/authhorization-status';
 import { AddReview } from '../../pages/add-review';
 import { Main, TMainProps } from '../../pages/main';
@@ -26,14 +26,14 @@ function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route
-          path={AppRoutes.Main}
+          path={AppRoute.Main}
           element={
             <Main title={title} genre={genre} releaseDate={releaseDate} />
           }
         />
-        <Route path={AppRoutes.SignIn} element={<SignIn />} />
+        <Route path={AppRoute.SignIn} element={<SignIn />} />
         <Route
-          path={AppRoutes.MyList}
+          path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
               <MyList films={defaultFilmsList} />
@@ -41,15 +41,15 @@ function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
           }
         />
         <Route
-          path={AppRoutes.Film}
+          path={AppRoute.Film}
           element={<MoviePage film={defaultFilmsList[0]} />}
         />
         <Route
-          path={AppRoutes.AddReview}
+          path={AppRoute.AddReview}
           element={<AddReview film={defaultFilmsList[0]} />}
         />
         <Route
-          path={AppRoutes.Player}
+          path={AppRoute.Player}
           element={<Player film={defaultFilmsList[0]} />}
         />
         <Route path="*" element={<NotFound />} />

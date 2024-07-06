@@ -1,7 +1,7 @@
 import { FilmCard } from './film-card';
 import { TFilm } from '../types/films';
 import { matchPath, useLocation } from 'react-router-dom';
-import { AppRoutes } from '../consts/routes';
+import { AppRoute } from '../consts/routes';
 
 type TFilmListProps = {
   films: TFilm[];
@@ -12,7 +12,7 @@ type TFilmListProps = {
 export function FilmList({ films, genre, name }: TFilmListProps): JSX.Element {
   const location = useLocation();
   const pathname = location.pathname;
-  const match = matchPath(AppRoutes.Film, pathname);
+  const match = matchPath(AppRoute.Film, pathname);
 
   if (match) {
     films = films

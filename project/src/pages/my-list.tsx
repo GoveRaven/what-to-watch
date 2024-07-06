@@ -1,7 +1,7 @@
 import { FilmList } from '../components/films-list';
 import { TFilm } from '../types/films';
 import { Link } from 'react-router-dom';
-import { AppRoutes } from '../consts/routes';
+import { AppRoute } from '../consts/routes';
 
 type TMyListProps = {
   films: TFilm[];
@@ -100,7 +100,7 @@ export function MyList({ films }: TMyListProps): JSX.Element {
       <div className="user-page">
         <header className="page-header user-page__head">
           <div className="logo">
-            <Link to={AppRoutes.Main} className="logo__link">
+            <Link to={AppRoute.Main} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -123,7 +123,9 @@ export function MyList({ films }: TMyListProps): JSX.Element {
               </div>
             </li>
             <li className="user-block__item">
-              <a href='#' className="user-block__link">Sign out</a>
+              <a href="#" className="user-block__link">
+                Sign out
+              </a>
             </li>
           </ul>
         </header>

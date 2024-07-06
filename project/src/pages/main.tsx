@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FilmList } from '../components/films-list';
 import { GenresList } from '../components/genres-list';
 import { ShowMoreButton } from '../components/showMoreButton';
-import { AppRoutes } from '../consts/routes';
+import { AppRoute } from '../consts/routes';
 import { DEFAULT_SHOWN_COUNT } from '../consts/films';
 import { useAppSelector } from '../hooks';
 
@@ -181,7 +181,7 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
                 <button
                   className="btn btn--play film-card__button"
                   type="button"
-                  onClick={() => navigate(AppRoutes.Player)}
+                  onClick={() => navigate(AppRoute.Player)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>

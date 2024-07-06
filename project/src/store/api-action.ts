@@ -14,8 +14,8 @@ export const fetchFilmAction = createAsyncThunk<
     extra: AxiosInstance;
   }
 >('data/fetchFilms', async (_arg, { dispatch, extra: api }) => {
-  const { data } = await api.get<TFilm[]>(APIRoute.Films);
   dispatch(setFilmsLoadingStatus(true));
+  const { data } = await api.get<TFilm[]>(APIRoute.Films);
   dispatch(loadFilms(data));
   dispatch(setFilmsLoadingStatus(false));
 });

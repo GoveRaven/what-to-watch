@@ -15,7 +15,6 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
   const navigate = useNavigate();
   const {
     name,
-    id: movieId,
     posterImage,
     backgroundImage,
     genre,
@@ -30,7 +29,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
   const allFilmsList = useAppSelector((state) => state.allFilmsList);
 
   const filmsWithSameGenre = allFilmsList
-    .filter((movie) => movie.genre === genre && movie.id !== movieId)
+    .filter((movie) => movie.genre === genre && movie.id !== Number(id))
     .slice(0, 4);
 
   return (

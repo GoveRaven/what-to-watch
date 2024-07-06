@@ -14,7 +14,7 @@ type TInitialState = {
   films: TFilm[];
   allFilmsList: TFilm[];
   areFilmsLoading: boolean;
-  AuthStatus: AuthorizationStatus;
+  authStatus: AuthorizationStatus;
 };
 
 const initialState: TInitialState = {
@@ -22,7 +22,7 @@ const initialState: TInitialState = {
   films: [],
   allFilmsList: [],
   areFilmsLoading: false,
-  AuthStatus: AuthorizationStatus.Unknown,
+  authStatus: AuthorizationStatus.Unknown,
 };
 
 export const reducer = createReducer(initialState, (builder) => {

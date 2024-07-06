@@ -15,7 +15,7 @@ import { Loader } from '../loader';
 type TAppProps = TMainProps;
 
 function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
-  const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
+  const allFilmsList = useAppSelector((state) => state.allFilmsList);
   const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
 
   if (areFilmsLoading) {
@@ -36,21 +36,21 @@ function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <MyList films={defaultFilmsList} />
+              <MyList films={allFilmsList} />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePage film={defaultFilmsList[0]} />}
+          element={<MoviePage film={allFilmsList[0]} />}
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReview film={defaultFilmsList[0]} />}
+          element={<AddReview film={allFilmsList[0]} />}
         />
         <Route
           path={AppRoute.Player}
-          element={<Player film={defaultFilmsList[0]} />}
+          element={<Player film={allFilmsList[0]} />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

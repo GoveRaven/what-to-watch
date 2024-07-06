@@ -16,7 +16,7 @@ export type TMainProps = {
 export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
   const navigate = useNavigate();
   const films = useAppSelector((state) => state.films);
-  const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
+  const allFilmsList = useAppSelector((state) => state.allFilmsList);
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
   const showMoreButton = shownCount <= films.length;
 
@@ -208,7 +208,7 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList
-            films={defaultFilmsList}
+            films={allFilmsList}
             onGenreChange={() => setShownCount(DEFAULT_SHOWN_COUNT)}
           />
           <FilmList films={films.slice(0, shownCount)} />

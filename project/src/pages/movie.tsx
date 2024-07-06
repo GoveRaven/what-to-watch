@@ -26,7 +26,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
   const { id } = useParams();
   const playerRoute = makePathWithParams(AppRoute.Player, { id });
   const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
-  const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
+  const allFilmsList = useAppSelector((state) => state.allFilmsList);
 
   return (
     <>
@@ -222,7 +222,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={defaultFilmsList} genre={genre} name={name} />
+          <FilmList films={allFilmsList} genre={genre} name={name} />
         </section>
 
         <footer className="page-footer">

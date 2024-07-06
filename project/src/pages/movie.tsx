@@ -15,6 +15,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
   const navigate = useNavigate();
   const {
     name,
+    id: movieId,
     posterImage,
     backgroundImage,
     genre,
@@ -27,6 +28,10 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
   const playerRoute = makePathWithParams(AppRoute.Player, { id });
   const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
   const allFilmsList = useAppSelector((state) => state.allFilmsList);
+
+  const filmsWithSameGenre = allFilmsList
+    .filter((movie) => movie.genre === genre && movie.id !== movieId)
+    .slice(0, 4);
 
   return (
     <>
@@ -222,7 +227,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={allFilmsList} genre={genre} name={name} />
+          <FilmList films={filmsWithSameGenre} />
         </section>
 
         <footer className="page-footer">

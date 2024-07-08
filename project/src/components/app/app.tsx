@@ -1,6 +1,5 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../consts/routes';
-import { AuthorizationStatus } from '../../consts/authhorization-status';
 import { AddReview } from '../../pages/add-review';
 import { Main, TMainProps } from '../../pages/main';
 import { MoviePage } from '../../pages/movie';
@@ -11,6 +10,8 @@ import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
 import { useAppSelector } from '../../hooks';
 import { Loader } from '../loader';
+import HistoryRouter from '../history-routes/history-routes';
+import { browserHistory } from '../history-routes/browser-history';
 
 type TAppProps = TMainProps;
 
@@ -23,7 +24,7 @@ function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Main}
@@ -35,7 +36,7 @@ function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute>
               <MyList films={allFilmsList} />
             </PrivateRoute>
           }
@@ -54,7 +55,7 @@ function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 

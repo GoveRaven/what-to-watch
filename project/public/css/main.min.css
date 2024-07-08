@@ -1245,6 +1245,12 @@ main {
   -webkit-transition: color 0.2s;
   transition: color 0.2s;
 }
+
+button.user-block__link {
+  background: none;
+  border: none;
+}
+
 .user-block__link:hover,
 .user-page {
   color: #c9b37e;

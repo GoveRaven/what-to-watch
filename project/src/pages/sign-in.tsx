@@ -1,7 +1,20 @@
-import { Link } from 'react-router-dom';
-import { AppRoute } from '../consts/routes';
+import { FormEvent, useRef } from 'react';
+import { Logo } from '../components/logo';
+import { store } from '../store';
+import { authLogin } from '../store/api-action';
 
 export function SignIn(): JSX.Element {
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+  function submitHandler(event: FormEvent) {
+    const email = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+    if (email && password) {
+      store.dispatch(authLogin({ email, password }));
+    }
+    event.preventDefault();
+  }
+
   return (
     <>
       <div className="visually-hidden">
@@ -99,7 +112,7 @@ export function SignIn(): JSX.Element {
         </header>
 
         <div className="sign-in user-page__content">
-          <form action="#" className="sign-in__form">
+          <form action="#" className="sign-in__form" onSubmit={submitHandler}>
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input
@@ -108,6 +121,8 @@ export function SignIn(): JSX.Element {
                   placeholder="Email address"
                   name="user-email"
                   id="user-email"
+                  required
+                  ref={emailRef}
                 />
                 <label
                   className="sign-in__label visually-hidden"
@@ -123,6 +138,8 @@ export function SignIn(): JSX.Element {
                   placeholder="Password"
                   name="user-password"
                   id="user-password"
+                  required
+                  ref={passwordRef}
                 />
                 <label
                   className="sign-in__label visually-hidden"

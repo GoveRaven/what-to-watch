@@ -2,6 +2,8 @@ import { TFilm } from '../types/films';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../consts/routes';
 import { ReviewForm } from '../components/review-form';
+import { UserBlock } from '../components/user-block';
+import { Logo } from '../components/logo';
 
 type TAddReviewProps = {
   film: TFilm;
@@ -106,13 +108,7 @@ export function AddReview({ film }: TAddReviewProps): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header">
-            <div className="logo">
-              <Link to={AppRoute.Main} className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
+            <Logo/>
 
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
@@ -129,23 +125,7 @@ export function AddReview({ film }: TAddReviewProps): JSX.Element {
               </ul>
             </nav>
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img
-                    src="img/avatar.jpg"
-                    alt="User avatar"
-                    width="63"
-                    height="63"
-                  />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a href="#" className="user-block__link">
-                  Sign out
-                </a>
-              </li>
-            </ul>
+            <UserBlock />
           </header>
 
           <div className="film-card__poster film-card__poster--small">

@@ -4,6 +4,7 @@ import {
   actualizeFilmsList,
   setFilms,
   setFilmsLoadingStatus,
+  setAuthStatus,
 } from './actions';
 import { DEFAULT_GENRE } from '../consts/films';
 import { TFilm } from '../types/films';
@@ -45,5 +46,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setFilmsLoadingStatus, (state, action) => {
       state.areFilmsLoading = action.payload;
+    })
+    .addCase(setAuthStatus, (state, action) => {
+      state.authStatus = action.payload;
     });
 });

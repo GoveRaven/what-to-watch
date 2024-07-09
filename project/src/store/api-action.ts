@@ -13,14 +13,16 @@ import { TUser } from '../types/user';
 import { AuthorizationStatus } from '../consts/authhorization-status';
 import { dropToken, saveToken } from '../services/token';
 
+type TThunkApiConfig = {
+  dispatch: TAppDispatch;
+  state: TState;
+  extra: AxiosInstance;
+};
+
 export const fetchFilmAction = createAsyncThunk<
   void,
   undefined,
-  {
-    dispatch: TAppDispatch;
-    state: TState;
-    extra: AxiosInstance;
-  }
+  TThunkApiConfig
 >('data/fetchFilms', async (_arg, { dispatch, extra: api }) => {
   dispatch(setFilmsLoadingStatus(true));
   const { data } = await api.get<TFilm[]>(APIRoute.Films);
@@ -31,11 +33,7 @@ export const fetchFilmAction = createAsyncThunk<
 export const checkAuth = createAsyncThunk<
   void,
   undefined,
-  {
-    dispatch: TAppDispatch;
-    state: TState;
-    extra: AxiosInstance;
-  }
+  TThunkApiConfig
 >('user/checkAuth', async (_arg, { dispatch, extra: api }) => {
   try {
     await api.get<TUser>(APIRoute.Login);
@@ -48,11 +46,7 @@ export const checkAuth = createAsyncThunk<
 export const authLogin = createAsyncThunk<
   void,
   { email: string; password: string },
-  {
-    dispatch: TAppDispatch;
-    state: TState;
-    extra: AxiosInstance;
-  }
+  TThunkApiConfig
 >('user/authLogin', async (data, { dispatch, extra: api }) => {
   const {
     data: { token },
@@ -65,11 +59,7 @@ export const authLogin = createAsyncThunk<
 export const authLogout = createAsyncThunk<
   void,
   undefined,
-  {
-    dispatch: TAppDispatch;
-    state: TState;
-    extra: AxiosInstance;
-  }
+  TThunkApiConfig
 >('user/authLogout', async (_arg, { dispatch, extra: api }) => {
   await api.delete<TUser>(APIRoute.logout);
   dropToken();

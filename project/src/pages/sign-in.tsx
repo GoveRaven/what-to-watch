@@ -158,7 +158,7 @@ export function SignIn(): JSX.Element {
         </div>
 
         <footer className="page-footer">
-          <Logo needClass />
+          <Logo isLightVersion />
 
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>

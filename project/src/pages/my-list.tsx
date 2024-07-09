@@ -114,7 +114,7 @@ export function MyList({ films }: TMyListProps): JSX.Element {
         </section>
 
         <footer className="page-footer">
-          <Logo needClass/>
+          <Logo isLightVersion />
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>

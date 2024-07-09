@@ -194,7 +194,7 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
           {showMoreButton && <ShowMoreButton onClick={showMoreFilms} />}
         </section>
         <footer className="page-footer">
-          <Logo needClass />
+          <Logo isLightVersion />
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>

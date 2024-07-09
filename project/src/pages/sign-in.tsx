@@ -1,17 +1,19 @@
 import { FormEvent, useRef } from 'react';
 import { Logo } from '../components/logo';
-import { store } from '../store';
 import { authLogin } from '../store/api-action';
+import { useAppDispatch } from '../hooks';
 
 export function SignIn(): JSX.Element {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
+  const dispatch = useAppDispatch();
+
   function submitHandler(event: FormEvent) {
     event.preventDefault();
     const email = emailInputRef.current?.value;
     const password = passwordInputRef.current?.value;
     if (email && password) {
-      store.dispatch(authLogin({ email, password }));
+      dispatch(authLogin({ email, password }));
     }
   }
 

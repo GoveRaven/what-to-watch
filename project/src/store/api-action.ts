@@ -61,7 +61,7 @@ export const authLogout = createAsyncThunk<
   undefined,
   TThunkApiConfig
 >('user/authLogout', async (_arg, { dispatch, extra: api }) => {
-  await api.delete<TUser>(APIRoute.logout);
+  await api.delete(APIRoute.logout);
   dropToken();
   dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
 });

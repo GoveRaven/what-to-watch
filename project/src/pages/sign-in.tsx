@@ -8,7 +8,7 @@ export function SignIn(): JSX.Element {
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
 
-  function submitHandler(event: FormEvent) {
+  function submitFormHandler(event: FormEvent) {
     event.preventDefault();
     const email = emailInputRef.current?.value;
     const password = passwordInputRef.current?.value;
@@ -114,7 +114,7 @@ export function SignIn(): JSX.Element {
         </header>
 
         <div className="sign-in user-page__content">
-          <form action="#" className="sign-in__form" onSubmit={submitHandler}>
+          <form action="#" className="sign-in__form" onSubmit={submitFormHandler}>
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input

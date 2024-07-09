@@ -32,7 +32,7 @@ export function UserBlock(): JSX.Element {
         </li>
       </ul>
     );
-  } else {
+  }
     return (
       <div className="user-block">
         <Link to={AppRoute.SignIn} className="user-block__link">
@@ -40,5 +40,4 @@ export function UserBlock(): JSX.Element {
         </Link>
       </div>
     );
-  }
 }

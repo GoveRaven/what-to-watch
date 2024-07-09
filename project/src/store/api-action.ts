@@ -36,7 +36,7 @@ export const checkAuth = createAsyncThunk<
   TThunkApiConfig
 >('user/checkAuth', async (_arg, { dispatch, extra: api }) => {
   try {
-    await api.get<TUser>(APIRoute.Login);
+    await api.get(APIRoute.Login);
     dispatch(setAuthStatus(AuthorizationStatus.Auth));
   } catch {
     dispatch(setAuthStatus(AuthorizationStatus.NoAuth));

@@ -14,4 +14,5 @@ export const setFilmsLoadingStatus = createAction<boolean>(
 export const setAuthStatus =
   createAction<AuthorizationStatus>('user/setAuthStatus');
 
-export const redirectToRoute = createAction<AppRoute>('route/redirectToRoute');
+export const REDIRECT_ACTION = 'route/redirectToRoute';
+export const redirectToRoute = createAction<AppRoute>(REDIRECT_ACTION);

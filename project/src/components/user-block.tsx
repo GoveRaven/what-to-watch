@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import { AuthorizationStatus } from '../consts/authhorization-status';
-import { useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { AppRoute } from '../consts/routes';
-import { store } from '../store';
 import { authLogout } from '../store/api-action';
 
 export function UserBlock(): JSX.Element {
   const authStatus = useAppSelector((state) => state.authStatus);
+  const dispatch = useAppDispatch();
 
-  function cliclHandler() {
-    store.dispatch(authLogout());
+  function onButtonClick() {
+    dispatch(authLogout());
   }
 
   if (authStatus === AuthorizationStatus.Auth) {
@@ -26,18 +26,18 @@ export function UserBlock(): JSX.Element {
           </div>
         </li>
         <li className="user-block__item">
-          <button className="user-block__link" onClick={cliclHandler}>
+          <button className="user-block__link" onClick={onButtonClick}>
             Sign out
           </button>
         </li>
       </ul>
     );
   }
-    return (
-      <div className="user-block">
-        <Link to={AppRoute.SignIn} className="user-block__link">
-          Sign in
-        </Link>
-      </div>
-    );
+  return (
+    <div className="user-block">
+      <Link to={AppRoute.SignIn} className="user-block__link">
+        Sign in
+      </Link>
+    </div>
+  );
 }

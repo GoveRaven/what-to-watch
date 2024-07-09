@@ -4,11 +4,11 @@ import { store } from '../store';
 import { authLogin } from '../store/api-action';
 
 export function SignIn(): JSX.Element {
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
   function submitHandler(event: FormEvent) {
-    const email = emailRef.current?.value;
-    const password = passwordRef.current?.value;
+    const email = emailInputRef.current?.value;
+    const password = passwordInputRef.current?.value;
     if (email && password) {
       store.dispatch(authLogin({ email, password }));
     }
@@ -122,7 +122,7 @@ export function SignIn(): JSX.Element {
                   name="user-email"
                   id="user-email"
                   required
-                  ref={emailRef}
+                  ref={emailInputRef}
                 />
                 <label
                   className="sign-in__label visually-hidden"
@@ -139,7 +139,7 @@ export function SignIn(): JSX.Element {
                   name="user-password"
                   id="user-password"
                   required
-                  ref={passwordRef}
+                  ref={passwordInputRef}
                 />
                 <label
                   className="sign-in__label visually-hidden"

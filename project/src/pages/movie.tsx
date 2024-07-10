@@ -1,20 +1,32 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../consts/routes';
-import { TFilm } from '../types/films';
 import { makePathWithParams } from '../utils/makePath';
 import { Tabs } from '../components/tabs/tabs';
 import { reviews } from '../mocks/reviews';
 import { FilmList } from '../components/films-list';
-import { useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
+import { fetchSingleFilm } from '../store/api-action';
+import { Loader } from '../components/loader';
+import { useEffect } from 'react';
 
-type TMoviePageProps = {
-  film: TFilm;
-};
-
-export function MoviePage({ film }: TMoviePageProps): JSX.Element {
+export function MoviePage(): JSX.Element {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchSingleFilm(Number(id)));
+  }, [dispatch, id]);
+
+  const film = useAppSelector((state) => state.singleFilm);
+  const allFilmsList = useAppSelector((state) => state.allFilmsList);
+
+  if (!film || film.id !== Number(id)) {
+    return <Loader />;
+  }
+
   const {
     name,
     posterImage,
@@ -25,10 +37,8 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
     // backgroundColor,
   } = film;
 
-  const { id } = useParams();
   const playerRoute = makePathWithParams(AppRoute.Player, { id });
   const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
-  const allFilmsList = useAppSelector((state) => state.allFilmsList);
 
   const filmsWithSameGenre = allFilmsList
     .filter((movie) => movie.genre === genre && movie.id !== Number(id))

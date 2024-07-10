@@ -10,7 +10,7 @@ import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
 import { useAppSelector } from '../../hooks';
 import { Loader } from '../loader';
-import HistoryRouter from '../history-routes/history-routes';
+import { HistoryRouter } from '../history-routes/history-routes';
 import { browserHistory } from '../history-routes/browser-history';
 
 type TAppProps = TMainProps;

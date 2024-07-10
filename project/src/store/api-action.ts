@@ -6,7 +6,7 @@ import { APIRoute, AppRoute } from '../consts/routes';
 import {
   redirectToRoute,
   setAuthStatus,
-  setFilms,
+  setFilmsList,
   setFilmsLoadingStatus,
   setSingleFilm,
 } from './actions';
@@ -23,10 +23,10 @@ type TThunkApiConfig = {
 export const fetchFilmList = createAsyncThunk<void, undefined, TThunkApiConfig>(
   'data/fetchFilmsList',
   async (_arg, { dispatch, extra: api }) => {
-  dispatch(setFilmsLoadingStatus(true));
-  const { data } = await api.get<TFilm[]>(APIRoute.Films);
-  dispatch(setFilms(data));
-  dispatch(setFilmsLoadingStatus(false));
+    dispatch(setFilmsLoadingStatus(true));
+    const { data } = await api.get<TFilm[]>(APIRoute.Films);
+    dispatch(setFilmsList(data));
+    dispatch(setFilmsLoadingStatus(false));
   }
 );
 

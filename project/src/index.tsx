@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { store } from './store';
 import { checkAuth, fetchFilmAction } from './store/api-action';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 store.dispatch(fetchFilmAction());
 store.dispatch(checkAuth());
@@ -15,6 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ToastContainer />
       <App title="The Grand Budapest Hotel" genre="Drama" releaseDate="2014" />
     </Provider>
   </React.StrictMode>

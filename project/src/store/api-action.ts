@@ -19,11 +19,9 @@ type TThunkApiConfig = {
   extra: AxiosInstance;
 };
 
-export const fetchFilmAction = createAsyncThunk<
-  void,
-  undefined,
-  TThunkApiConfig
->('data/fetchFilms', async (_arg, { dispatch, extra: api }) => {
+export const fetchFilmList = createAsyncThunk<void, undefined, TThunkApiConfig>(
+  'data/fetchFilmsList',
+  async (_arg, { dispatch, extra: api }) => {
   dispatch(setFilmsLoadingStatus(true));
   const { data } = await api.get<TFilm[]>(APIRoute.Films);
   dispatch(setFilms(data));

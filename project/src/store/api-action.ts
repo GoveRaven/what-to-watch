@@ -8,6 +8,7 @@ import {
   setAuthStatus,
   setFilms,
   setFilmsLoadingStatus,
+  setSingleFilm,
 } from './actions';
 import { TUser } from '../types/user';
 import { AuthorizationStatus } from '../consts/authhorization-status';
@@ -26,7 +27,16 @@ export const fetchFilmList = createAsyncThunk<void, undefined, TThunkApiConfig>(
   const { data } = await api.get<TFilm[]>(APIRoute.Films);
   dispatch(setFilms(data));
   dispatch(setFilmsLoadingStatus(false));
-});
+  }
+);
+
+export const fetchSingleFilm = createAsyncThunk<void, number, TThunkApiConfig>(
+  'data/fetchSingleFilm',
+  async (filmId, { dispatch, extra: api }) => {
+    const response = await api.get(`${APIRoute.Films}/${filmId}`);
+    dispatch(setSingleFilm(response.data));
+  }
+);
 
 export const checkAuth = createAsyncThunk<void, undefined, TThunkApiConfig>(
   'user/checkAuth',

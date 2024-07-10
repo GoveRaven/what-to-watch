@@ -118,9 +118,9 @@ export function AddReview({ film }: TAddReviewProps): JSX.Element {
                   </Link>
                 </li>
                 <li className="breadcrumbs__item">
-                  <a href="#" className="breadcrumbs__link">
+                  <Link to={AppRoute.AddReview} className="breadcrumbs__link">
                     Add review
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>

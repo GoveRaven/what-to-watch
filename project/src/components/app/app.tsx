@@ -43,7 +43,7 @@ function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<MoviePage film={allFilmsList[0]} />}
+          element={<MoviePage />}
         />
         <Route
           path={AppRoute.AddReview}

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppRoute } from '../consts/routes';
 import { useState } from 'react';
 import { makePathWithParams } from '../utils/makePath';
@@ -13,6 +13,7 @@ type TFilmCardProps = {
 export function FilmCard({ name, previewImage, id, video }: TFilmCardProps) {
   const [activeCardID, setActiveCardID] = useState<number | null>(null);
   const to = makePathWithParams(AppRoute.Film, { id });
+  const navigate = useNavigate();
 
   let timerID: number;
 
@@ -26,6 +27,7 @@ export function FilmCard({ name, previewImage, id, video }: TFilmCardProps) {
         clearTimeout(timerID);
         setActiveCardID(null);
       }}
+      onClick={() => navigate(to)}
     >
       <div className="small-film-card__image">
         {activeCardID ? (

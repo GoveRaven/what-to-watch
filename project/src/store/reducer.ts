@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   changeGenre,
   actualizeFilmsList,
-  setFilms,
+  setFilmsList,
   setFilmsLoadingStatus,
   setAuthStatus,
 } from './actions';
@@ -33,15 +33,15 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(actualizeFilmsList, (state) => {
       if (state.genre === DEFAULT_GENRE) {
-        state.films = state.allFilmsList;
+        state.filmsList = state.allFilmsList;
       } else {
-        state.films = state.allFilmsList.filter(
+        state.filmsList = state.allFilmsList.filter(
           (film) => film.genre === state.genre
         );
       }
     })
-    .addCase(setFilms, (state, action) => {
-      state.films = action.payload;
+    .addCase(setFilmsList, (state, action) => {
+      state.filmsList = action.payload;
       state.allFilmsList = action.payload;
     })
     .addCase(setFilmsLoadingStatus, (state, action) => {

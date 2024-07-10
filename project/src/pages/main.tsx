@@ -17,7 +17,7 @@ export type TMainProps = {
 
 export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
   const navigate = useNavigate();
-  const films = useAppSelector((state) => state.films);
+  const films = useAppSelector((state) => state.filmsList);
   const allFilmsList = useAppSelector((state) => state.allFilmsList);
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
   const showMoreButton = shownCount <= films.length;

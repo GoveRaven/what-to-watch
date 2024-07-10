@@ -30,18 +30,17 @@ export const fetchFilmAction = createAsyncThunk<
   dispatch(setFilmsLoadingStatus(false));
 });
 
-export const checkAuth = createAsyncThunk<
-  void,
-  undefined,
-  TThunkApiConfig
->('user/checkAuth', async (_arg, { dispatch, extra: api }) => {
-  try {
-    await api.get(APIRoute.Login);
-    dispatch(setAuthStatus(AuthorizationStatus.Auth));
-  } catch {
-    dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+export const checkAuth = createAsyncThunk<void, undefined, TThunkApiConfig>(
+  'user/checkAuth',
+  async (_arg, { dispatch, extra: api }) => {
+    try {
+      await api.get(APIRoute.Login);
+      dispatch(setAuthStatus(AuthorizationStatus.Auth));
+    } catch {
+      dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+    }
   }
-});
+);
 
 export const authLogin = createAsyncThunk<
   void,
@@ -56,12 +55,11 @@ export const authLogin = createAsyncThunk<
   dispatch(redirectToRoute(AppRoute.Main));
 });
 
-export const authLogout = createAsyncThunk<
-  void,
-  undefined,
-  TThunkApiConfig
->('user/authLogout', async (_arg, { dispatch, extra: api }) => {
-  await api.delete(APIRoute.logout);
-  dropToken();
-  dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
-});
+export const authLogout = createAsyncThunk<void, undefined, TThunkApiConfig>(
+  'user/authLogout',
+  async (_arg, { dispatch, extra: api }) => {
+    await api.delete(APIRoute.logout);
+    dropToken();
+    dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+  }
+);

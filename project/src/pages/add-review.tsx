@@ -1,15 +1,20 @@
 import { TFilm } from '../types/films';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { AppRoute } from '../consts/routes';
 import { ReviewForm } from '../components/review-form';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
+import { makePathWithParams } from '../utils/makePath';
 
 type TAddReviewProps = {
   film: TFilm;
 };
 
 export function AddReview({ film }: TAddReviewProps): JSX.Element {
+  const { id } = useParams();
+  const filmRoute = makePathWithParams(AppRoute.Film, { id });
+  const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
+
   return (
     <>
       <div className="visually-hidden">
@@ -108,17 +113,17 @@ export function AddReview({ film }: TAddReviewProps): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header">
-            <Logo/>
+            <Logo />
 
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={AppRoute.Film} className="breadcrumbs__link">
+                  <Link to={filmRoute} className="breadcrumbs__link">
                     {film.name}
                   </Link>
                 </li>
                 <li className="breadcrumbs__item">
-                  <Link to={AppRoute.AddReview} className="breadcrumbs__link">
+                  <Link to={reviewRoute} className="breadcrumbs__link">
                     Add review
                   </Link>
                 </li>

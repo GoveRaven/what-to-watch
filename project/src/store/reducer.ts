@@ -15,7 +15,7 @@ import { AuthorizationStatus } from '../consts/authhorization-status';
 type TInitialState = {
   genre: string;
   singleFilm: TFilm | null;
-  filmsByGenre: TFilm[];
+  filmsByCurrentGenre: TFilm[];
   allFilms: TFilm[];
   areFilmsLoading: boolean;
   isFilmLoading: boolean;
@@ -25,7 +25,7 @@ type TInitialState = {
 const initialState: TInitialState = {
   genre: DEFAULT_GENRE,
   singleFilm: null,
-  filmsByGenre: [],
+  filmsByCurrentGenre: [],
   allFilms: [],
   areFilmsLoading: false,
   isFilmLoading: false,
@@ -39,15 +39,15 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(actualizeFilmsList, (state) => {
       if (state.genre === DEFAULT_GENRE) {
-        state.filmsByGenre = state.allFilms;
+        state.filmsByCurrentGenre = state.allFilms;
       } else {
-        state.filmsByGenre = state.allFilms.filter(
+        state.filmsByCurrentGenre = state.allFilms.filter(
           (film) => film.genre === state.genre
         );
       }
     })
     .addCase(setFilmsList, (state, action) => {
-      state.filmsByGenre = action.payload;
+      state.filmsByCurrentGenre = action.payload;
       state.allFilms = action.payload;
     })
     .addCase(setSingleFilm, (state, action) => {

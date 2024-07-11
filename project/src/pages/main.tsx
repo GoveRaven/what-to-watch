@@ -17,10 +17,10 @@ export type TMainProps = {
 
 export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
   const navigate = useNavigate();
-  const filmsByGenre = useAppSelector((state) => state.filmsByGenre);
+  const filmsByCurrentGenre = useAppSelector((state) => state.filmsByCurrentGenre);
   const allFilms = useAppSelector((state) => state.allFilms);
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
-  const showMoreButton = shownCount <= filmsByGenre.length;
+  const showMoreButton = shownCount <= filmsByCurrentGenre.length;
 
   function showMoreFilms() {
     setShownCount(shownCount + DEFAULT_SHOWN_COUNT);
@@ -190,7 +190,7 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
             films={allFilms}
             onGenreChange={() => setShownCount(DEFAULT_SHOWN_COUNT)}
           />
-          <FilmList films={filmsByGenre.slice(0, shownCount)} />
+          <FilmList films={filmsByCurrentGenre.slice(0, shownCount)} />
           {showMoreButton && <ShowMoreButton onClick={showMoreFilms} />}
         </section>
         <footer className="page-footer">

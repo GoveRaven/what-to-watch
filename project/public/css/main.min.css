@@ -1215,6 +1215,7 @@ main {
   font-weight: 500;
 }
 .small-film-card__link {
+  cursor: default;
   display: inline-block;
   vertical-align: top;
   text-decoration: none;

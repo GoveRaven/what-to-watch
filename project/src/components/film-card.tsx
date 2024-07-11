@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../consts/routes';
 import { useState } from 'react';
 import { makePathWithParams } from '../utils/makePath';
@@ -37,9 +37,7 @@ export function FilmCard({ name, previewImage, id, video }: TFilmCardProps) {
         )}
       </div>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={to}>
-          {name}
-        </Link>
+        <span className="small-film-card__link">{name}</span>
       </h3>
     </article>
   );

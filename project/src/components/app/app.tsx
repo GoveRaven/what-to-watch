@@ -16,7 +16,7 @@ import { browserHistory } from '../history-routes/browser-history';
 type TAppProps = TMainProps;
 
 function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
-  const allFilmsList = useAppSelector((state) => state.allFilmsList);
+  const allFilms = useAppSelector((state) => state.allFilms);
   const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
 
   if (areFilmsLoading) {
@@ -37,25 +37,22 @@ function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute>
-              <MyList films={allFilmsList} />
+              <MyList films={allFilms} />
             </PrivateRoute>
           }
         />
-        <Route
-          path={AppRoute.Film}
-          element={<MoviePage />}
-        />
+        <Route path={AppRoute.Film} element={<MoviePage />} />
         <Route
           path={AppRoute.AddReview}
           element={
             <PrivateRoute>
-              <AddReview film={allFilmsList[0]} />
+              <AddReview film={allFilms[0]} />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Player}
-          element={<Player film={allFilmsList[0]} />}
+          element={<Player film={allFilms[0]} />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

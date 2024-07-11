@@ -17,10 +17,10 @@ export type TMainProps = {
 
 export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
   const navigate = useNavigate();
-  const films = useAppSelector((state) => state.filmsList);
-  const allFilmsList = useAppSelector((state) => state.allFilmsList);
+  const filmsByGenre = useAppSelector((state) => state.filmsByGenre);
+  const allFilms = useAppSelector((state) => state.allFilms);
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
-  const showMoreButton = shownCount <= films.length;
+  const showMoreButton = shownCount <= filmsByGenre.length;
 
   function showMoreFilms() {
     setShownCount(shownCount + DEFAULT_SHOWN_COUNT);
@@ -187,10 +187,10 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList
-            films={allFilmsList}
+            films={allFilms}
             onGenreChange={() => setShownCount(DEFAULT_SHOWN_COUNT)}
           />
-          <FilmList films={films.slice(0, shownCount)} />
+          <FilmList films={filmsByGenre.slice(0, shownCount)} />
           {showMoreButton && <ShowMoreButton onClick={showMoreFilms} />}
         </section>
         <footer className="page-footer">

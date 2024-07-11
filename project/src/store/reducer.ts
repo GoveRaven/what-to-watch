@@ -6,6 +6,7 @@ import {
   setFilmsLoadingStatus,
   setAuthStatus,
   setSingleFilm,
+  setFilmLoadingStatus,
 } from './actions';
 import { DEFAULT_GENRE } from '../consts/films';
 import { TFilm } from '../types/films';
@@ -17,6 +18,7 @@ type TInitialState = {
   filmsByGenre: TFilm[];
   allFilms: TFilm[];
   areFilmsLoading: boolean;
+  isFilmLoading: boolean;
   authStatus: AuthorizationStatus;
 };
 
@@ -26,6 +28,7 @@ const initialState: TInitialState = {
   filmsByGenre: [],
   allFilms: [],
   areFilmsLoading: false,
+  isFilmLoading: false,
   authStatus: AuthorizationStatus.Unknown,
 };
 
@@ -52,6 +55,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setFilmsLoadingStatus, (state, action) => {
       state.areFilmsLoading = action.payload;
+    })
+    .addCase(setFilmLoadingStatus, (state, action) => {
+      state.isFilmLoading = action.payload;
     })
     .addCase(setAuthStatus, (state, action) => {
       state.authStatus = action.payload;

@@ -11,6 +11,9 @@ export const setFilmsLoadingStatus = createAction<boolean>(
   'data/setFilmsLoadingStatus'
 );
 export const setSingleFilm = createAction<TFilm>('data/setSingleFilm');
+export const setFilmLoadingStatus = createAction<boolean>(
+  'data/setFilmLoadingStatus'
+);
 
 export const setAuthStatus =
   createAction<AuthorizationStatus>('user/setAuthStatus');

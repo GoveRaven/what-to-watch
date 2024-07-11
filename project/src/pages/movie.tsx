@@ -15,13 +15,12 @@ export function MoviePage(): JSX.Element {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const film = useAppSelector((state) => state.singleFilm);
+  const allFilms = useAppSelector((state) => state.allFilms);
 
   useEffect(() => {
     dispatch(fetchSingleFilm(Number(id)));
   }, [dispatch, id]);
-
-  const film = useAppSelector((state) => state.singleFilm);
-  const allFilmsList = useAppSelector((state) => state.allFilmsList);
 
   if (!film || film.id !== Number(id)) {
     return <Loader />;
@@ -40,7 +39,7 @@ export function MoviePage(): JSX.Element {
   const playerRoute = makePathWithParams(AppRoute.Player, { id });
   const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
 
-  const filmsWithSameGenre = allFilmsList
+  const filmsWithSameGenre = allFilms
     .filter((movie) => movie.genre === genre && movie.id !== Number(id))
     .slice(0, 4);
 

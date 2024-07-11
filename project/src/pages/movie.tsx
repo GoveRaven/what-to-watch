@@ -10,6 +10,7 @@ import { Logo } from '../components/logo';
 import { fetchSingleFilm } from '../store/api-action';
 import { Loader } from '../components/loader';
 import { useEffect } from 'react';
+import { NotFound } from './not-found';
 
 export function MoviePage(): JSX.Element {
   const { id } = useParams();
@@ -17,13 +18,16 @@ export function MoviePage(): JSX.Element {
   const dispatch = useAppDispatch();
   const film = useAppSelector((state) => state.singleFilm);
   const allFilms = useAppSelector((state) => state.allFilms);
+  const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
 
   useEffect(() => {
     dispatch(fetchSingleFilm(Number(id)));
   }, [dispatch, id]);
 
-  if (!film || film.id !== Number(id)) {
+  if (isFilmLoading) {
     return <Loader />;
+  } else if (!film) {
+    return <NotFound />;
   }
 
   const {

@@ -22,7 +22,8 @@ export function MoviePage(): JSX.Element {
 
   useEffect(() => {
     dispatch(fetchSingleFilm(Number(id)));
-  }, []);
+    dispatch(fetchSimilarFilms(Number(id)));
+  }, [id]);
 
   if (isFilmLoading) {
     return <Loader />;

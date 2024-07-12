@@ -9,6 +9,8 @@ export enum AppRoute {
 
 export enum APIRoute {
   Films = '/films',
+  Film = '/films/:id',
+  SimilarFilms = '/films/:id/similar',
   Login = '/login',
   logout = '/logout'
 }

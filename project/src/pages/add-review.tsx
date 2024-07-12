@@ -1,19 +1,28 @@
-import { TFilm } from '../types/films';
 import { Link, useParams } from 'react-router-dom';
 import { AppRoute } from '../consts/routes';
 import { ReviewForm } from '../components/review-form';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
 import { makePathWithParams } from '../utils/makePath';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { useEffect } from 'react';
+import { fetchSingleFilm } from '../store/api-action';
+import { Loader } from '../components/loader';
 
-type TAddReviewProps = {
-  film: TFilm;
-};
-
-export function AddReview({ film }: TAddReviewProps): JSX.Element {
+export function AddReview(): JSX.Element {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
   const filmRoute = makePathWithParams(AppRoute.Film, { id });
   const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
+  const film = useAppSelector((state) => state.singleFilm);
+
+  useEffect(() => {
+    dispatch(fetchSingleFilm(Number(id)));
+  }, [dispatch, id]);
+
+  if (!film) {
+    return <Loader />;
+  }
 
   return (
     <>

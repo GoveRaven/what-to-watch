@@ -7,7 +7,7 @@ import { FilmList } from '../components/films-list';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
-import { fetchSingleFilm } from '../store/api-action';
+import { fetchSimilarFilms, fetchSingleFilm } from '../store/api-action';
 import { Loader } from '../components/loader';
 import { useEffect } from 'react';
 import { NotFound } from './not-found';
@@ -17,8 +17,8 @@ export function MoviePage(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const film = useAppSelector((state) => state.singleFilm);
-  const allFilms = useAppSelector((state) => state.allFilms);
   const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
+  const similarFilms = useAppSelector((state) => state.similarFilms);
 
   useEffect(() => {
     dispatch(fetchSingleFilm(Number(id)));
@@ -42,10 +42,6 @@ export function MoviePage(): JSX.Element {
 
   const playerRoute = makePathWithParams(AppRoute.Player, { id });
   const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
-
-  const filmsWithSameGenre = allFilms
-    .filter((movie) => movie.genre === genre && movie.id !== Number(id))
-    .slice(0, 4);
 
   return (
     <>
@@ -219,7 +215,7 @@ export function MoviePage(): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={filmsWithSameGenre} />
+          <FilmList films={similarFilms.slice(0, 4)} />
         </section>
 
         <footer className="page-footer">

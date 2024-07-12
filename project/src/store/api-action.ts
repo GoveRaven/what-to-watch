@@ -9,6 +9,7 @@ import {
   setFilmLoadingStatus,
   setFilmsList,
   setFilmsLoadingStatus,
+  setSimilarFilms,
   setSingleFilm,
 } from './actions';
 import { TUser } from '../types/user';
@@ -45,6 +46,16 @@ export const fetchSingleFilm = createAsyncThunk<void, number, TThunkApiConfig>(
     }
   }
 );
+
+export const fetchSimilarFilms = createAsyncThunk<
+  void,
+  number,
+  TThunkApiConfig
+>('data/fetchSimilarFilms', async (id, { dispatch, extra: api }) => {
+  const apiRoute = makePathWithParams(APIRoute.SimilarFilms, { id });
+  const { data } = await api.get(apiRoute);
+  dispatch(setSimilarFilms(data));
+});
 
 export const checkAuth = createAsyncThunk<void, undefined, TThunkApiConfig>(
   'user/checkAuth',

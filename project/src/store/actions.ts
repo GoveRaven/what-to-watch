@@ -14,6 +14,7 @@ export const setSingleFilm = createAction<TFilm>('data/setSingleFilm');
 export const setFilmLoadingStatus = createAction<boolean>(
   'data/setFilmLoadingStatus'
 );
+export const setSimilarFilms = createAction<TFilm[]>('data/setSimilarFilms');
 
 export const setAuthStatus =
   createAction<AuthorizationStatus>('user/setAuthStatus');

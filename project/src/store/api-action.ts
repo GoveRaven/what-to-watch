@@ -14,6 +14,7 @@ import {
 import { TUser } from '../types/user';
 import { AuthorizationStatus } from '../consts/authhorization-status';
 import { dropToken, saveToken } from '../services/token';
+import { makePathWithParams } from '../utils/makePath';
 
 type TThunkApiConfig = {
   dispatch: TAppDispatch;
@@ -33,10 +34,11 @@ export const fetchFilmList = createAsyncThunk<void, undefined, TThunkApiConfig>(
 
 export const fetchSingleFilm = createAsyncThunk<void, number, TThunkApiConfig>(
   'data/fetchSingleFilm',
-  async (filmId, { dispatch, extra: api }) => {
+  async (id, { dispatch, extra: api }) => {
     try {
       dispatch(setFilmLoadingStatus(true));
-      const { data } = await api.get(`${APIRoute.Films}/${filmId}`);
+      const apiRoute = makePathWithParams(APIRoute.Film, { id });
+      const { data } = await api.get(apiRoute);
       dispatch(setSingleFilm(data));
     } finally {
       dispatch(setFilmLoadingStatus(false));

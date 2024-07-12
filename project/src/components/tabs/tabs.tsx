@@ -67,7 +67,7 @@ export function Tabs({ film, reviews }: TTabsProps): JSX.Element {
           released={released}
         />
       )}
-      {activeTab === TabsName.REVIEWS && <Reviews reviews={reviews} />}
+      {activeTab === TabsName.REVIEWS && <Reviews />}
     </div>
   );
 }

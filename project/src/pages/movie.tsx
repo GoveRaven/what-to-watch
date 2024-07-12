@@ -2,7 +2,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../consts/routes';
 import { makePathWithParams } from '../utils/makePath';
 import { Tabs } from '../components/tabs/tabs';
-import { reviews } from '../mocks/reviews';
 import { FilmList } from '../components/films-list';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { UserBlock } from '../components/user-block';
@@ -211,7 +210,7 @@ export function MoviePage(): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <Tabs film={film} reviews={reviews} />
+              <Tabs />
             </div>
           </div>
         </div>

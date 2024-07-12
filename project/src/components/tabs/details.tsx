@@ -1,10 +1,5 @@
-type TDetailsProps = {
-  director: string;
-  starring: string[];
-  runTime: number;
-  genre: string;
-  released: number;
-};
+import { useAppSelector } from '../../hooks';
+import { TFilm } from '../../types/films';
 
 function culcRunTime(runTime: number): string {
   const hours = Math.floor(runTime / 60);
@@ -12,13 +7,10 @@ function culcRunTime(runTime: number): string {
   return `${hours}h ${minutes}m`;
 }
 
-export function Details({
-  director,
-  starring,
-  runTime,
-  genre,
-  released,
-}: TDetailsProps) {
+export function Details() {
+  const film = useAppSelector((state) => state.singleFilm);
+
+  const { director, starring, runTime, genre, released } = film as TFilm;
   return (
     <div className="film-card__text film-card__row">
       <div className="film-card__text-col">

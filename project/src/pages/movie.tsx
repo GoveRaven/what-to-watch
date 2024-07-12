@@ -22,7 +22,7 @@ export function MoviePage(): JSX.Element {
 
   useEffect(() => {
     dispatch(fetchSingleFilm(Number(id)));
-  }, [dispatch, id]);
+  }, []);
 
   if (isFilmLoading) {
     return <Loader />;

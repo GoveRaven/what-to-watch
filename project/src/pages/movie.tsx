@@ -7,7 +7,11 @@ import { FilmList } from '../components/films-list';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
-import { fetchSimilarFilms, fetchSingleFilm } from '../store/api-action';
+import {
+  fetchFilmComment,
+  fetchSimilarFilms,
+  fetchSingleFilm,
+} from '../store/api-action';
 import { Loader } from '../components/loader';
 import { useEffect } from 'react';
 import { NotFound } from './not-found';
@@ -23,6 +27,7 @@ export function MoviePage(): JSX.Element {
   useEffect(() => {
     dispatch(fetchSingleFilm(Number(id)));
     dispatch(fetchSimilarFilms(Number(id)));
+    dispatch(fetchFilmComment(Number(id)));
   }, [id]);
 
   if (isFilmLoading) {

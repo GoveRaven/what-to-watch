@@ -8,16 +8,19 @@ import {
   setSingleFilm,
   setFilmLoadingStatus,
   setSimilarFilms,
+  setFilmComments,
 } from './actions';
 import { DEFAULT_GENRE } from '../consts/films';
 import { TFilm } from '../types/films';
 import { AuthorizationStatus } from '../consts/authhorization-status';
+import { TReview } from '../types/reviews';
 
 type TInitialState = {
   genre: string;
   singleFilm: TFilm | null;
   similarFilms: TFilm[];
   filmsByCurrentGenre: TFilm[];
+  filmComments: TReview[];
   allFilms: TFilm[];
   areFilmsLoading: boolean;
   isFilmLoading: boolean;
@@ -29,6 +32,7 @@ const initialState: TInitialState = {
   singleFilm: null,
   similarFilms: [],
   filmsByCurrentGenre: [],
+  filmComments: [],
   allFilms: [],
   areFilmsLoading: false,
   isFilmLoading: false,
@@ -67,5 +71,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setAuthStatus, (state, action) => {
       state.authStatus = action.payload;
+    })
+    .addCase(setFilmComments, (state, action) => {
+      state.filmComments = action.payload;
     });
 });

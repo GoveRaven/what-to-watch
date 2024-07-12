@@ -6,6 +6,7 @@ import { APIRoute, AppRoute } from '../consts/routes';
 import {
   redirectToRoute,
   setAuthStatus,
+  setFilmComments,
   setFilmLoadingStatus,
   setFilmsList,
   setFilmsLoadingStatus,
@@ -56,6 +57,15 @@ export const fetchSimilarFilms = createAsyncThunk<
   const { data } = await api.get(apiRoute);
   dispatch(setSimilarFilms(data));
 });
+
+export const fetchFilmComment = createAsyncThunk<void, number, TThunkApiConfig>(
+  'data/fetchFilmComment',
+  async (id, { dispatch, extra: api }) => {
+    const apiRoute = makePathWithParams(APIRoute.Comments, { id });
+    const { data } = await api.get(apiRoute);
+    dispatch(setFilmComments(data));
+  }
+);
 
 export const checkAuth = createAsyncThunk<void, undefined, TThunkApiConfig>(
   'user/checkAuth',

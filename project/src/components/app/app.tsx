@@ -40,7 +40,7 @@ function App(): JSX.Element {
           path={AppRoute.AddReview}
           element={
             <PrivateRoute>
-              <AddReview film={allFilms[0]} />
+              <AddReview />
             </PrivateRoute>
           }
         />

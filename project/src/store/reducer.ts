@@ -2,13 +2,15 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   changeGenre,
   actualizeFilmsList,
-  setFilmsList,
+  setFilms,
   setFilmsLoadingStatus,
   setAuthStatus,
   setSingleFilm,
   setFilmLoadingStatus,
   setSimilarFilms,
   setFilmComments,
+  setPromoFilm,
+  setPromoFilmLoadingStatus,
 } from './actions';
 import { DEFAULT_GENRE } from '../consts/films';
 import { TFilm } from '../types/films';
@@ -17,6 +19,8 @@ import { TReview } from '../types/reviews';
 
 type TInitialState = {
   genre: string;
+  promoFilm: TFilm | null;
+  isPromoLoading: boolean;
   singleFilm: TFilm | null;
   similarFilms: TFilm[];
   filmsByCurrentGenre: TFilm[];
@@ -29,13 +33,15 @@ type TInitialState = {
 
 const initialState: TInitialState = {
   genre: DEFAULT_GENRE,
+  promoFilm: null,
+  isPromoLoading: false,
   singleFilm: null,
+  isFilmLoading: false,
   similarFilms: [],
   filmsByCurrentGenre: [],
   filmComments: [],
   allFilms: [],
   areFilmsLoading: false,
-  isFilmLoading: false,
   authStatus: AuthorizationStatus.Unknown,
 };
 
@@ -53,7 +59,13 @@ export const reducer = createReducer(initialState, (builder) => {
         );
       }
     })
-    .addCase(setFilmsList, (state, action) => {
+    .addCase(setPromoFilm, (state, action) => {
+      state.promoFilm = action.payload;
+    })
+    .addCase(setPromoFilmLoadingStatus, (state, action) => {
+      state.isPromoLoading = action.payload;
+    })
+    .addCase(setFilms, (state, action) => {
       state.filmsByCurrentGenre = action.payload;
       state.allFilms = action.payload;
     })

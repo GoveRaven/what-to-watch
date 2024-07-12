@@ -8,8 +8,10 @@ import {
   setAuthStatus,
   setFilmComments,
   setFilmLoadingStatus,
-  setFilmsList,
+  setFilms,
   setFilmsLoadingStatus,
+  setPromoFilm,
+  setPromoFilmLoadingStatus,
   setSimilarFilms,
   setSingleFilm,
 } from './actions';
@@ -24,12 +26,26 @@ type TThunkApiConfig = {
   extra: AxiosInstance;
 };
 
+export const fetchPromoFilm = createAsyncThunk<
+  void,
+  undefined,
+  TThunkApiConfig
+>('data/fetchPromoFilm', async (_arg, { dispatch, extra: api }) => {
+  try {
+    dispatch(setPromoFilmLoadingStatus(true));
+    const { data } = await api.get<TFilm>(APIRoute.Promo);
+    dispatch(setPromoFilm(data));
+  } finally {
+    dispatch(setPromoFilmLoadingStatus(false));
+  }
+});
+
 export const fetchFilmList = createAsyncThunk<void, undefined, TThunkApiConfig>(
   'data/fetchFilmsList',
   async (_arg, { dispatch, extra: api }) => {
     dispatch(setFilmsLoadingStatus(true));
     const { data } = await api.get<TFilm[]>(APIRoute.Films);
-    dispatch(setFilmsList(data));
+    dispatch(setFilms(data));
     dispatch(setFilmsLoadingStatus(false));
   }
 );

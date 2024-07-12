@@ -7,7 +7,11 @@ import { TReview } from '../types/reviews';
 export const changeGenre = createAction<string>('films/changeGenre');
 export const actualizeFilmsList = createAction('films/actualizeFilmsList');
 
-export const setFilmsList = createAction<TFilm[]>('data/setFilmsList');
+export const setPromoFilm = createAction<TFilm>('data/setPromoFilm');
+export const setPromoFilmLoadingStatus = createAction<boolean>(
+  'data/setPromoFilmLoadingStatus'
+);
+export const setFilms = createAction<TFilm[]>('data/setFilms');
 export const setFilmsLoadingStatus = createAction<boolean>(
   'data/setFilmsLoadingStatus'
 );

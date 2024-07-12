@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../consts/routes';
 import { AddReview } from '../../pages/add-review';
-import { Main, TMainProps } from '../../pages/main';
+import { Main } from '../../pages/main';
 import { MoviePage } from '../../pages/movie';
 import { MyList } from '../../pages/my-list';
 import { NotFound } from '../../pages/not-found';
@@ -13,25 +13,19 @@ import { Loader } from '../loader';
 import { HistoryRouter } from '../history-routes/history-routes';
 import { browserHistory } from '../history-routes/browser-history';
 
-type TAppProps = TMainProps;
-
-function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
+function App(): JSX.Element {
   const allFilms = useAppSelector((state) => state.allFilms);
   const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
+  const isPromoLoading = useAppSelector((state) => state.isPromoLoading);
 
-  if (areFilmsLoading) {
+  if (areFilmsLoading && isPromoLoading) {
     return <Loader />;
   }
 
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={
-            <Main title={title} genre={genre} releaseDate={releaseDate} />
-          }
-        />
+        <Route path={AppRoute.Main} element={<Main />} />
         <Route path={AppRoute.SignIn} element={<SignIn />} />
         <Route
           path={AppRoute.MyList}
@@ -50,10 +44,7 @@ function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route
-          path={AppRoute.Player}
-          element={<Player film={allFilms[0]} />}
-        />
+        <Route path={AppRoute.Player} element={<Player film={allFilms[0]} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </HistoryRouter>

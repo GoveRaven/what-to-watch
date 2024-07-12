@@ -36,8 +36,8 @@ export const fetchSingleFilm = createAsyncThunk<void, number, TThunkApiConfig>(
   async (filmId, { dispatch, extra: api }) => {
     try {
       dispatch(setFilmLoadingStatus(true));
-      const response = await api.get(`${APIRoute.Films}/${filmId}`);
-      dispatch(setSingleFilm(response.data));
+      const { data } = await api.get(`${APIRoute.Films}/${filmId}`);
+      dispatch(setSingleFilm(data));
     } finally {
       dispatch(setFilmLoadingStatus(false));
     }

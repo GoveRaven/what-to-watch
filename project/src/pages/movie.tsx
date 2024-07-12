@@ -215,7 +215,11 @@ export function MoviePage(): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={similarFilms.slice(0, 4)} />
+          <FilmList
+            films={similarFilms
+              .filter((currentFilm) => currentFilm.id !== Number(id))
+              .slice(0, 4)}
+          />
         </section>
 
         <footer className="page-footer">

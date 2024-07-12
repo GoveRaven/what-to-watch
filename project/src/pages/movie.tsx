@@ -37,8 +37,7 @@ export function MoviePage(): JSX.Element {
     backgroundImage,
     genre,
     released,
-    // TODO: Не забыть использовать
-    // backgroundColor,
+    backgroundColor,
   } = film;
 
   const playerRoute = makePathWithParams(AppRoute.Player, { id });
@@ -147,7 +146,7 @@ export function MoviePage(): JSX.Element {
 
       <section
         className="film-card film-card--full"
-        // style={{ backgroundColor: backgroundColor }}
+        style={{ backgroundColor: backgroundColor }}
       >
         <div className="film-card__hero">
           <div className="film-card__bg">

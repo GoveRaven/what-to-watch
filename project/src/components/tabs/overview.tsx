@@ -5,6 +5,26 @@ type TOverview = {
   director: string;
   starring: string[];
 };
+
+function getRating(rating: number) {
+  switch (true) {
+    case rating === 10:
+      return 'Awesome';
+      break;
+    case rating >= 8:
+      return 'Very good';
+      break;
+    case rating >= 5:
+      return 'Good';
+      break;
+    case rating >= 3:
+      return 'Normal';
+      break;
+    default:
+      return 'Bad';
+  }
+}
+
 export function Overview({
   rating,
   scoresCount,
@@ -12,23 +32,7 @@ export function Overview({
   director,
   starring,
 }: TOverview) {
-  let rate;
-  switch (true) {
-    case rating === 10:
-      rate = 'Awesome';
-      break;
-    case rating >= 8:
-      rate = 'Very good';
-      break;
-    case rating >= 5:
-      rate = 'Good';
-      break;
-    case rating >= 3:
-      rate = 'Normal';
-      break;
-    default:
-      rate = 'Bad';
-  }
+  const rate = getRating(rating);
 
   return (
     <>

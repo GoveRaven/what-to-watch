@@ -9,6 +9,7 @@ import { useAppSelector } from '../hooks';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
 import { NotFound } from './not-found';
+import { Loader } from '../components/loader';
 
 export type TMainProps = {
   title: string;
@@ -23,11 +24,14 @@ export function Main(): JSX.Element {
   );
   const allFilms = useAppSelector((state) => state.allFilms);
   const promo = useAppSelector((state) => state.promoFilm);
+  const isPromoLoading = useAppSelector((state) => state.isPromoLoading);
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
   const showMoreButton = shownCount <= filmsByCurrentGenre.length;
 
   // TODO: придумать что-нибудь, чтобы деструктаризация не жаловалась, что значение может быть null
-  if (!promo) {
+  if (!promo && isPromoLoading) {
+    return <Loader />;
+  } else if (!promo) {
     return <NotFound />;
   }
 

@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { useEffect } from 'react';
 import { fetchChosenFilm } from '../store/api-action';
 import { NotFound } from './not-found';
+import { Loader } from '../components/loader';
 
 export function AddReview(): JSX.Element {
   const { id } = useParams();
@@ -15,12 +16,15 @@ export function AddReview(): JSX.Element {
   const filmRoute = makePathWithParams(AppRoute.Film, { id });
   const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
   const film = useAppSelector((state) => state.chosenFilm);
+  const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
 
   useEffect(() => {
     dispatch(fetchChosenFilm(Number(id)));
   }, [dispatch, id]);
 
-  if (!film) {
+  if (!film && isFilmLoading) {
+    return <Loader />;
+  } else if (!film) {
     return <NotFound />;
   }
 

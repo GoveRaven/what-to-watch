@@ -22,12 +22,13 @@ export function MoviePage(): JSX.Element {
   const film = useAppSelector((state) => state.chosenFilm);
   const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
   const similarFilms = useAppSelector((state) => state.similarFilms);
+  const numberId = Number(id);
 
   useEffect(() => {
-    dispatch(fetchChosenFilm(Number(id)));
-    dispatch(fetchSimilarFilms(Number(id)));
-    dispatch(fetchFilmComment(Number(id)));
-  }, [dispatch, id]);
+    dispatch(fetchChosenFilm(numberId));
+    dispatch(fetchSimilarFilms(numberId));
+    dispatch(fetchFilmComment(numberId));
+  }, [dispatch, numberId]);
 
   if (isFilmLoading) {
     return <Loader />;

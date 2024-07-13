@@ -6,12 +6,13 @@ import {
   setFilmsLoadingStatus,
   setAuthStatus,
   setChosenFilm,
-  setFilmLoadingStatus,
   setSimilarFilms,
   setFilmComments,
   setPromoFilm,
   setPromoFilmLoadingStatus,
   setAuthStatusChecked,
+  setChosenFilmLoadingStatus,
+  setFilmCommentsLoadingStatus,
 } from './actions';
 import { DEFAULT_GENRE } from '../consts/films';
 import { TFilm } from '../types/films';
@@ -83,7 +84,7 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(setFilmsLoadingStatus, (state, action) => {
       state.areFilmsLoading = action.payload;
     })
-    .addCase(setFilmLoadingStatus, (state, action) => {
+    .addCase(setChosenFilmLoadingStatus, (state, action) => {
       state.isFilmLoading = action.payload;
     })
     .addCase(setAuthStatus, (state, action) => {
@@ -95,7 +96,7 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(setFilmComments, (state, action) => {
       state.filmComments = action.payload;
     })
-    .addCase(setFilmsLoadingStatus, (state, action) => {
+    .addCase(setFilmCommentsLoadingStatus, (state, action) => {
       state.isFilmCommentLoading = action.payload;
     });
 });

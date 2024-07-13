@@ -8,7 +8,7 @@ import {
   setAuthStatus,
   setAuthStatusChecked,
   setFilmComments,
-  setFilmLoadingStatus,
+  setChosenFilmLoadingStatus,
   setFilms,
   setFilmsLoadingStatus,
   setPromoFilm,
@@ -59,12 +59,12 @@ export const fetchChosenFilm = createAsyncThunk<void, number, TThunkApiConfig>(
   'data/fetchChosenFilm',
   async (id, { dispatch, extra: api }) => {
     try {
-      dispatch(setFilmLoadingStatus(true));
+      dispatch(setChosenFilmLoadingStatus(true));
       const apiRoute = makePathWithParams(APIRoute.Film, { id });
       const { data } = await api.get(apiRoute);
       dispatch(setChosenFilm(data));
     } finally {
-      dispatch(setFilmLoadingStatus(false));
+      dispatch(setChosenFilmLoadingStatus(false));
     }
   }
 );

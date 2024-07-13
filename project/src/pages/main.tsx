@@ -8,7 +8,7 @@ import { DEFAULT_SHOWN_COUNT } from '../consts/films';
 import { useAppSelector } from '../hooks';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
-import { Loader } from '../components/loader';
+import { NotFound } from './not-found';
 
 export type TMainProps = {
   title: string;
@@ -28,7 +28,7 @@ export function Main(): JSX.Element {
 
   // TODO: придумать что-нибудь, чтобы деструктаризация не жаловалась, что значение может быть null
   if (!promo) {
-    return <Loader />;
+    return <NotFound />;
   }
 
   const { name, genre, released, posterImage, backgroundImage } = promo;

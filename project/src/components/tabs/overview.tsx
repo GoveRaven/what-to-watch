@@ -1,12 +1,17 @@
-import { useAppSelector } from '../../hooks';
-import { TFilm } from '../../types/films';
-
-export function Overview() {
-  const film = useAppSelector((state) => state.chosenFilm);
-
-  const { rating, scoresCount, description, director, starring } =
-    film as TFilm;
-
+type TOverview = {
+  rating: number;
+  scoresCount: number;
+  description: string;
+  director: string;
+  starring: string[];
+};
+export function Overview({
+  rating,
+  scoresCount,
+  description,
+  director,
+  starring,
+}: TOverview) {
   let rate;
   switch (true) {
     case rating === 10:

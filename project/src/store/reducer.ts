@@ -26,6 +26,7 @@ type TInitialState = {
   similarFilms: TFilm[];
   filmsByCurrentGenre: TFilm[];
   filmComments: TReview[];
+  isFilmCommentLoading: boolean;
   allFilms: TFilm[];
   areFilmsLoading: boolean;
   isFilmLoading: boolean;
@@ -42,6 +43,7 @@ const initialState: TInitialState = {
   similarFilms: [],
   filmsByCurrentGenre: [],
   filmComments: [],
+  isFilmCommentLoading: false,
   allFilms: [],
   areFilmsLoading: false,
   authStatus: AuthorizationStatus.Unknown,
@@ -92,5 +94,8 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setFilmComments, (state, action) => {
       state.filmComments = action.payload;
+    })
+    .addCase(setFilmsLoadingStatus, (state, action) => {
+      state.isFilmCommentLoading = action.payload;
     });
 });

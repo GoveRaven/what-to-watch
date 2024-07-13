@@ -15,6 +15,7 @@ import {
   setPromoFilmLoadingStatus,
   setSimilarFilms,
   setChosenFilm,
+  setFilmCommentsLoadingStatus,
 } from './actions';
 import { TUser } from '../types/user';
 import { AuthorizationStatus } from '../consts/authhorization-status';
@@ -44,10 +45,13 @@ export const fetchPromoFilm = createAsyncThunk<
 export const fetchFilmList = createAsyncThunk<void, undefined, TThunkApiConfig>(
   'data/fetchFilmsList',
   async (_arg, { dispatch, extra: api }) => {
-    dispatch(setFilmsLoadingStatus(true));
-    const { data } = await api.get<TFilm[]>(APIRoute.Films);
-    dispatch(setFilms(data));
-    dispatch(setFilmsLoadingStatus(false));
+    try {
+      dispatch(setFilmsLoadingStatus(true));
+      const { data } = await api.get<TFilm[]>(APIRoute.Films);
+      dispatch(setFilms(data));
+    } finally {
+      dispatch(setFilmsLoadingStatus(false));
+    }
   }
 );
 
@@ -78,9 +82,14 @@ export const fetchSimilarFilms = createAsyncThunk<
 export const fetchFilmComment = createAsyncThunk<void, number, TThunkApiConfig>(
   'data/fetchFilmComment',
   async (id, { dispatch, extra: api }) => {
-    const apiRoute = makePathWithParams(APIRoute.Comments, { id });
-    const { data } = await api.get(apiRoute);
-    dispatch(setFilmComments(data));
+    try {
+      dispatch(setFilmCommentsLoadingStatus(true));
+      const apiRoute = makePathWithParams(APIRoute.Comments, { id });
+      const { data } = await api.get(apiRoute);
+      dispatch(setFilmComments(data));
+    } finally {
+      dispatch(setFilmCommentsLoadingStatus(false));
+    }
   }
 );
 

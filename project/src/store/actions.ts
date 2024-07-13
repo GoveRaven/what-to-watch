@@ -21,12 +21,14 @@ export const setFilmLoadingStatus = createAction<boolean>(
 );
 export const setSimilarFilms = createAction<TFilm[]>('data/setSimilarFilms');
 export const setFilmComments = createAction<TReview[]>('data/setFilmComments');
+export const setFilmCommentsLoadingStatus = createAction<boolean>(
+  'data/setFilmCommentsLoadingStatus'
+);
 
 export const setAuthStatus =
   createAction<AuthorizationStatus>('user/setAuthStatus');
 export const setAuthStatusChecked = createAction<boolean>(
   'user/setAuthStatusChecked'
 );
-
 
 export const redirectToRoute = createAction<AppRoute>('route/redirectToRoute');

@@ -10,16 +10,12 @@ function getRating(rating: number) {
   switch (true) {
     case rating === 10:
       return 'Awesome';
-      break;
     case rating >= 8:
       return 'Very good';
-      break;
     case rating >= 5:
       return 'Good';
-      break;
     case rating >= 3:
       return 'Normal';
-      break;
     default:
       return 'Bad';
   }

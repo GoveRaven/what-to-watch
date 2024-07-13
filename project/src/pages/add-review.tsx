@@ -6,7 +6,7 @@ import { Logo } from '../components/logo';
 import { makePathWithParams } from '../utils/makePath';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { useEffect } from 'react';
-import { fetchSingleFilm } from '../store/api-action';
+import { fetchChosenFilm } from '../store/api-action';
 import { Loader } from '../components/loader';
 
 export function AddReview(): JSX.Element {
@@ -14,10 +14,10 @@ export function AddReview(): JSX.Element {
   const dispatch = useAppDispatch();
   const filmRoute = makePathWithParams(AppRoute.Film, { id });
   const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
-  const film = useAppSelector((state) => state.singleFilm);
+  const film = useAppSelector((state) => state.chosenFilm);
 
   useEffect(() => {
-    dispatch(fetchSingleFilm(Number(id)));
+    dispatch(fetchChosenFilm(Number(id)));
   }, [dispatch, id]);
 
   if (!film) {

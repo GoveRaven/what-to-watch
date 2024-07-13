@@ -15,7 +15,7 @@ export const setFilms = createAction<TFilm[]>('data/setFilms');
 export const setFilmsLoadingStatus = createAction<boolean>(
   'data/setFilmsLoadingStatus'
 );
-export const setSingleFilm = createAction<TFilm>('data/setSingleFilm');
+export const setChosenFilm = createAction<TFilm>('data/setChosenFilm');
 export const setFilmLoadingStatus = createAction<boolean>(
   'data/setFilmLoadingStatus'
 );

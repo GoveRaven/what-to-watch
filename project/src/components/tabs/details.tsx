@@ -8,7 +8,7 @@ function culcRunTime(runTime: number): string {
 }
 
 export function Details() {
-  const film = useAppSelector((state) => state.singleFilm);
+  const film = useAppSelector((state) => state.chosenFilm);
 
   const { director, starring, runTime, genre, released } = film as TFilm;
   return (

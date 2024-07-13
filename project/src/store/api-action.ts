@@ -14,7 +14,7 @@ import {
   setPromoFilm,
   setPromoFilmLoadingStatus,
   setSimilarFilms,
-  setSingleFilm,
+  setChosenFilm,
 } from './actions';
 import { TUser } from '../types/user';
 import { AuthorizationStatus } from '../consts/authhorization-status';
@@ -51,14 +51,14 @@ export const fetchFilmList = createAsyncThunk<void, undefined, TThunkApiConfig>(
   }
 );
 
-export const fetchSingleFilm = createAsyncThunk<void, number, TThunkApiConfig>(
-  'data/fetchSingleFilm',
+export const fetchChosenFilm = createAsyncThunk<void, number, TThunkApiConfig>(
+  'data/fetchChosenFilm',
   async (id, { dispatch, extra: api }) => {
     try {
       dispatch(setFilmLoadingStatus(true));
       const apiRoute = makePathWithParams(APIRoute.Film, { id });
       const { data } = await api.get(apiRoute);
-      dispatch(setSingleFilm(data));
+      dispatch(setChosenFilm(data));
     } finally {
       dispatch(setFilmLoadingStatus(false));
     }

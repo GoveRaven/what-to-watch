@@ -9,7 +9,7 @@ import { Logo } from '../components/logo';
 import {
   fetchFilmComment,
   fetchSimilarFilms,
-  fetchSingleFilm,
+  fetchChosenFilm,
 } from '../store/api-action';
 import { Loader } from '../components/loader';
 import { useEffect } from 'react';
@@ -19,12 +19,12 @@ export function MoviePage(): JSX.Element {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const film = useAppSelector((state) => state.singleFilm);
+  const film = useAppSelector((state) => state.chosenFilm);
   const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
   const similarFilms = useAppSelector((state) => state.similarFilms);
 
   useEffect(() => {
-    dispatch(fetchSingleFilm(Number(id)));
+    dispatch(fetchChosenFilm(Number(id)));
     dispatch(fetchSimilarFilms(Number(id)));
     dispatch(fetchFilmComment(Number(id)));
   }, [dispatch, id]);

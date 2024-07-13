@@ -5,7 +5,7 @@ import {
   setFilms,
   setFilmsLoadingStatus,
   setAuthStatus,
-  setSingleFilm,
+  setChosenFilm,
   setFilmLoadingStatus,
   setSimilarFilms,
   setFilmComments,
@@ -22,7 +22,7 @@ type TInitialState = {
   genre: string;
   promoFilm: TFilm | null;
   isPromoLoading: boolean;
-  singleFilm: TFilm | null;
+  chosenFilm: TFilm | null;
   similarFilms: TFilm[];
   filmsByCurrentGenre: TFilm[];
   filmComments: TReview[];
@@ -37,7 +37,7 @@ const initialState: TInitialState = {
   genre: DEFAULT_GENRE,
   promoFilm: null,
   isPromoLoading: false,
-  singleFilm: null,
+  chosenFilm: null,
   isFilmLoading: false,
   similarFilms: [],
   filmsByCurrentGenre: [],
@@ -72,8 +72,8 @@ export const reducer = createReducer(initialState, (builder) => {
       state.filmsByCurrentGenre = action.payload;
       state.allFilms = action.payload;
     })
-    .addCase(setSingleFilm, (state, action) => {
-      state.singleFilm = action.payload;
+    .addCase(setChosenFilm, (state, action) => {
+      state.chosenFilm = action.payload;
     })
     .addCase(setSimilarFilms, (state, action) => {
       state.similarFilms = action.payload;

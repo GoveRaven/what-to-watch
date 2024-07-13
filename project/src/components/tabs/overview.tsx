@@ -2,7 +2,7 @@ import { useAppSelector } from '../../hooks';
 import { TFilm } from '../../types/films';
 
 export function Overview() {
-  const film = useAppSelector((state) => state.singleFilm);
+  const film = useAppSelector((state) => state.chosenFilm);
 
   const { rating, scoresCount, description, director, starring } =
     film as TFilm;

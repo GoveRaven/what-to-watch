@@ -7,7 +7,7 @@ import { makePathWithParams } from '../utils/makePath';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { useEffect } from 'react';
 import { fetchChosenFilm } from '../store/api-action';
-import { Loader } from '../components/loader';
+import { NotFound } from './not-found';
 
 export function AddReview(): JSX.Element {
   const { id } = useParams();
@@ -21,7 +21,7 @@ export function AddReview(): JSX.Element {
   }, [dispatch, id]);
 
   if (!film) {
-    return <Loader />;
+    return <NotFound />;
   }
 
   return (

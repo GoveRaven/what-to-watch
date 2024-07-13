@@ -9,6 +9,8 @@ export function ReviewForm(): JSX.Element {
     setRating(event.target.value);
   }
 
+  const needDisabledButton = text.length < 50 || text.length > 400;
+
   return (
     <div className="add-review">
       <form action="#" className="add-review__form">
@@ -26,7 +28,11 @@ export function ReviewForm(): JSX.Element {
             value={text}
           />
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit">
+            <button
+              className="add-review__btn"
+              type="submit"
+              disabled={needDisabledButton}
+            >
               Post
             </button>
           </div>

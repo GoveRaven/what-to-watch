@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, Fragment } from 'react';
 
 type TRatingInput = {
   rating: string;
@@ -10,7 +10,7 @@ export function RatingInput({ rating, ratingHandler }: TRatingInput) {
   return (
     <div className="rating__stars">
       {rates.map((rate) => (
-        <>
+        <Fragment key={rate}>
           <input
             className="rating__input"
             id={`star-${rate}`}
@@ -19,12 +19,11 @@ export function RatingInput({ rating, ratingHandler }: TRatingInput) {
             value={rate}
             onChange={ratingHandler}
             checked={Number(rating) === rate}
-            key={rate}
           />
           <label className="rating__label" htmlFor={`star-${rate}`}>
             Rating {rate}
           </label>
-        </>
+        </Fragment>
       ))}
     </div>
   );

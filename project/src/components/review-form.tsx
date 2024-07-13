@@ -31,7 +31,7 @@ export function ReviewForm(): JSX.Element {
             <button
               className="add-review__btn"
               type="submit"
-              disabled={needDisabledButton}
+              disabled={needDisabledButton || !rating}
             >
               Post
             </button>

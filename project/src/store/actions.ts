@@ -20,6 +20,7 @@ export const setFilmLoadingStatus = createAction<boolean>(
   'data/setFilmLoadingStatus'
 );
 export const setSimilarFilms = createAction<TFilm[]>('data/setSimilarFilms');
+export const setFilmComments = createAction<TReview[]>('data/setFilmComments');
 
 export const setAuthStatus =
   createAction<AuthorizationStatus>('user/setAuthStatus');
@@ -27,6 +28,5 @@ export const setAuthStatusChecked = createAction<boolean>(
   'user/setAuthStatusChecked'
 );
 
-export const setFilmComments = createAction<TReview[]>('data/setFilmComments');
 
 export const redirectToRoute = createAction<AppRoute>('route/redirectToRoute');

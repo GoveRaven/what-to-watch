@@ -23,6 +23,9 @@ export const setSimilarFilms = createAction<TFilm[]>('data/setSimilarFilms');
 
 export const setAuthStatus =
   createAction<AuthorizationStatus>('user/setAuthStatus');
+export const setAuthStatusChecked = createAction<boolean>(
+  'user/setAuthStatusChecked'
+);
 
 export const setFilmComments = createAction<TReview[]>('data/setFilmComments');
 

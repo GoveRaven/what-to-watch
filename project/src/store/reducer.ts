@@ -11,6 +11,7 @@ import {
   setFilmComments,
   setPromoFilm,
   setPromoFilmLoadingStatus,
+  setAuthStatusChecked,
 } from './actions';
 import { DEFAULT_GENRE } from '../consts/films';
 import { TFilm } from '../types/films';
@@ -29,6 +30,7 @@ type TInitialState = {
   areFilmsLoading: boolean;
   isFilmLoading: boolean;
   authStatus: AuthorizationStatus;
+  isAuthStatusChecked: boolean;
 };
 
 const initialState: TInitialState = {
@@ -43,6 +45,7 @@ const initialState: TInitialState = {
   allFilms: [],
   areFilmsLoading: false,
   authStatus: AuthorizationStatus.Unknown,
+  isAuthStatusChecked: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -83,6 +86,9 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setAuthStatus, (state, action) => {
       state.authStatus = action.payload;
+    })
+    .addCase(setAuthStatusChecked, (state, action) => {
+      state.isAuthStatusChecked = action.payload;
     })
     .addCase(setFilmComments, (state, action) => {
       state.filmComments = action.payload;

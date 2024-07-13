@@ -17,8 +17,11 @@ function App(): JSX.Element {
   const allFilms = useAppSelector((state) => state.allFilms);
   const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
   const isPromoLoading = useAppSelector((state) => state.isPromoLoading);
+  const isAuthStatusChecked = useAppSelector(
+    (state) => state.isAuthStatusChecked
+  );
 
-  if (areFilmsLoading && isPromoLoading) {
+  if (areFilmsLoading && isPromoLoading && !isAuthStatusChecked) {
     return <Loader />;
   }
 

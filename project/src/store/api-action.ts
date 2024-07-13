@@ -6,6 +6,7 @@ import { APIRoute, AppRoute } from '../consts/routes';
 import {
   redirectToRoute,
   setAuthStatus,
+  setAuthStatusChecked,
   setFilmComments,
   setFilmLoadingStatus,
   setFilms,
@@ -91,6 +92,8 @@ export const checkAuth = createAsyncThunk<void, undefined, TThunkApiConfig>(
       dispatch(setAuthStatus(AuthorizationStatus.Auth));
     } catch {
       dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+    } finally {
+      dispatch(setAuthStatusChecked(true));
     }
   }
 );

@@ -1,10 +1,5 @@
 import { useAppSelector } from '../../hooks';
-import { TReview } from '../../types/reviews';
 import { ReviewColumn } from './reviews-column';
-
-export type TReviewsProps = {
-  reviews: TReview[];
-};
 
 export function Reviews() {
   const reviews = useAppSelector((state) => state.filmComments);

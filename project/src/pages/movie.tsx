@@ -22,7 +22,11 @@ export function MoviePage(): JSX.Element {
   const film = useAppSelector((state) => state.chosenFilm);
   const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
   const similarFilms = useAppSelector((state) => state.similarFilms);
+
   const numberId = Number(id);
+  const filteredsimilarFilms = similarFilms
+    .filter((currentFilm) => currentFilm.id !== Number(id))
+    .slice(0, 4);
 
   useEffect(() => {
     dispatch(fetchChosenFilm(numberId));
@@ -220,11 +224,7 @@ export function MoviePage(): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList
-            films={similarFilms
-              .filter((currentFilm) => currentFilm.id !== Number(id))
-              .slice(0, 4)}
-          />
+          <FilmList films={filteredsimilarFilms} />
         </section>
 
         <footer className="page-footer">

@@ -22,9 +22,11 @@ export function AddReview(): JSX.Element {
     dispatch(fetchChosenFilm(Number(id)));
   }, [dispatch, id]);
 
-  if (!film && isFilmLoading) {
+  if (isFilmLoading) {
     return <Loader />;
-  } else if (!film) {
+  }
+
+  if (!film) {
     return <NotFound />;
   }
 

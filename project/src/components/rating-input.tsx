@@ -5,8 +5,9 @@ type TRatingInput = {
   ratingHandler: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
+const rates = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+
 export function RatingInput({ rating, ratingHandler }: TRatingInput) {
-  const rates = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
   return (
     <div className="rating__stars">
       {rates.map((rate) => (

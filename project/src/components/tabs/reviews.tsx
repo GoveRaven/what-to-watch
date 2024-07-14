@@ -9,10 +9,8 @@ export function Reviews() {
     (state) => state.isFilmCommentLoading
   );
 
-  if (areFilmCommentsLoading && !chosenFilmComments) {
-    return <Loader />;
-  } else if (!areFilmCommentsLoading && !chosenFilmComments) {
-    return <NotFound />;
+  if (!chosenFilmComments) {
+    return areFilmCommentsLoading ? <Loader /> : <NotFound />;
   }
 
   const halfOfReviews = Math.ceil(chosenFilmComments.length / 2);

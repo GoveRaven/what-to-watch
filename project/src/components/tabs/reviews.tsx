@@ -5,13 +5,13 @@ import { ReviewColumn } from './reviews-column';
 
 export function Reviews() {
   const chosenFilmComments = useAppSelector((state) => state.filmComments);
-  const isFilmCommentLoading = useAppSelector(
+  const areFilmCommentsLoading = useAppSelector(
     (state) => state.isFilmCommentLoading
   );
 
-  if (isFilmCommentLoading && !chosenFilmComments) {
+  if (areFilmCommentsLoading && !chosenFilmComments) {
     return <Loader />;
-  } else if (!isFilmCommentLoading && !chosenFilmComments) {
+  } else if (!areFilmCommentsLoading && !chosenFilmComments) {
     return <NotFound />;
   }
 

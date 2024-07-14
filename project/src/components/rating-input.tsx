@@ -2,12 +2,15 @@ import { ChangeEvent, Fragment } from 'react';
 
 type TRatingInputProps = {
   rating: string;
-  ratingHandler: (event: ChangeEvent<HTMLInputElement>) => void;
+  handlerInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const rates = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
-export function RatingInput({ rating, ratingHandler }: TRatingInputProps) {
+export function RatingInput({
+  rating,
+  handlerInputChange,
+}: TRatingInputProps) {
   return (
     <div className="rating__stars">
       {rates.map((rate) => (
@@ -18,7 +21,7 @@ export function RatingInput({ rating, ratingHandler }: TRatingInputProps) {
             type="radio"
             name="rating"
             value={rate}
-            onChange={ratingHandler}
+            onChange={handlerInputChange}
             checked={Number(rating) === rate}
           />
           <label className="rating__label" htmlFor={`star-${rate}`}>

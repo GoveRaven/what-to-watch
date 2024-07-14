@@ -15,7 +15,7 @@ export function ReviewForm(): JSX.Element {
     <div className="add-review">
       <form action="#" className="add-review__form">
         <div className="rating">
-          <RatingInput rating={rating} ratingHandler={ratingHandler} />
+          <RatingInput rating={rating} handlerInputChange={ratingHandler} />
         </div>
 
         <div className="add-review__text">

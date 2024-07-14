@@ -1,13 +1,13 @@
 import { ChangeEvent, Fragment } from 'react';
 
-type TRatingInput = {
+type TRatingInputProps = {
   rating: string;
   ratingHandler: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const rates = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
-export function RatingInput({ rating, ratingHandler }: TRatingInput) {
+export function RatingInput({ rating, ratingHandler }: TRatingInputProps) {
   return (
     <div className="rating__stars">
       {rates.map((rate) => (

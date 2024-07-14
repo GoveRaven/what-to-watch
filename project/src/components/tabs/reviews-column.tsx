@@ -1,6 +1,6 @@
 import { TReview } from '../../types/reviews';
 
-type TReviews = {
+type TReviewsProps = {
   reviews: TReview[];
 };
 
@@ -25,7 +25,7 @@ function getDate(date: string) {
   } ${fullDate.getDate()} ,${fullDate.getFullYear()}`;
 }
 
-export function ReviewColumn({ reviews }: TReviews) {
+export function ReviewColumn({ reviews }: TReviewsProps) {
   return (
     <div className="film-card__reviews-col">
       {reviews.map((review) => (

@@ -28,10 +28,11 @@ export function Main(): JSX.Element {
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
   const showMoreButton = shownCount <= filmsByCurrentGenre.length;
 
-  // TODO: придумать что-нибудь, чтобы деструктаризация не жаловалась, что значение может быть null
-  if (!promo && isPromoLoading) {
+  if (isPromoLoading) {
     return <Loader />;
-  } else if (!promo) {
+  }
+
+  if (!promo) {
     return <NotFound />;
   }
 

@@ -1,4 +1,4 @@
-type TOverview = {
+type TOverviewProps = {
   rating: number;
   scoresCount: number;
   description: string;
@@ -27,7 +27,7 @@ export function Overview({
   description,
   director,
   starring,
-}: TOverview) {
+}: TOverviewProps) {
   const rate = getRating(rating);
 
   return (

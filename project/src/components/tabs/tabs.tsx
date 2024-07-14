@@ -28,6 +28,7 @@ export function Tabs(): JSX.Element | null {
     scoresCount,
     description,
   } = film;
+
   return (
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">

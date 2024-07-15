@@ -1,21 +1,21 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { RatingInput } from './rating-input';
 
 export function ReviewForm(): JSX.Element {
   const [text, setText] = useState('');
   const [rating, setRating] = useState('');
 
-  function ratingHandler(event: ChangeEvent<HTMLInputElement>) {
+  function handlerInputChange(event: { target: { value: string } }) {
     setRating(event.target.value);
   }
 
-  const needDisableButton = text.length < 50 || text.length > 400 || !rating;
+  const isButtonDisabled = text.length < 50 || text.length > 400 || !rating;
 
   return (
     <div className="add-review">
       <form action="#" className="add-review__form">
         <div className="rating">
-          <RatingInput rating={rating} handlerInputChange={ratingHandler} />
+          <RatingInput rating={rating} onInputChange={handlerInputChange} />
         </div>
 
         <div className="add-review__text">
@@ -31,7 +31,7 @@ export function ReviewForm(): JSX.Element {
             <button
               className="add-review__btn"
               type="submit"
-              disabled={needDisableButton}
+              disabled={isButtonDisabled}
             >
               Post
             </button>

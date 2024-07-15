@@ -1,16 +1,13 @@
-import { ChangeEvent, Fragment } from 'react';
+import { Fragment } from 'react';
 
 type TRatingInputProps = {
   rating: string;
-  handlerInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onInputChange: (event: { target: { value: string } }) => void;
 };
 
 const rates = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
-export function RatingInput({
-  rating,
-  handlerInputChange,
-}: TRatingInputProps) {
+export function RatingInput({ rating, onInputChange }: TRatingInputProps) {
   return (
     <div className="rating__stars">
       {rates.map((rate) => (
@@ -21,7 +18,7 @@ export function RatingInput({
             type="radio"
             name="rating"
             value={rate}
-            onChange={handlerInputChange}
+            onChange={onInputChange}
             checked={Number(rating) === rate}
           />
           <label className="rating__label" htmlFor={`star-${rate}`}>

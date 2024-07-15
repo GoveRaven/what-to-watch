@@ -5,8 +5,8 @@ export function ReviewForm(): JSX.Element {
   const [text, setText] = useState('');
   const [rating, setRating] = useState('');
 
-  function handlerInputChange(event: { target: { value: string } }) {
-    setRating(event.target.value);
+  function handlerInputChange(ratingArg: string) {
+    setRating(ratingArg);
   }
 
   const isButtonDisabled = text.length < 50 || text.length > 400 || !rating;

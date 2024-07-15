@@ -18,7 +18,7 @@ export function RatingInput({ rating, onInputChange }: TRatingInputProps) {
             type="radio"
             name="rating"
             value={rate}
-            onChange={() => onInputChange}
+            onChange={(event) => onInputChange(event.target.value)}
             checked={Number(rating) === rate}
           />
           <label className="rating__label" htmlFor={`star-${rate}`}>

@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FilmList } from '../components/films-list';
 import { GenresList } from '../components/genres-list';
 import { ShowMoreButton } from '../components/showMoreButton';
 import { AppRoute } from '../consts/routes';
 import { DEFAULT_SHOWN_COUNT } from '../consts/films';
-import { useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
 import { NotFound } from './not-found';
 import { Loader } from '../components/loader';
+import { fetchFilmList, fetchPromoFilm } from '../store/api-action';
 
 export type TMainProps = {
   title: string;
@@ -19,14 +20,24 @@ export type TMainProps = {
 
 export function Main(): JSX.Element {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const filmsByCurrentGenre = useAppSelector(
     (state) => state.filmsByCurrentGenre
   );
   const allFilms = useAppSelector((state) => state.allFilms);
   const promo = useAppSelector((state) => state.promoFilm);
   const isPromoLoading = useAppSelector((state) => state.isPromoLoading);
+  const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
   const showMoreButton = shownCount <= filmsByCurrentGenre.length;
+
+  useEffect(() => {
+    if (!isPromoLoading && !areFilmsLoading) {
+      dispatch(fetchPromoFilm());
+      dispatch(fetchFilmList());
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (isPromoLoading) {
     return <Loader />;

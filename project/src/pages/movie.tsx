@@ -14,6 +14,7 @@ import {
 import { Loader } from '../components/loader';
 import { useEffect } from 'react';
 import { NotFound } from './not-found';
+import { AuthorizationStatus } from '../consts/authhorization-status';
 
 export function MoviePage(): JSX.Element {
   const { id } = useParams();
@@ -22,6 +23,7 @@ export function MoviePage(): JSX.Element {
   const film = useAppSelector((state) => state.chosenFilm);
   const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
   const similarFilms = useAppSelector((state) => state.similarFilms);
+  const authStatus = useAppSelector((state) => state.authStatus);
 
   const numberId = Number(id);
   const filteredsimilarFilms = similarFilms
@@ -195,9 +197,11 @@ export function MoviePage(): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={reviewRoute} className="btn film-card__button">
-                  Add review
-                </Link>
+                {authStatus === AuthorizationStatus.Auth && (
+                  <Link to={reviewRoute} className="btn film-card__button">
+                    Add review
+                  </Link>
+                )}
               </div>
             </div>
           </div>

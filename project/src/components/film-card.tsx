@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import { AppRoutes } from '../consts/routes';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../consts/routes';
 import { useState } from 'react';
 import { makePathWithParams } from '../utils/makePath';
 import { VideoPlayer, TVideoPlayerProps } from './video-player';
@@ -12,7 +12,8 @@ type TFilmCardProps = {
 
 export function FilmCard({ name, previewImage, id, video }: TFilmCardProps) {
   const [activeCardID, setActiveCardID] = useState<number | null>(null);
-  const to = makePathWithParams(AppRoutes.Film, { id });
+  const to = makePathWithParams(AppRoute.Film, { id });
+  const navigate = useNavigate();
 
   let timerID: number;
 
@@ -26,6 +27,7 @@ export function FilmCard({ name, previewImage, id, video }: TFilmCardProps) {
         clearTimeout(timerID);
         setActiveCardID(null);
       }}
+      onClick={() => navigate(to)}
     >
       <div className="small-film-card__image">
         {activeCardID ? (
@@ -35,9 +37,7 @@ export function FilmCard({ name, previewImage, id, video }: TFilmCardProps) {
         )}
       </div>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={to}>
-          {name}
-        </Link>
+        <span className="small-film-card__link">{name}</span>
       </h3>
     </article>
   );

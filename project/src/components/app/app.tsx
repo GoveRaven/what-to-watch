@@ -1,8 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppRoutes } from '../../consts/routes';
-import { AuthorizationStatus } from '../../consts/authhorization-status';
+import { Route, Routes } from 'react-router-dom';
+import { AppRoute } from '../../consts/routes';
 import { AddReview } from '../../pages/add-review';
-import { Main, TMainProps } from '../../pages/main';
+import { Main } from '../../pages/main';
 import { MoviePage } from '../../pages/movie';
 import { MyList } from '../../pages/my-list';
 import { NotFound } from '../../pages/not-found';
@@ -10,45 +9,48 @@ import { Player } from '../../pages/player';
 import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
 import { useAppSelector } from '../../hooks';
+import { Loader } from '../loader';
+import { HistoryRouter } from '../history-routes/history-routes';
+import { browserHistory } from '../history-routes/browser-history';
 
-type TAppProps = TMainProps;
+function App(): JSX.Element {
+  const allFilms = useAppSelector((state) => state.allFilms);
+  const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
+  const isPromoLoading = useAppSelector((state) => state.isPromoLoading);
+  const isAuthStatusChecked = useAppSelector(
+    (state) => state.isAuthStatusChecked
+  );
 
-function App({ title, genre, releaseDate }: TAppProps): JSX.Element {
-  const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
+  if (areFilmsLoading && isPromoLoading && !isAuthStatusChecked) {
+    return <Loader />;
+  }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
+        <Route path={AppRoute.Main} element={<Main />} />
+        <Route path={AppRoute.SignIn} element={<SignIn />} />
         <Route
-          path={AppRoutes.Main}
+          path={AppRoute.MyList}
           element={
-            <Main title={title} genre={genre} releaseDate={releaseDate} />
-          }
-        />
-        <Route path={AppRoutes.SignIn} element={<SignIn />} />
-        <Route
-          path={AppRoutes.MyList}
-          element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <MyList films={defaultFilmsList} />
+            <PrivateRoute>
+              <MyList films={allFilms} />
             </PrivateRoute>
           }
         />
+        <Route path={AppRoute.Film} element={<MoviePage />} />
         <Route
-          path={AppRoutes.Film}
-          element={<MoviePage film={defaultFilmsList[0]} />}
+          path={AppRoute.AddReview}
+          element={
+            <PrivateRoute>
+              <AddReview />
+            </PrivateRoute>
+          }
         />
-        <Route
-          path={AppRoutes.AddReview}
-          element={<AddReview film={defaultFilmsList[0]} />}
-        />
-        <Route
-          path={AppRoutes.Player}
-          element={<Player film={defaultFilmsList[0]} />}
-        />
+        <Route path={AppRoute.Player} element={<Player film={allFilms[0]} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 

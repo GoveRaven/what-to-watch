@@ -1,31 +1,58 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { AppRoutes } from '../consts/routes';
-import { TFilm } from '../types/films';
+import { AppRoute } from '../consts/routes';
 import { makePathWithParams } from '../utils/makePath';
 import { Tabs } from '../components/tabs/tabs';
-import { reviews } from '../mocks/reviews';
 import { FilmList } from '../components/films-list';
-import { films } from '../mocks/films';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { UserBlock } from '../components/user-block';
+import { Logo } from '../components/logo';
+import {
+  fetchFilmComment,
+  fetchSimilarFilms,
+  fetchChosenFilm,
+} from '../store/api-action';
+import { Loader } from '../components/loader';
+import { useEffect } from 'react';
+import { NotFound } from './not-found';
+import { AuthorizationStatus } from '../consts/authhorization-status';
 
-type TMoviePageProps = {
-  film: TFilm;
-};
-
-export function MoviePage({ film }: TMoviePageProps): JSX.Element {
+export function MoviePage(): JSX.Element {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const film = useAppSelector((state) => state.chosenFilm);
+  const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
+  const similarFilms = useAppSelector((state) => state.similarFilms);
+  const authStatus = useAppSelector((state) => state.authStatus);
+
+  const numberId = Number(id);
+  const filteredsimilarFilms = similarFilms
+    .filter((currentFilm) => currentFilm.id !== Number(id))
+    .slice(0, 4);
+
+  useEffect(() => {
+    dispatch(fetchChosenFilm(numberId));
+    dispatch(fetchSimilarFilms(numberId));
+    dispatch(fetchFilmComment(numberId));
+  }, [dispatch, numberId]);
+
+  if (isFilmLoading) {
+    return <Loader />;
+  } else if (!film) {
+    return <NotFound />;
+  }
+
   const {
     name,
     posterImage,
     backgroundImage,
     genre,
     released,
-    // TODO: Не забыть использовать
-    // backgroundColor,
+    backgroundColor,
   } = film;
 
-  const { id } = useParams();
-  const playerRoute = makePathWithParams(AppRoutes.Player, { id });
-  const reviewRoute = makePathWithParams(AppRoutes.AddReview, { id });
+  const playerRoute = makePathWithParams(AppRoute.Player, { id });
+  const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
 
   return (
     <>
@@ -126,7 +153,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
 
       <section
         className="film-card film-card--full"
-        // style={{ backgroundColor: backgroundColor }}
+        style={{ backgroundColor }}
       >
         <div className="film-card__hero">
           <div className="film-card__bg">
@@ -136,29 +163,9 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
-            <div className="logo">
-              <Link to={AppRoutes.Main} className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
+            <Logo />
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img
-                    src="img/avatar.jpg"
-                    alt="User avatar"
-                    width="63"
-                    height="63"
-                  />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a href='#' className="user-block__link">Sign out</a>
-              </li>
-            </ul>
+            <UserBlock />
           </header>
 
           <div className="film-card__wrap">
@@ -190,9 +197,11 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link to={reviewRoute} className="btn film-card__button">
-                  Add review
-                </Link>
+                {authStatus === AuthorizationStatus.Auth && (
+                  <Link to={reviewRoute} className="btn film-card__button">
+                    Add review
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -210,7 +219,7 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <Tabs film={film} reviews={reviews}/>
+              <Tabs />
             </div>
           </div>
         </div>
@@ -219,18 +228,11 @@ export function MoviePage({ film }: TMoviePageProps): JSX.Element {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <FilmList films={films} genre={genre}/>
+          <FilmList films={filteredsimilarFilms} />
         </section>
 
         <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
+          <Logo isLightVersion />
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>

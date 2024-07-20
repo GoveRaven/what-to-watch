@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { store } from './store';
+import { checkAuth } from './store/api-action';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+store.dispatch(checkAuth());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,11 +16,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        title="The Grand Budapest Hotel"
-        genre="Drama"
-        releaseDate="2014"
-      />
+      <ToastContainer />
+      <App />
     </Provider>
   </React.StrictMode>
 );

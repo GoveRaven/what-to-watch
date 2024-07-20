@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FilmList } from '../components/films-list';
 import { GenresList } from '../components/genres-list';
 import { ShowMoreButton } from '../components/showMoreButton';
-import { AppRoutes } from '../consts/routes';
+import { AppRoute } from '../consts/routes';
 import { DEFAULT_SHOWN_COUNT } from '../consts/films';
-import { useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { UserBlock } from '../components/user-block';
+import { Logo } from '../components/logo';
+import { NotFound } from './not-found';
+import { Loader } from '../components/loader';
+import { fetchFilmList, fetchPromoFilm } from '../store/api-action';
 
 export type TMainProps = {
   title: string;
@@ -13,12 +18,36 @@ export type TMainProps = {
   releaseDate: string;
 };
 
-export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
+export function Main(): JSX.Element {
   const navigate = useNavigate();
-  const films = useAppSelector((state) => state.films);
-  const defaultFilmsList = useAppSelector((state) => state.defaultFilmsList);
+  const dispatch = useAppDispatch();
+  const filmsByCurrentGenre = useAppSelector(
+    (state) => state.filmsByCurrentGenre
+  );
+  const allFilms = useAppSelector((state) => state.allFilms);
+  const promo = useAppSelector((state) => state.promoFilm);
+  const isPromoLoading = useAppSelector((state) => state.isPromoLoading);
+  const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
-  const showMoreButton = shownCount <= films.length;
+  const showMoreButton = shownCount <= filmsByCurrentGenre.length;
+
+  useEffect(() => {
+    if (!isPromoLoading && !areFilmsLoading) {
+      dispatch(fetchPromoFilm());
+      dispatch(fetchFilmList());
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (isPromoLoading) {
+    return <Loader />;
+  }
+
+  if (!promo) {
+    return <NotFound />;
+  }
+
+  const { name, genre, released, posterImage, backgroundImage } = promo;
 
   function showMoreFilms() {
     setShownCount(shownCount + DEFAULT_SHOWN_COUNT);
@@ -123,65 +152,34 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
 
       <section className="film-card">
         <div className="film-card__bg">
-          <img
-            src="img/bg-the-grand-budapest-hotel.jpg"
-            alt="The Grand Budapest Hotel"
-          />
+          <img src={backgroundImage} alt={name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header film-card__head">
-          <div className="logo">
-            <a href="#" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width="63"
-                  height="63"
-                />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a href="#" className="user-block__link">
-                Sign out
-              </a>
-            </li>
-          </ul>
+          <Logo />
+          <UserBlock />
         </header>
 
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img
-                src="img/the-grand-budapest-hotel-poster.jpg"
-                alt="The Grand Budapest Hotel poster"
-                width="218"
-                height="327"
-              />
+              <img src={posterImage} alt={name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{title}</h2>
+              <h2 className="film-card__title">{name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{genre}</span>
-                <span className="film-card__year">{releaseDate}</span>
+                <span className="film-card__year">{released}</span>
               </p>
 
               <div className="film-card__buttons">
                 <button
                   className="btn btn--play film-card__button"
                   type="button"
-                  onClick={() => navigate(AppRoutes.Player)}
+                  onClick={() => navigate(AppRoute.Player)}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
@@ -208,22 +206,14 @@ export function Main({ title, genre, releaseDate }: TMainProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList
-            films={defaultFilmsList}
+            films={allFilms}
             onGenreChange={() => setShownCount(DEFAULT_SHOWN_COUNT)}
           />
-          <FilmList films={films.slice(0, shownCount)} />
+          <FilmList films={filmsByCurrentGenre.slice(0, shownCount)} />
           {showMoreButton && <ShowMoreButton onClick={showMoreFilms} />}
         </section>
-
         <footer className="page-footer">
-          <div className="logo">
-            <a href="#" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
+          <Logo isLightVersion />
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>

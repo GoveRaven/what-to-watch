@@ -1,3 +1,9 @@
+function culcRunTime(runTime: number): string {
+  const hours = Math.floor(runTime / 60);
+  const minutes = runTime - hours * 60;
+  return `${hours}h ${minutes}m`;
+}
+
 type TDetailsProps = {
   director: string;
   starring: string[];
@@ -6,19 +12,7 @@ type TDetailsProps = {
   released: number;
 };
 
-function culcRunTime(runTime: number): string {
-  const hours = Math.floor(runTime / 60);
-  const minutes = runTime - hours * 60;
-  return `${hours}h ${minutes}m`;
-}
-
-export function Details({
-  director,
-  starring,
-  runTime,
-  genre,
-  released,
-}: TDetailsProps) {
+export function Details({ director, starring, runTime, genre, released }: TDetailsProps) {
   return (
     <div className="film-card__text film-card__row">
       <div className="film-card__text-col">

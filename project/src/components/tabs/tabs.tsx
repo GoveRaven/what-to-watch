@@ -1,14 +1,8 @@
-import { TFilm } from '../../types/films';
-import { TReview } from '../../types/reviews';
 import { useState } from 'react';
 import { Overview } from './overview';
 import { Details } from './details';
 import { Reviews } from './reviews';
-
-type TTabsProps = {
-  film: TFilm;
-  reviews: TReview[];
-};
+import { useAppSelector } from '../../hooks';
 
 export enum TabsName {
   OVERVIEW = 'Overview',
@@ -16,18 +10,25 @@ export enum TabsName {
   REVIEWS = 'Reviews',
 }
 
-export function Tabs({ film, reviews }: TTabsProps): JSX.Element {
+export function Tabs(): JSX.Element | null {
   const [activeTab, setActiveTab] = useState(TabsName.OVERVIEW);
+  const film = useAppSelector((state) => state.chosenFilm);
+
+  if (!film) {
+    return null;
+  }
+
   const {
+    director,
+    starring,
+    runTime,
     genre,
     released,
     rating,
     scoresCount,
-    director,
-    starring,
     description,
-    runTime,
   } = film;
+
   return (
     <div className="film-card__desc">
       <nav className="film-nav film-card__nav">
@@ -67,7 +68,7 @@ export function Tabs({ film, reviews }: TTabsProps): JSX.Element {
           released={released}
         />
       )}
-      {activeTab === TabsName.REVIEWS && <Reviews reviews={reviews} />}
+      {activeTab === TabsName.REVIEWS && <Reviews />}
     </div>
   );
 }

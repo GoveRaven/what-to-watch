@@ -1,13 +1,35 @@
-import { TFilm } from '../types/films';
-import { Link } from 'react-router-dom';
-import { AppRoutes } from '../consts/routes';
+import { Link, useParams } from 'react-router-dom';
+import { AppRoute } from '../consts/routes';
 import { ReviewForm } from '../components/review-form';
+import { UserBlock } from '../components/user-block';
+import { Logo } from '../components/logo';
+import { makePathWithParams } from '../utils/makePath';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { useEffect } from 'react';
+import { fetchChosenFilm } from '../store/api-action';
+import { NotFound } from './not-found';
+import { Loader } from '../components/loader';
 
-type TAddReviewProps = {
-  film: TFilm;
-};
+export function AddReview(): JSX.Element {
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+  const filmRoute = makePathWithParams(AppRoute.Film, { id });
+  const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
+  const film = useAppSelector((state) => state.chosenFilm);
+  const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
 
-export function AddReview({ film }: TAddReviewProps): JSX.Element {
+  useEffect(() => {
+    dispatch(fetchChosenFilm(Number(id)));
+  }, [dispatch, id]);
+
+  if (isFilmLoading) {
+    return <Loader />;
+  }
+
+  if (!film) {
+    return <NotFound />;
+  }
+
   return (
     <>
       <div className="visually-hidden">
@@ -106,42 +128,24 @@ export function AddReview({ film }: TAddReviewProps): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header">
-            <div className="logo">
-              <Link to={AppRoutes.Main} className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
+            <Logo />
 
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={AppRoutes.Film} className="breadcrumbs__link">
+                  <Link to={filmRoute} className="breadcrumbs__link">
                     {film.name}
                   </Link>
                 </li>
                 <li className="breadcrumbs__item">
-                  <a href='#' className="breadcrumbs__link">Add review</a>
+                  <Link to={reviewRoute} className="breadcrumbs__link">
+                    Add review
+                  </Link>
                 </li>
               </ul>
             </nav>
 
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img
-                    src="img/avatar.jpg"
-                    alt="User avatar"
-                    width="63"
-                    height="63"
-                  />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a href='#' className="user-block__link">Sign out</a>
-              </li>
-            </ul>
+            <UserBlock />
           </header>
 
           <div className="film-card__poster film-card__poster--small">

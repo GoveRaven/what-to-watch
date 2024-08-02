@@ -5,7 +5,7 @@ import { useAppDispatch } from '../hooks';
 import { useParams } from 'react-router-dom';
 
 export function ReviewForm(): JSX.Element {
-  const [comment, setText] = useState('');
+  const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
   const dispatch = useAppDispatch();
   const { id } = useParams();
@@ -35,7 +35,7 @@ export function ReviewForm(): JSX.Element {
             name="review-text"
             id="review-text"
             placeholder="Review text"
-            onChange={(event) => setText(event.target.value)}
+            onChange={(event) => setComment(event.target.value)}
             value={comment}
           />
           <div className="add-review__submit">

@@ -96,15 +96,14 @@ export const fetchFilmComment = createAsyncThunk<void, number, TThunkApiConfig>(
 
 export const postComment = createAsyncThunk<
   void,
-  { comment: string; rating: number; id?: number },
+  { comment: string; rating: number; id: number },
   TThunkApiConfig
->('data/postComment', async (dataComment, { dispatch, extra: api }) => {
-  const { id } = dataComment;
+>('data/postComment', async (commentInfo, { dispatch, extra: api }) => {
+  const { id, ...requestInfo } = commentInfo;
   const apiRoute = makePathWithParams(APIRoute.Comments, { id });
-  const redirectApi = makePathWithParams(AppRoute.Film, { id });
-  delete dataComment.id;
-  await api.post(apiRoute, dataComment);
-  dispatch(redirectToRoute(redirectApi));
+  const redirectApiRoute = makePathWithParams(AppRoute.Film, { id });
+  await api.post<TUser>(apiRoute, requestInfo);
+  dispatch(redirectToRoute(redirectApiRoute));
 });
 
 export const checkAuth = createAsyncThunk<void, undefined, TThunkApiConfig>(
@@ -129,8 +128,8 @@ export const authLogin = createAsyncThunk<
 >('user/authLogin', async (UserData, { dispatch, extra: api }) => {
   const { data } = await api.post<TUser>(APIRoute.Login, UserData);
   saveToken(data.token);
-  dispatch(setAuthStatus(AuthorizationStatus.Auth));
   dispatch(setUser(data));
+  dispatch(setAuthStatus(AuthorizationStatus.Auth));
   dispatch(redirectToRoute(AppRoute.Main));
 });
 

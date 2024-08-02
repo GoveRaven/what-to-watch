@@ -3,6 +3,7 @@ import { TFilm } from '../types/films';
 import { AuthorizationStatus } from '../consts/authhorization-status';
 import { AppRoute } from '../consts/routes';
 import { TReview } from '../types/reviews';
+import { TUser } from '../types/user';
 
 export const changeGenre = createAction<string>('films/changeGenre');
 export const actualizeFilmsList = createAction('films/actualizeFilmsList');
@@ -30,5 +31,8 @@ export const setAuthStatus =
 export const setAuthStatusChecked = createAction<boolean>(
   'user/setAuthStatusChecked'
 );
+export const setUser = createAction<TUser>('user/setUser');
 
-export const redirectToRoute = createAction<AppRoute>('route/redirectToRoute');
+export const redirectToRoute = createAction<AppRoute | string>(
+  'route/redirectToRoute'
+);

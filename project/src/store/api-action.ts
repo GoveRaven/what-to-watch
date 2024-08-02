@@ -101,9 +101,9 @@ export const postComment = createAsyncThunk<
 >('data/postComment', async (commentInfo, { dispatch, extra: api }) => {
   const { id, ...requestInfo } = commentInfo;
   const apiRoute = makePathWithParams(APIRoute.Comments, { id });
-  const redirectApiRoute = makePathWithParams(AppRoute.Film, { id });
+  const redirectRoute = makePathWithParams(AppRoute.Film, { id });
   await api.post<TUser>(apiRoute, requestInfo);
-  dispatch(redirectToRoute(redirectApiRoute));
+  dispatch(redirectToRoute(redirectRoute));
 });
 
 export const checkAuth = createAsyncThunk<void, undefined, TThunkApiConfig>(

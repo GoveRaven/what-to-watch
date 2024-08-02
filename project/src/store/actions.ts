@@ -1,7 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { TFilm } from '../types/films';
 import { AuthorizationStatus } from '../consts/authhorization-status';
-import { AppRoute } from '../consts/routes';
 import { TReview } from '../types/reviews';
 import { TUser } from '../types/user';
 
@@ -33,6 +32,4 @@ export const setAuthStatusChecked = createAction<boolean>(
 );
 export const setUser = createAction<TUser>('user/setUser');
 
-export const redirectToRoute = createAction<AppRoute | string>(
-  'route/redirectToRoute'
-);
+export const redirectToRoute = createAction<string>('route/redirectToRoute');

@@ -5,30 +5,28 @@ import { useAppDispatch } from '../hooks';
 import { useParams } from 'react-router-dom';
 
 export function ReviewForm(): JSX.Element {
-  const [text, setText] = useState('');
+  const [comment, setText] = useState('');
   const [rating, setRating] = useState('');
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const filmId = Number(id);
 
-  function handlerInputChange(chosenRating: string) {
+  function handleInputChange(chosenRating: string) {
     setRating(chosenRating);
   }
 
-  function handelFormSumbit(event: FormEvent) {
+  function onSumbit(event: FormEvent) {
     event.preventDefault();
-    dispatch(
-      postComment({ comment: text, rating: Number(rating), id: filmId })
-    );
+    dispatch(postComment({ comment, rating: Number(rating), id: Number(id) }));
   }
 
-  const isButtonDisabled = text.length < 50 || text.length > 400 || !rating;
+  const isButtonDisabled =
+    comment.length < 50 || comment.length > 400 || !rating;
 
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form" onSubmit={handelFormSumbit}>
+      <form action="#" className="add-review__form" onSubmit={onSumbit}>
         <div className="rating">
-          <RatingInput rating={rating} onInputChange={handlerInputChange} />
+          <RatingInput rating={rating} onInputChange={handleInputChange} />
         </div>
 
         <div className="add-review__text">
@@ -38,7 +36,7 @@ export function ReviewForm(): JSX.Element {
             id="review-text"
             placeholder="Review text"
             onChange={(event) => setText(event.target.value)}
-            value={text}
+            value={comment}
           />
           <div className="add-review__submit">
             <button

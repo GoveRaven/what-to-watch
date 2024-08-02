@@ -6,6 +6,7 @@ import { authLogout } from '../store/api-action';
 
 export function UserBlock(): JSX.Element {
   const authStatus = useAppSelector((state) => state.authStatus);
+  const avatar = useAppSelector((state) => state.user?.avatarUrl);
   const dispatch = useAppDispatch();
 
   function onButtonClick() {
@@ -17,12 +18,7 @@ export function UserBlock(): JSX.Element {
       <ul className="user-block">
         <li className="user-block__item">
           <div className="user-block__avatar">
-            <img
-              src="img/avatar.jpg"
-              alt="User avatar"
-              width="63"
-              height="63"
-            />
+            <img src={avatar} alt="User avatar" width="63" height="63" />
           </div>
         </li>
         <li className="user-block__item">

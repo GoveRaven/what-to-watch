@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../consts/routes';
+import { memo } from 'react';
 
 type TLogo = {
   isLightVersion?: boolean;
 };
 
-export function Logo({ isLightVersion }: TLogo): JSX.Element {
+function LogoComponent({ isLightVersion }: TLogo): JSX.Element {
   return (
     <div className="logo">
       <Link
@@ -19,3 +20,5 @@ export function Logo({ isLightVersion }: TLogo): JSX.Element {
     </div>
   );
 }
+
+export const Logo = memo(LogoComponent);

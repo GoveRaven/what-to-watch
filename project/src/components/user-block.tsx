@@ -3,8 +3,9 @@ import { AuthorizationStatus } from '../consts/authhorization-status';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { AppRoute } from '../consts/routes';
 import { authLogout } from '../store/api-action';
+import { memo } from 'react';
 
-export function UserBlock(): JSX.Element {
+function UserBlockComponent(): JSX.Element {
   const authStatus = useAppSelector((state) => state.authStatus);
   const avatarUrl = useAppSelector((state) => state.user?.avatarUrl);
   const dispatch = useAppDispatch();
@@ -37,3 +38,5 @@ export function UserBlock(): JSX.Element {
     </div>
   );
 }
+
+export const UserBlock = memo(UserBlockComponent);

@@ -9,14 +9,18 @@ import { useEffect } from 'react';
 import { fetchChosenFilm } from '../store/api-action';
 import { NotFound } from './not-found';
 import { Loader } from '../components/loader';
+import {
+  getChosenFilm,
+  getIsFilmLoading,
+} from '../store/slices/data-slice/selector';
 
 export function AddReview(): JSX.Element {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const filmRoute = makePathWithParams(AppRoute.Film, { id });
   const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
-  const film = useAppSelector((state) => state.chosenFilm);
-  const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
+  const film = useAppSelector(getChosenFilm);
+  const isFilmLoading = useAppSelector(getIsFilmLoading);
 
   useEffect(() => {
     dispatch(fetchChosenFilm(Number(id)));

@@ -1,6 +1,12 @@
+import { useEffect } from 'react';
 import { DEFAULT_GENRE } from '../consts/films';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { changeGenre, actualizeFilmsList } from '../store/actions';
+import { getAllFilms } from '../store/slices/data-slice/selector';
+import {
+  actualizeFilmsList,
+  changeGenre,
+} from '../store/slices/films-slice/films-slice';
+import { getGenre } from '../store/slices/films-slice/selector';
 import { TFilm } from '../types/films';
 
 type TGenresList = {
@@ -11,7 +17,12 @@ type TGenresList = {
 export function GenresList({ films, onGenreChange }: TGenresList) {
   const genresSet = new Set([DEFAULT_GENRE]);
   const dispatch = useAppDispatch();
-  const activeGenre = useAppSelector((state) => state.genre);
+  const activeGenre = useAppSelector(getGenre);
+  const allFilms = useAppSelector(getAllFilms);
+
+  useEffect(() => {
+    dispatch(actualizeFilmsList(allFilms));
+  });
 
   films.forEach((film) => genresSet.add(film.genre));
   const genres = Array.from(genresSet);
@@ -28,7 +39,7 @@ export function GenresList({ films, onGenreChange }: TGenresList) {
             className="catalog__genres-link"
             onClick={() => {
               dispatch(changeGenre(genre));
-              dispatch(actualizeFilmsList());
+              dispatch(actualizeFilmsList(allFilms));
               onGenreChange();
             }}
           >

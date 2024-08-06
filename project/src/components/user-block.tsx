@@ -4,10 +4,11 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { AppRoute } from '../consts/routes';
 import { authLogout } from '../store/api-action';
 import { memo } from 'react';
+import { getAuthStatus, getUser } from '../store/slices/user-slice/selector';
 
 function UserBlockComponent(): JSX.Element {
-  const authStatus = useAppSelector((state) => state.authStatus);
-  const avatarUrl = useAppSelector((state) => state.user?.avatarUrl);
+  const authStatus = useAppSelector(getAuthStatus);
+  const avatarUrl = useAppSelector(getUser);
   const dispatch = useAppDispatch();
 
   function onButtonClick() {
@@ -19,7 +20,12 @@ function UserBlockComponent(): JSX.Element {
       <ul className="user-block">
         <li className="user-block__item">
           <div className="user-block__avatar">
-            <img src={avatarUrl} alt="User avatar" width="63" height="63" />
+            <img
+              src={avatarUrl?.avatarUrl}
+              alt="User avatar"
+              width="63"
+              height="63"
+            />
           </div>
         </li>
         <li className="user-block__item">

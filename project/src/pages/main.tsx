@@ -11,6 +11,13 @@ import { Logo } from '../components/logo';
 import { NotFound } from './not-found';
 import { Loader } from '../components/loader';
 import { fetchFilmList, fetchPromoFilm } from '../store/api-action';
+import {
+  getAllFilms,
+  getAreFilmsLoading,
+  getIsPromoLoading,
+  getPromoFilm,
+} from '../store/slices/data-slice/selector';
+import { getFilmsByCurrentGenre } from '../store/slices/films-slice/selector';
 
 export type TMainProps = {
   title: string;
@@ -21,13 +28,11 @@ export type TMainProps = {
 export function Main(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const filmsByCurrentGenre = useAppSelector(
-    (state) => state.filmsByCurrentGenre
-  );
-  const allFilms = useAppSelector((state) => state.allFilms);
-  const promo = useAppSelector((state) => state.promoFilm);
-  const isPromoLoading = useAppSelector((state) => state.isPromoLoading);
-  const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
+  const filmsByCurrentGenre = useAppSelector(getFilmsByCurrentGenre);
+  const allFilms = useAppSelector(getAllFilms);
+  const promo = useAppSelector(getPromoFilm);
+  const isPromoLoading = useAppSelector(getIsPromoLoading);
+  const areFilmsLoading = useAppSelector(getAreFilmsLoading);
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
   const showMoreButton = shownCount <= filmsByCurrentGenre.length;
 
@@ -36,7 +41,7 @@ export function Main(): JSX.Element {
       dispatch(fetchPromoFilm());
       dispatch(fetchFilmList());
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isPromoLoading) {

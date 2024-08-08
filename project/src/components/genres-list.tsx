@@ -22,7 +22,7 @@ export function GenresList({ films, onGenreChange }: TGenresList) {
 
   useEffect(() => {
     dispatch(actualizeFilmsList(allFilms));
-  });
+  }, [allFilms, dispatch]);
 
   films.forEach((film) => genresSet.add(film.genre));
   const genres = Array.from(genresSet);

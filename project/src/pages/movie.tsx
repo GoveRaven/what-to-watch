@@ -15,15 +15,21 @@ import { Loader } from '../components/loader';
 import { useEffect } from 'react';
 import { NotFound } from './not-found';
 import { AuthorizationStatus } from '../consts/authhorization-status';
+import {
+  selectChosenFilm,
+  selectIsFilmLoading,
+  selectSimilarFilms,
+} from '../store/slices/data-slice/selector';
+import { selectAuthStatus } from '../store/slices/user-slice/selector';
 
 export function MoviePage(): JSX.Element {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const film = useAppSelector((state) => state.chosenFilm);
-  const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
-  const similarFilms = useAppSelector((state) => state.similarFilms);
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const film = useAppSelector(selectChosenFilm);
+  const isFilmLoading = useAppSelector(selectIsFilmLoading);
+  const similarFilms = useAppSelector(selectSimilarFilms);
+  const authStatus = useAppSelector(selectAuthStatus);
 
   const numberId = Number(id);
   const filteredsimilarFilms = similarFilms

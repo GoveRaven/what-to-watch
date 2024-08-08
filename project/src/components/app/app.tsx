@@ -12,14 +12,18 @@ import { useAppSelector } from '../../hooks';
 import { Loader } from '../loader';
 import { HistoryRouter } from '../history-routes/history-routes';
 import { browserHistory } from '../history-routes/browser-history';
+import { selectIsAuthStatusChecked } from '../../store/slices/user-slice/selector';
+import {
+  selectAllFilms,
+  selectAreFilmsLoading,
+  selectIsPromoLoading,
+} from '../../store/slices/data-slice/selector';
 
 function App(): JSX.Element {
-  const allFilms = useAppSelector((state) => state.allFilms);
-  const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
-  const isPromoLoading = useAppSelector((state) => state.isPromoLoading);
-  const isAuthStatusChecked = useAppSelector(
-    (state) => state.isAuthStatusChecked
-  );
+  const allFilms = useAppSelector(selectAllFilms);
+  const areFilmsLoading = useAppSelector(selectAreFilmsLoading);
+  const isPromoLoading = useAppSelector(selectIsPromoLoading);
+  const isAuthStatusChecked = useAppSelector(selectIsAuthStatusChecked);
 
   if (areFilmsLoading && isPromoLoading && !isAuthStatusChecked) {
     return <Loader />;

@@ -1,10 +1,10 @@
+import { memo } from 'react';
+
 type TShowMoreButtonProps = {
   onClick: VoidFunction;
 };
 
-export function ShowMoreButton({
-  onClick,
-}: TShowMoreButtonProps) {
+function ShowMoreButtonComponent({ onClick }: TShowMoreButtonProps) {
   return (
     <div className="catalog__more">
       <button className="catalog__button" type="button" onClick={onClick}>
@@ -13,3 +13,5 @@ export function ShowMoreButton({
     </div>
   );
 }
+
+export const ShowMoreButton = memo(ShowMoreButtonComponent);

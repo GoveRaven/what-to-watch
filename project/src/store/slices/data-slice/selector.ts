@@ -3,29 +3,29 @@ import { TFilm } from '../../../types/films';
 import { TReview } from '../../../types/reviews';
 import { TState } from '../../../types/store';
 
-export const getPromoFilm = (state: TState): TFilm | null =>
+export const selectPromoFilm = (state: TState): TFilm | null =>
   state[actionName.Data].promoFilm;
 
-export const getIsPromoLoading = (state: TState): boolean =>
+export const selectIsPromoLoading = (state: TState): boolean =>
   state[actionName.Data].isPromoLoading;
 
-export const getAllFilms = (state: TState): TFilm[] =>
+export const selectAllFilms = (state: TState): TFilm[] =>
   state[actionName.Data].allFilms;
 
-export const getAreFilmsLoading = (state: TState): boolean =>
+export const selectAreFilmsLoading = (state: TState): boolean =>
   state[actionName.Data].areFilmsLoading;
 
-export const getChosenFilm = (state: TState): TFilm | null =>
+export const selectChosenFilm = (state: TState): TFilm | null =>
   state[actionName.Data].chosenFilm;
 
-export const getIsFilmLoading = (state: TState): boolean =>
+export const selectIsFilmLoading = (state: TState): boolean =>
   state[actionName.Data].isFilmLoading;
 
-export const getSimilarFilms = (state: TState): TFilm[] =>
+export const selectSimilarFilms = (state: TState): TFilm[] =>
   state[actionName.Data].similarFilms;
 
-export const getFilmComments = (state: TState): TReview[] =>
+export const selectFilmComments = (state: TState): TReview[] =>
   state[actionName.Data].filmComments;
 
-export const getIsFilmCommentLoading = (state: TState): boolean =>
+export const selectIsFilmCommentLoading = (state: TState): boolean =>
   state[actionName.Data].isFilmCommentLoading;

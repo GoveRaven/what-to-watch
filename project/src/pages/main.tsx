@@ -12,12 +12,12 @@ import { NotFound } from './not-found';
 import { Loader } from '../components/loader';
 import { fetchFilmList, fetchPromoFilm } from '../store/api-action';
 import {
-  getAllFilms,
-  getAreFilmsLoading,
-  getIsPromoLoading,
-  getPromoFilm,
+  selectAllFilms,
+  selectAreFilmsLoading,
+  selectIsPromoLoading,
+  selectPromoFilm,
 } from '../store/slices/data-slice/selector';
-import { getFilmsByCurrentGenre } from '../store/slices/films-slice/selector';
+import { selectFilmsByCurrentGenre } from '../store/slices/films-slice/selector';
 
 export type TMainProps = {
   title: string;
@@ -28,11 +28,11 @@ export type TMainProps = {
 export function Main(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const filmsByCurrentGenre = useAppSelector(getFilmsByCurrentGenre);
-  const allFilms = useAppSelector(getAllFilms);
-  const promo = useAppSelector(getPromoFilm);
-  const isPromoLoading = useAppSelector(getIsPromoLoading);
-  const areFilmsLoading = useAppSelector(getAreFilmsLoading);
+  const filmsByCurrentGenre = useAppSelector(selectFilmsByCurrentGenre);
+  const allFilms = useAppSelector(selectAllFilms);
+  const promo = useAppSelector(selectPromoFilm);
+  const isPromoLoading = useAppSelector(selectIsPromoLoading);
+  const areFilmsLoading = useAppSelector(selectAreFilmsLoading);
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
   const showMoreButton = shownCount <= filmsByCurrentGenre.length;
 

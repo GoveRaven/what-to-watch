@@ -4,11 +4,14 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { AppRoute } from '../consts/routes';
 import { authLogout } from '../store/api-action';
 import { memo } from 'react';
-import { getAuthStatus, getUser } from '../store/slices/user-slice/selector';
+import {
+  selectAuthStatus,
+  selectUser,
+} from '../store/slices/user-slice/selector';
 
 function UserBlockComponent(): JSX.Element {
-  const authStatus = useAppSelector(getAuthStatus);
-  const avatarUrl = useAppSelector(getUser);
+  const authStatus = useAppSelector(selectAuthStatus);
+  const avatarUrl = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
   function onButtonClick() {

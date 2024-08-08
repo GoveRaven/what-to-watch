@@ -3,7 +3,7 @@ import { Overview } from './overview';
 import { Details } from './details';
 import { Reviews } from './reviews';
 import { useAppSelector } from '../../hooks';
-import { getChosenFilm } from '../../store/slices/data-slice/selector';
+import { selectChosenFilm } from '../../store/slices/data-slice/selector';
 
 export enum TabsName {
   OVERVIEW = 'Overview',
@@ -13,7 +13,7 @@ export enum TabsName {
 
 export function Tabs(): JSX.Element | null {
   const [activeTab, setActiveTab] = useState(TabsName.OVERVIEW);
-  const film = useAppSelector(getChosenFilm);
+  const film = useAppSelector(selectChosenFilm);
 
   if (!film) {
     return null;

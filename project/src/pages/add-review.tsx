@@ -10,8 +10,8 @@ import { fetchChosenFilm } from '../store/api-action';
 import { NotFound } from './not-found';
 import { Loader } from '../components/loader';
 import {
-  getChosenFilm,
-  getIsFilmLoading,
+  selectChosenFilm,
+  selectIsFilmLoading,
 } from '../store/slices/data-slice/selector';
 
 export function AddReview(): JSX.Element {
@@ -19,8 +19,8 @@ export function AddReview(): JSX.Element {
   const dispatch = useAppDispatch();
   const filmRoute = makePathWithParams(AppRoute.Film, { id });
   const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
-  const film = useAppSelector(getChosenFilm);
-  const isFilmLoading = useAppSelector(getIsFilmLoading);
+  const film = useAppSelector(selectChosenFilm);
+  const isFilmLoading = useAppSelector(selectIsFilmLoading);
 
   useEffect(() => {
     dispatch(fetchChosenFilm(Number(id)));

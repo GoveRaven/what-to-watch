@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { DEFAULT_GENRE } from '../consts/films';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { getAllFilms } from '../store/slices/data-slice/selector';
+import { selectAllFilms } from '../store/slices/data-slice/selector';
 import {
   actualizeFilmsList,
   changeGenre,
 } from '../store/slices/films-slice/films-slice';
-import { getGenre } from '../store/slices/films-slice/selector';
+import { selectGenre } from '../store/slices/films-slice/selector';
 import { TFilm } from '../types/films';
 
 type TGenresList = {
@@ -17,8 +17,8 @@ type TGenresList = {
 export function GenresList({ films, onGenreChange }: TGenresList) {
   const genresSet = new Set([DEFAULT_GENRE]);
   const dispatch = useAppDispatch();
-  const activeGenre = useAppSelector(getGenre);
-  const allFilms = useAppSelector(getAllFilms);
+  const activeGenre = useAppSelector(selectGenre);
+  const allFilms = useAppSelector(selectAllFilms);
 
   useEffect(() => {
     dispatch(actualizeFilmsList(allFilms));

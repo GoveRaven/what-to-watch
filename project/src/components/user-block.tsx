@@ -24,7 +24,7 @@ function UserBlockComponent(): JSX.Element {
         <li className="user-block__item">
           <div className="user-block__avatar">
             <img
-              src={avatarUrl?.avatarUrl}
+              src={avatarUrl?.avatarUrl || 'img/avatar.jpg'}
               alt="User avatar"
               width="63"
               height="63"

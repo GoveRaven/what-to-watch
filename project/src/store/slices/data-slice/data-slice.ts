@@ -21,7 +21,7 @@ const initialState: TDataSlice = {
   isFilmCommentLoading: false,
 };
 
-export const DataSlice = createSlice({
+export const dataSlice = createSlice({
   name: ActionName.Data,
   initialState,
   reducers: {},

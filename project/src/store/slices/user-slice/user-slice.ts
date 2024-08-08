@@ -10,7 +10,7 @@ const initialState: TUserSlice = {
   user: null,
 };
 
-export const UserSlice = createSlice({
+export const userSlice = createSlice({
   name: ActionName.User,
   initialState,
   reducers: {},

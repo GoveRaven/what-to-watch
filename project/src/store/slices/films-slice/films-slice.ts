@@ -9,7 +9,7 @@ const initialState: TFilmsSlice = {
   filmsByCurrentGenre: [],
 };
 
-export const FilmsSlice = createSlice({
+export const filmsSlice = createSlice({
   name: ActionName.Films,
   initialState,
   reducers: {
@@ -29,4 +29,4 @@ export const FilmsSlice = createSlice({
   },
 });
 
-export const { changeGenre, actualizeFilmsList } = FilmsSlice.actions;
+export const { changeGenre, actualizeFilmsList } = filmsSlice.actions;

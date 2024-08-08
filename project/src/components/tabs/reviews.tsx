@@ -2,14 +2,14 @@ import { useAppSelector } from '../../hooks';
 import { NotFound } from '../../pages/not-found';
 import {
   selectFilmComments,
-  selectIsFilmCommentLoading,
+  selectIsFilmCommentsLoading,
 } from '../../store/slices/data-slice/selector';
 import { Loader } from '../loader';
 import { ReviewColumn } from './reviews-column';
 
 export function Reviews() {
   const chosenFilmComments = useAppSelector(selectFilmComments);
-  const areFilmCommentsLoading = useAppSelector(selectIsFilmCommentLoading);
+  const areFilmCommentsLoading = useAppSelector(selectIsFilmCommentsLoading);
 
   if (areFilmCommentsLoading) {
     return <Loader />;

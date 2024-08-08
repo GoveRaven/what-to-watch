@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TDataSlice } from '../../../types/store';
-import { actionName } from '../../../consts/store-action';
+import { ActionName } from '../../../consts/store-action';
 import {
   fetchChosenFilm,
   fetchFilmComment,
@@ -22,7 +22,7 @@ const initialState: TDataSlice = {
 };
 
 export const DataSlice = createSlice({
-  name: actionName.Data,
+  name: ActionName.Data,
   initialState,
   reducers: {},
   extraReducers(builder) {

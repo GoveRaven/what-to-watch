@@ -1,31 +1,31 @@
-import { actionName } from '../../../consts/store-action';
+import { ActionName } from '../../../consts/store-action';
 import { TFilm } from '../../../types/films';
 import { TReview } from '../../../types/reviews';
 import { TState } from '../../../types/store';
 
 export const selectPromoFilm = (state: TState): TFilm | null =>
-  state[actionName.Data].promoFilm;
+  state[ActionName.Data].promoFilm;
 
 export const selectIsPromoLoading = (state: TState): boolean =>
-  state[actionName.Data].isPromoLoading;
+  state[ActionName.Data].isPromoLoading;
 
 export const selectAllFilms = (state: TState): TFilm[] =>
-  state[actionName.Data].allFilms;
+  state[ActionName.Data].allFilms;
 
 export const selectAreFilmsLoading = (state: TState): boolean =>
-  state[actionName.Data].areFilmsLoading;
+  state[ActionName.Data].areFilmsLoading;
 
 export const selectChosenFilm = (state: TState): TFilm | null =>
-  state[actionName.Data].chosenFilm;
+  state[ActionName.Data].chosenFilm;
 
 export const selectIsFilmLoading = (state: TState): boolean =>
-  state[actionName.Data].isFilmLoading;
+  state[ActionName.Data].isFilmLoading;
 
 export const selectSimilarFilms = (state: TState): TFilm[] =>
-  state[actionName.Data].similarFilms;
+  state[ActionName.Data].similarFilms;
 
 export const selectFilmComments = (state: TState): TReview[] =>
-  state[actionName.Data].filmComments;
+  state[ActionName.Data].filmComments;
 
 export const selectIsFilmCommentsLoading = (state: TState): boolean =>
-  state[actionName.Data].isFilmCommentLoading;
+  state[ActionName.Data].isFilmCommentLoading;

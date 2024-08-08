@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { DEFAULT_GENRE } from '../../../consts/films';
 import { TFilmsSlice } from '../../../types/store';
-import { actionName } from '../../../consts/store-action';
+import { ActionName } from '../../../consts/store-action';
 import { TFilm } from '../../../types/films';
 
 const initialState: TFilmsSlice = {
@@ -10,7 +10,7 @@ const initialState: TFilmsSlice = {
 };
 
 export const FilmsSlice = createSlice({
-  name: actionName.Films,
+  name: ActionName.Films,
   initialState,
   reducers: {
     changeGenre: (state, action) => {

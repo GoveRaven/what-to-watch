@@ -19,7 +19,7 @@ export const fetchPromoFilm = createAsyncThunk<
   TFilm,
   undefined,
   TThunkApiConfig
->('data/fetchPromoFilm', async (_arg, { dispatch, extra: api }) => {
+>('data/fetchPromoFilm', async (_arg, { extra: api }) => {
   const { data } = await api.get<TFilm>(APIRoute.Promo);
   return data;
 });
@@ -46,7 +46,7 @@ export const fetchSimilarFilms = createAsyncThunk<
   TFilm[],
   number,
   TThunkApiConfig
->('data/fetchSimilarFilms', async (id, { dispatch, extra: api }) => {
+>('data/fetchSimilarFilms', async (id, { extra: api }) => {
   const apiRoute = makePathWithParams(APIRoute.SimilarFilms, { id });
   const { data } = await api.get<TFilm[]>(apiRoute);
   return data;
@@ -56,7 +56,7 @@ export const fetchFilmComment = createAsyncThunk<
   TReview[],
   number,
   TThunkApiConfig
->('data/fetchFilmComment', async (id, { dispatch, extra: api }) => {
+>('data/fetchFilmComment', async (id, { extra: api }) => {
   const apiRoute = makePathWithParams(APIRoute.Comments, { id });
   const { data } = await api.get<TReview[]>(apiRoute);
   return data;
@@ -100,3 +100,21 @@ export const authLogout = createAsyncThunk<void, undefined, TThunkApiConfig>(
     dropToken();
   }
 );
+
+export const fetchFavoriteFilms = createAsyncThunk<
+  TFilm[],
+  undefined,
+  TThunkApiConfig
+>('data/fetchFavoriteFilms', async (_arg, { extra: api }) => {
+  const { data } = await api.get<TFilm[]>(APIRoute.favorite);
+  return data;
+});
+
+export const toogleFavoriteFilms = createAsyncThunk<
+  void,
+  { status: number; id: number },
+  TThunkApiConfig
+>('data/toogleFavoriteFilms', async (data, { extra: api }) => {
+  const apiRoute = makePathWithParams(APIRoute.toogleFavorite, data);
+  await api.post(`${apiRoute}`);
+});

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthorizationStatus } from '../consts/authhorization-status';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { AppRoute } from '../consts/routes';
@@ -13,6 +13,7 @@ function UserBlockComponent(): JSX.Element {
   const authStatus = useAppSelector(selectAuthStatus);
   const avatarUrl = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   function onButtonClick() {
     dispatch(authLogout());
@@ -28,6 +29,7 @@ function UserBlockComponent(): JSX.Element {
               alt="User avatar"
               width="63"
               height="63"
+              onClick={() => navigate(AppRoute.MyList)}
             />
           </div>
         </li>

@@ -3,6 +3,7 @@ import { TDataSlice } from '../../../types/store';
 import { ActionName } from '../../../consts/store-action';
 import {
   fetchChosenFilm,
+  fetchFavoriteFilms,
   fetchFilmComment,
   fetchFilmList,
   fetchPromoFilm,
@@ -19,6 +20,7 @@ const initialState: TDataSlice = {
   similarFilms: [],
   filmComments: [],
   isFilmCommentLoading: false,
+  favoriteFilms: [],
 };
 
 export const dataSlice = createSlice({
@@ -57,6 +59,9 @@ export const dataSlice = createSlice({
       .addCase(fetchFilmComment.fulfilled, (state, action) => {
         state.isFilmCommentLoading = false;
         state.filmComments = action.payload;
+      })
+      .addCase(fetchFavoriteFilms.fulfilled, (state, action) => {
+        state.favoriteFilms = action.payload;
       });
   },
 });

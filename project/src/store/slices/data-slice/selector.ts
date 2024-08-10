@@ -29,3 +29,6 @@ export const selectFilmComments = (state: TState): TReview[] =>
 
 export const selectIsFilmCommentsLoading = (state: TState): boolean =>
   state[ActionName.Data].isFilmCommentLoading;
+
+export const selectFavoriteFilms = (state: TState): TFilm[] =>
+  state[ActionName.Data].favoriteFilms;

@@ -1,13 +1,11 @@
 import { FilmList } from '../components/films-list';
-import { TFilm } from '../types/films';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
+import { useAppSelector } from '../hooks';
+import { selectFavoriteFilms } from '../store/slices/data-slice/selector';
 
-type TMyListProps = {
-  films: TFilm[];
-};
-
-export function MyList({ films }: TMyListProps): JSX.Element {
+export function MyList(): JSX.Element {
+  const favoriteFilms = useAppSelector(selectFavoriteFilms);
   return (
     <>
       <div className="visually-hidden">
@@ -103,14 +101,14 @@ export function MyList({ films }: TMyListProps): JSX.Element {
 
           <h1 className="page-title user-page__title">
             My list{' '}
-            <span className="user-page__film-count">{films.length}</span>
+            <span className="user-page__film-count">{favoriteFilms.length}</span>
           </h1>
           <UserBlock />
         </header>
 
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <FilmList films={films} />
+          <FilmList films={favoriteFilms} />
         </section>
 
         <footer className="page-footer">

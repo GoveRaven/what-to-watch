@@ -8,7 +8,7 @@ import { NotFound } from '../../pages/not-found';
 import { Player } from '../../pages/player';
 import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Loader } from '../loader';
 import { HistoryRouter } from '../history-routes/history-routes';
 import { browserHistory } from '../history-routes/browser-history';
@@ -18,12 +18,20 @@ import {
   selectAreFilmsLoading,
   selectIsPromoLoading,
 } from '../../store/slices/data-slice/selector';
+import { checkAuth, fetchFavoriteFilms } from '../../store/api-action';
+import { useEffect } from 'react';
 
 function App(): JSX.Element {
   const allFilms = useAppSelector(selectAllFilms);
   const areFilmsLoading = useAppSelector(selectAreFilmsLoading);
   const isPromoLoading = useAppSelector(selectIsPromoLoading);
   const isAuthStatusChecked = useAppSelector(selectIsAuthStatusChecked);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+    dispatch(fetchFavoriteFilms());
+  }, [dispatch]);
 
   if (areFilmsLoading && isPromoLoading && !isAuthStatusChecked) {
     return <Loader />;
@@ -38,7 +46,7 @@ function App(): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute>
-              <MyList films={allFilms} />
+              <MyList />
             </PrivateRoute>
           }
         />

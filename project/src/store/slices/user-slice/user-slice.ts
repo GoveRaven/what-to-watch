@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../../../consts/authhorization-status';
-import { ActionName } from '../../../consts/store-action';
+import { SliceName } from '../../../consts/store-action';
 import { authLogin, authLogout, checkAuth } from '../../api-action';
 import { TUserSlice } from '../../../types/store';
 
@@ -11,7 +11,7 @@ const initialState: TUserSlice = {
 };
 
 export const userSlice = createSlice({
-  name: ActionName.User,
+  name: SliceName.User,
   initialState,
   reducers: {},
   extraReducers(builder) {

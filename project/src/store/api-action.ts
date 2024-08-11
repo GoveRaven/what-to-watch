@@ -116,5 +116,5 @@ export const toogleFavoriteFilms = createAsyncThunk<
   TThunkApiConfig
 >('data/toogleFavoriteFilms', async (data, { extra: api }) => {
   const apiRoute = makePathWithParams(APIRoute.ToogleFavoriteFilm, data);
-  await api.post(`${apiRoute}`);
+  await api.post(apiRoute);
 });

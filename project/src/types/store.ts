@@ -28,6 +28,6 @@ export type TDataSlice = {
   isFilmLoading: boolean;
   similarFilms: TFilm[];
   filmComments: TReview[];
-  isFilmCommentLoading: boolean;
-  favoriteFilms: TFilm[]
+  areFilmCommentsLoading: boolean;
+  favoriteFilms: TFilm[];
 };

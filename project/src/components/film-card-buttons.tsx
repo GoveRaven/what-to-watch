@@ -73,11 +73,11 @@ export function FilmCardButtonsComponent({
         <span>My list</span>
         <span className="film-card__count">{favoriteFilms.length}</span>
       </button>
-      {canShowReviewButton ? (
+      {canShowReviewButton && (
         <Link to={reviewRoute} className="btn film-card__button">
           Add review
         </Link>
-      ) : null}
+      )}
     </div>
   );
 }

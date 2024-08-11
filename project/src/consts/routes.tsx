@@ -14,7 +14,7 @@ export enum APIRoute {
   SimilarFilms = '/films/:id/similar',
   Comments = '/comments/:id',
   Login = '/login',
-  logout = '/logout',
-  favorite = '/favorite',
-  toogleFavorite = '/favorite/:id/:status'
+  Logout = '/logout',
+  FavoriteFilms = '/favorite',
+  ToogleFavoriteFilm = '/favorite/:id/:status',
 }

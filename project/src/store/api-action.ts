@@ -96,7 +96,7 @@ export const authLogin = createAsyncThunk<
 export const authLogout = createAsyncThunk<void, undefined, TThunkApiConfig>(
   'user/authLogout',
   async (_arg, { extra: api }) => {
-    await api.delete(APIRoute.logout);
+    await api.delete(APIRoute.Logout);
     dropToken();
   }
 );
@@ -106,7 +106,7 @@ export const fetchFavoriteFilms = createAsyncThunk<
   undefined,
   TThunkApiConfig
 >('data/fetchFavoriteFilms', async (_arg, { extra: api }) => {
-  const { data } = await api.get<TFilm[]>(APIRoute.favorite);
+  const { data } = await api.get<TFilm[]>(APIRoute.FavoriteFilms);
   return data;
 });
 
@@ -115,6 +115,6 @@ export const toogleFavoriteFilms = createAsyncThunk<
   { status: number; id: number },
   TThunkApiConfig
 >('data/toogleFavoriteFilms', async (data, { extra: api }) => {
-  const apiRoute = makePathWithParams(APIRoute.toogleFavorite, data);
+  const apiRoute = makePathWithParams(APIRoute.ToogleFavoriteFilm, data);
   await api.post(`${apiRoute}`);
 });

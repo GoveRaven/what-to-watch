@@ -11,15 +11,15 @@ import { fetchFavoriteFilms, toogleFavoriteFilms } from '../store/api-action';
 type TFilmCardButtonsProps = {
   isFavorite: boolean;
   id: number;
-  isNeedReviewBtn?: boolean;
+  showAddReviewButton?: boolean;
 };
 
 export function FilmCardButtonsComponent({
-  isFavorite,
+  isFavorite: isInMyList ,
   id,
-  isNeedReviewBtn,
+  showAddReviewButton ,
 }: TFilmCardButtonsProps): JSX.Element {
-  const [isFavoriteState, setIsFavoriteState] = useState(isFavorite);
+  const [isFavoriteState, setIsFavoriteState] = useState(isInMyList );
   const navigate = useNavigate();
   const authStatus = useAppSelector(selectAuthStatus);
   const favoriteFilms = useAppSelector(selectFavoriteFilms);
@@ -28,10 +28,10 @@ export function FilmCardButtonsComponent({
   const playerRoute = makePathWithParams(AppRoute.Player, { id });
   const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
 
-  const canShowReviewBtn =
-    isNeedReviewBtn && authStatus === AuthorizationStatus.Auth;
+  const canShowReviewButton =
+    showAddReviewButton && authStatus === AuthorizationStatus.Auth;
 
-  function onBtnClick() {
+  function onMyListButtonClick() {
     if (authStatus === AuthorizationStatus.Auth) {
       dispatch(
         toogleFavoriteFilms({
@@ -61,7 +61,7 @@ export function FilmCardButtonsComponent({
       <button
         className="btn btn--list film-card__button"
         type="button"
-        onClick={onBtnClick}
+        onClick={onMyListButtonClick}
       >
         <svg viewBox="0 0 19 20" width="19" height="20">
           {isFavoriteState ? (
@@ -73,7 +73,7 @@ export function FilmCardButtonsComponent({
         <span>My list</span>
         <span className="film-card__count">{favoriteFilms.length}</span>
       </button>
-      {canShowReviewBtn ? (
+      {canShowReviewButton ? (
         <Link to={reviewRoute} className="btn film-card__button">
           Add review
         </Link>

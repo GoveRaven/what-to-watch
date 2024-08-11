@@ -176,7 +176,7 @@ export function MoviePage(): JSX.Element {
                 <span className="film-card__year">{released}</span>
               </p>
               <FilmCardButtons
-                isFavorite={isFavorite}
+                isInMyList={isFavorite}
                 id={film.id}
                 showAddReviewButton
               />

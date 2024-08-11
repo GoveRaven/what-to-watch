@@ -177,7 +177,7 @@ export function Main(): JSX.Element {
                 <span className="film-card__genre">{genre}</span>
                 <span className="film-card__year">{released}</span>
               </p>
-              <FilmCardButtons isFavorite={isFavorite} id={promo.id} />
+              <FilmCardButtons isInMyList={isFavorite} id={promo.id} />
             </div>
           </div>
         </div>

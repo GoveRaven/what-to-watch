@@ -9,17 +9,17 @@ import { selectFavoriteFilms } from '../store/slices/data-slice/selector';
 import { fetchFavoriteFilms, toogleFavoriteFilms } from '../store/api-action';
 
 type TFilmCardButtonsProps = {
-  isFavorite: boolean;
+  isInMyList: boolean;
   id: number;
   showAddReviewButton?: boolean;
 };
 
 export function FilmCardButtonsComponent({
-  isFavorite: isInMyList ,
+  isInMyList,
   id,
-  showAddReviewButton ,
+  showAddReviewButton,
 }: TFilmCardButtonsProps): JSX.Element {
-  const [isFavoriteState, setIsFavoriteState] = useState(isInMyList );
+  const [isFavoriteState, setIsFavoriteState] = useState(isInMyList);
   const navigate = useNavigate();
   const authStatus = useAppSelector(selectAuthStatus);
   const favoriteFilms = useAppSelector(selectFavoriteFilms);

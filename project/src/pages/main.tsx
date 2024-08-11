@@ -10,7 +10,6 @@ import { NotFound } from './not-found';
 import { Loader } from '../components/loader';
 import { fetchFilmList, fetchPromoFilm } from '../store/api-action';
 import {
-  selectAllFilms,
   selectAreFilmsLoading,
   selectIsPromoLoading,
   selectPromoFilm,
@@ -27,7 +26,6 @@ export type TMainProps = {
 export function Main(): JSX.Element {
   const dispatch = useAppDispatch();
   const filmsByCurrentGenre = useAppSelector(selectFilmsByCurrentGenre);
-  const allFilms = useAppSelector(selectAllFilms);
   const promo = useAppSelector(selectPromoFilm);
   const isPromoLoading = useAppSelector(selectIsPromoLoading);
   const areFilmsLoading = useAppSelector(selectAreFilmsLoading);
@@ -189,7 +187,6 @@ export function Main(): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList
-            films={allFilms}
             onGenreChange={() => setShownCount(DEFAULT_SHOWN_COUNT)}
           />
           <FilmList films={filmsByCurrentGenre.slice(0, shownCount)} />

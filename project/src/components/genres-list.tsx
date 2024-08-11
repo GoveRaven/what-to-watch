@@ -7,14 +7,12 @@ import {
   changeGenre,
 } from '../store/slices/films-slice/films-slice';
 import { selectGenre } from '../store/slices/films-slice/selector';
-import { TFilm } from '../types/films';
 
 type TGenresList = {
-  films: TFilm[];
   onGenreChange: VoidFunction;
 };
 
-export function GenresList({ films, onGenreChange }: TGenresList) {
+export function GenresList({ onGenreChange }: TGenresList) {
   const genresSet = new Set([DEFAULT_GENRE]);
   const dispatch = useAppDispatch();
   const activeGenre = useAppSelector(selectGenre);
@@ -24,7 +22,7 @@ export function GenresList({ films, onGenreChange }: TGenresList) {
     dispatch(actualizeFilmsList(allFilms));
   }, [allFilms, dispatch]);
 
-  films.forEach((film) => genresSet.add(film.genre));
+  allFilms.forEach((film) => genresSet.add(film.genre));
   const genres = Array.from(genresSet);
   return (
     <ul className="catalog__genres-list">

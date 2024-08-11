@@ -43,8 +43,6 @@ export function MoviePage(): JSX.Element {
     return <NotFound />;
   }
 
-  const { isFavorite } = film;
-
   const {
     name,
     posterImage,
@@ -52,6 +50,7 @@ export function MoviePage(): JSX.Element {
     genre,
     released,
     backgroundColor,
+    isFavorite,
   } = film;
 
   return (

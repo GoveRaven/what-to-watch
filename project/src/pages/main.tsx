@@ -48,9 +48,8 @@ export function Main(): JSX.Element {
     return <NotFound />;
   }
 
-  const { isFavorite } = promo;
-
-  const { name, genre, released, posterImage, backgroundImage } = promo;
+  const { name, genre, released, posterImage, backgroundImage, isFavorite } =
+    promo;
 
   function showMoreFilms() {
     setShownCount(shownCount + DEFAULT_SHOWN_COUNT);

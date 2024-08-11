@@ -27,7 +27,7 @@ export const selectSimilarFilms = (state: TState): TFilm[] =>
 export const selectFilmComments = (state: TState): TReview[] =>
   state[SliceName.Data].filmComments;
 
-export const selectIsFilmCommentsLoading = (state: TState): boolean =>
+export const selectAreFilmCommentsLoading = (state: TState): boolean =>
   state[SliceName.Data].isFilmCommentLoading;
 
 export const selectFavoriteFilms = (state: TState): TFilm[] =>

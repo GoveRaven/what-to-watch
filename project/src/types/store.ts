@@ -30,4 +30,5 @@ export type TDataSlice = {
   filmComments: TReview[];
   areFilmCommentsLoading: boolean;
   favoriteFilms: TFilm[];
+  areFavoriteFilmsLoading: boolean;
 };

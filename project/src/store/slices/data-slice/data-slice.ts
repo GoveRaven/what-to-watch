@@ -21,6 +21,7 @@ const initialState: TDataSlice = {
   filmComments: [],
   areFilmCommentsLoading: false,
   favoriteFilms: [],
+  areFavoriteFilmsLoading: false,
 };
 
 export const dataSlice = createSlice({
@@ -60,8 +61,12 @@ export const dataSlice = createSlice({
         state.areFilmCommentsLoading = false;
         state.filmComments = action.payload;
       })
+      .addCase(fetchFavoriteFilms.pending, (state) => {
+        state.areFavoriteFilmsLoading = true;
+      })
       .addCase(fetchFavoriteFilms.fulfilled, (state, action) => {
         state.favoriteFilms = action.payload;
+        state.areFavoriteFilmsLoading = false;
       });
   },
 });

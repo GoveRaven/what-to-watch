@@ -2,10 +2,20 @@ import { FilmList } from '../components/films-list';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
 import { useAppSelector } from '../hooks';
-import { selectFavoriteFilms } from '../store/slices/data-slice/selector';
+import {
+  selectAreFavoriteFilmsLoading,
+  selectFavoriteFilms,
+} from '../store/slices/data-slice/selector';
+import { Loader } from '../components/loader';
 
 export function MyList(): JSX.Element {
   const favoriteFilms = useAppSelector(selectFavoriteFilms);
+  const areFavoriteFilmsLoading = useAppSelector(selectAreFavoriteFilmsLoading);
+
+  if (areFavoriteFilmsLoading) {
+    return <Loader />;
+  }
+
   return (
     <>
       <div className="visually-hidden">
@@ -101,7 +111,9 @@ export function MyList(): JSX.Element {
 
           <h1 className="page-title user-page__title">
             My list{' '}
-            <span className="user-page__film-count">{favoriteFilms.length}</span>
+            <span className="user-page__film-count">
+              {favoriteFilms.length}
+            </span>
           </h1>
           <UserBlock />
         </header>

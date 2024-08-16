@@ -32,3 +32,6 @@ export const selectAreFilmCommentsLoading = (state: TState): boolean =>
 
 export const selectFavoriteFilms = (state: TState): TFilm[] =>
   state[SliceName.Data].favoriteFilms;
+
+export const selectAreFavoriteFilmsLoading = (state: TState): boolean =>
+  state[SliceName.Data].areFavoriteFilmsLoading;

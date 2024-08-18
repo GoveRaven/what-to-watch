@@ -5,7 +5,7 @@ import { fetchChosenFilm } from '../store/api-action';
 import { selectChosenFilm } from '../store/slices/data-slice/selector';
 import { Loader } from '../components/loader';
 
-function culcLeftTime(runTime: number): string {
+function getLeftTime(runTime: number): string {
   const hours = Math.floor(runTime / 60);
   const minutes = (runTime - hours * 60).toString().padStart(2, '0');
 
@@ -161,7 +161,7 @@ export function Player(): JSX.Element {
               </div>
             </div>
             <div className="player__time-value">
-              {culcLeftTime(runTime)}
+              {getLeftTime(runTime)}
             </div>
           </div>
 

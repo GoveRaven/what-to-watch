@@ -15,7 +15,6 @@ export type TUserSlice = {
 };
 
 export type TFilmsSlice = {
-  genre: string;
   filmsByCurrentGenre: TFilm[];
 };
 

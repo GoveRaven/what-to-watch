@@ -1,26 +1,22 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { DEFAULT_GENRE } from '../consts/films';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { selectAllFilms } from '../store/slices/data-slice/selector';
-import {
-  actualizeFilmsList,
-  changeGenre,
-} from '../store/slices/films-slice/films-slice';
-import { selectGenre } from '../store/slices/films-slice/selector';
+import { actualizeFilmsList } from '../store/slices/films-slice/films-slice';
 
 type TGenresList = {
   onGenreChange: VoidFunction;
 };
 
 export function GenresList({ onGenreChange }: TGenresList) {
+  const [activeGenre, setActiveGenre] = useState(DEFAULT_GENRE);
   const genresSet = new Set([DEFAULT_GENRE]);
   const dispatch = useAppDispatch();
-  const activeGenre = useAppSelector(selectGenre);
   const allFilms = useAppSelector(selectAllFilms);
 
   useEffect(() => {
-    dispatch(actualizeFilmsList(allFilms));
-  }, [allFilms, dispatch]);
+    dispatch(actualizeFilmsList({ allFilms, genre: activeGenre }));
+  }, [activeGenre, allFilms, dispatch]);
 
   allFilms.forEach((film) => genresSet.add(film.genre));
   const genres = Array.from(genresSet);
@@ -36,8 +32,7 @@ export function GenresList({ onGenreChange }: TGenresList) {
           <button
             className="catalog__genres-link"
             onClick={() => {
-              dispatch(changeGenre(genre));
-              dispatch(actualizeFilmsList(allFilms));
+              setActiveGenre(genre);
               onGenreChange();
             }}
           >

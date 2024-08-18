@@ -14,7 +14,6 @@ import { HistoryRouter } from '../history-routes/history-routes';
 import { browserHistory } from '../history-routes/browser-history';
 import { selectIsAuthStatusChecked } from '../../store/slices/user-slice/selector';
 import {
-  selectAllFilms,
   selectAreFilmsLoading,
   selectIsPromoLoading,
 } from '../../store/slices/data-slice/selector';
@@ -22,7 +21,6 @@ import { checkAuth, fetchFavoriteFilms } from '../../store/api-action';
 import { useEffect } from 'react';
 
 function App(): JSX.Element {
-  const allFilms = useAppSelector(selectAllFilms);
   const areFilmsLoading = useAppSelector(selectAreFilmsLoading);
   const isPromoLoading = useAppSelector(selectIsPromoLoading);
   const isAuthStatusChecked = useAppSelector(selectIsAuthStatusChecked);
@@ -59,7 +57,7 @@ function App(): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Player} element={<Player film={allFilms[0]} />} />
+        <Route path={AppRoute.Player} element={<Player />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </HistoryRouter>

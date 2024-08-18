@@ -1,12 +1,51 @@
-import { useNavigate } from 'react-router-dom';
-import { TFilm } from '../types/films';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { fetchChosenFilm } from '../store/api-action';
+import { selectChosenFilm } from '../store/slices/data-slice/selector';
+import { Loader } from '../components/loader';
 
-type TPlayerProps = {
-  film: TFilm;
-};
+function culcLeftTime(runTime: number): string {
+  const hours = Math.floor(runTime / 60);
+  const minutes = (runTime - hours * 60).toString().padStart(2, '0');
 
-export function Player({ film }: TPlayerProps): JSX.Element {
+  if (hours === 0) {
+    return `${minutes}:00`;
+  }
+  return `${hours}:${minutes}:00`;
+}
+
+export function Player(): JSX.Element {
+  const [isFilmOn, setIsFilmOn] = useState(false);
+  const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const film = useAppSelector(selectChosenFilm);
+  const playerRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    dispatch(fetchChosenFilm(Number(id)));
+  }, [dispatch, id]);
+
+  if (!film) {
+    return <Loader />;
+  }
+
+  const { previewImage, videoLink, runTime } = film;
+
+  function playHandler() {
+    playerRef.current?.play();
+    setIsFilmOn(true);
+  }
+
+  function pauseHandler() {
+    playerRef.current?.pause();
+    setIsFilmOn(false);
+  }
+
+  function fullScreenHandler() {
+    playerRef.current?.requestFullscreen();
+  }
 
   return (
     <>
@@ -99,9 +138,10 @@ export function Player({ film }: TPlayerProps): JSX.Element {
 
       <div className="player">
         <video
-          src={film.videoLink}
+          src={videoLink}
           className="player__video"
-          poster={film.previewImage}
+          poster={previewImage}
+          ref={playerRef}
         />
 
         <button
@@ -120,19 +160,42 @@ export function Player({ film }: TPlayerProps): JSX.Element {
                 Toggler
               </div>
             </div>
-            <div className="player__time-value">1:30:29</div>
+            <div className="player__time-value">
+              {culcLeftTime(runTime)}
+            </div>
           </div>
 
           <div className="player__controls-row">
-            <button type="button" className="player__play">
-              <svg viewBox="0 0 19 19" width="19" height="19">
-                <use xlinkHref="#play-s"></use>
-              </svg>
-              <span>Play</span>
-            </button>
+            {isFilmOn ? (
+              <button
+                type="button"
+                className="player__play"
+                onClick={pauseHandler}
+              >
+                <svg viewBox="0 0 14 21" width="14" height="21">
+                  <use xlinkHref="#pause"></use>
+                </svg>
+                <span>Pause</span>
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="player__play"
+                onClick={playHandler}
+              >
+                <svg viewBox="0 0 19 19" width="19" height="19">
+                  <use xlinkHref="#play-s"></use>
+                </svg>
+                <span>Play</span>
+              </button>
+            )}
             <div className="player__name">Transpotting</div>
 
-            <button type="button" className="player__full-screen">
+            <button
+              type="button"
+              className="player__full-screen"
+              onClick={fullScreenHandler}
+            >
               <svg viewBox="0 0 27 27" width="27" height="27">
                 <use xlinkHref="#full-screen"></use>
               </svg>

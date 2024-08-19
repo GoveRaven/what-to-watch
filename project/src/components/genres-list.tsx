@@ -1,22 +1,33 @@
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { DEFAULT_GENRE } from '../consts/films';
-import { useAppDispatch, useAppSelector } from '../hooks';
-import { selectAllFilms } from '../store/slices/data-slice/selector';
-import { actualizeFilmsList } from '../store/slices/films-slice/films-slice';
+import { TFilm } from '../types/films';
+
+function actualizeFilmsList(allFilms: TFilm[], genre: string) {
+  if (genre === DEFAULT_GENRE) {
+    return allFilms;
+  }
+  return allFilms.filter((film) => film.genre === genre);
+}
 
 type TGenresList = {
   onGenreChange: VoidFunction;
+  allFilms: TFilm[];
+  setActualFilms: Dispatch<SetStateAction<TFilm[]>>;
 };
 
-export function GenresList({ onGenreChange }: TGenresList) {
+export function GenresList({
+  onGenreChange,
+  allFilms,
+  setActualFilms,
+}: TGenresList) {
   const [activeGenre, setActiveGenre] = useState(DEFAULT_GENRE);
   const genresSet = new Set([DEFAULT_GENRE]);
-  const dispatch = useAppDispatch();
-  const allFilms = useAppSelector(selectAllFilms);
 
   useEffect(() => {
-    dispatch(actualizeFilmsList({ allFilms, genre: activeGenre }));
-  }, [activeGenre, allFilms, dispatch]);
+    const actualFilms = actualizeFilmsList(allFilms, activeGenre);
+    setActualFilms(actualFilms);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeGenre]);
 
   allFilms.forEach((film) => genresSet.add(film.genre));
   const genres = Array.from(genresSet);

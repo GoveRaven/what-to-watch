@@ -10,11 +10,11 @@ import { NotFound } from './not-found';
 import { Loader } from '../components/loader';
 import { fetchFilmList, fetchPromoFilm } from '../store/api-action';
 import {
+  selectAllFilms,
   selectAreFilmsLoading,
   selectIsPromoLoading,
   selectPromoFilm,
 } from '../store/slices/data-slice/selector';
-import { selectFilmsByCurrentGenre } from '../store/slices/films-slice/selector';
 import { FilmCardButtons } from '../components/film-card-buttons';
 
 export type TMainProps = {
@@ -25,12 +25,13 @@ export type TMainProps = {
 
 export function Main(): JSX.Element {
   const dispatch = useAppDispatch();
-  const filmsByCurrentGenre = useAppSelector(selectFilmsByCurrentGenre);
   const promo = useAppSelector(selectPromoFilm);
   const isPromoLoading = useAppSelector(selectIsPromoLoading);
   const areFilmsLoading = useAppSelector(selectAreFilmsLoading);
+  const allFilms = useAppSelector(selectAllFilms);
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
-  const showMoreButton = shownCount <= filmsByCurrentGenre.length;
+  const [actualFilms, setActualFilms] = useState(allFilms);
+  const showMoreButton = shownCount <= actualFilms.length;
 
   useEffect(() => {
     if (!isPromoLoading && !areFilmsLoading) {
@@ -187,8 +188,10 @@ export function Main(): JSX.Element {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList
             onGenreChange={() => setShownCount(DEFAULT_SHOWN_COUNT)}
+            allFilms={allFilms}
+            setActualFilms={setActualFilms}
           />
-          <FilmList films={filmsByCurrentGenre.slice(0, shownCount)} />
+          <FilmList films={actualFilms.slice(0, shownCount)} />
           {showMoreButton && <ShowMoreButton onClick={showMoreFilms} />}
         </section>
         <footer className="page-footer">

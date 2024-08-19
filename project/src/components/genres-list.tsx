@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DEFAULT_GENRE } from '../consts/films';
 import { TFilm } from '../types/films';
 
@@ -12,7 +12,7 @@ function actualizeFilmsList(allFilms: TFilm[], genre: string) {
 type TGenresList = {
   onGenreChange: VoidFunction;
   allFilms: TFilm[];
-  setActualFilms: Dispatch<SetStateAction<TFilm[]>>;
+  setActualFilms: (films: TFilm[]) => void;
 };
 
 export function GenresList({
@@ -26,7 +26,7 @@ export function GenresList({
   useEffect(() => {
     const actualFilms = actualizeFilmsList(allFilms, activeGenre);
     setActualFilms(actualFilms);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeGenre]);
 
   allFilms.forEach((film) => genresSet.add(film.genre));

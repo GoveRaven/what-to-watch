@@ -1,16 +1,23 @@
 import { FilmList } from '../components/films-list';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
-import { useAppSelector } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import {
   selectAreFavoriteFilmsLoading,
   selectFavoriteFilms,
 } from '../store/slices/data-slice/selector';
 import { Loader } from '../components/loader';
+import { fetchFavoriteFilms } from '../store/api-action';
+import { useEffect } from 'react';
 
 export function MyList(): JSX.Element {
+  const dispatch = useAppDispatch();
   const favoriteFilms = useAppSelector(selectFavoriteFilms);
   const areFavoriteFilmsLoading = useAppSelector(selectAreFavoriteFilmsLoading);
+
+  useEffect(() => {
+    dispatch(fetchFavoriteFilms());
+  }, [dispatch]);
 
   if (areFavoriteFilmsLoading) {
     return <Loader />;

@@ -33,17 +33,17 @@ export function Player(): JSX.Element {
 
   const { previewImage, videoLink, runTime } = film;
 
-  function onClickPlayButton() {
+  function onPlayButtonClick() {
     playerRef.current?.play();
     setIsFilmOn(true);
   }
 
-  function onClickPauseButton() {
+  function onPauseButtonClick() {
     playerRef.current?.pause();
     setIsFilmOn(false);
   }
 
-  function onClickFullscreenButton() {
+  function onFullscreenButtonClick() {
     playerRef.current?.requestFullscreen();
   }
 
@@ -170,7 +170,7 @@ export function Player(): JSX.Element {
               <button
                 type="button"
                 className="player__play"
-                onClick={onClickPauseButton}
+                onClick={onPauseButtonClick}
               >
                 <svg viewBox="0 0 14 21" width="14" height="21">
                   <use xlinkHref="#pause"></use>
@@ -181,7 +181,7 @@ export function Player(): JSX.Element {
               <button
                 type="button"
                 className="player__play"
-                onClick={onClickPlayButton}
+                onClick={onPlayButtonClick}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
@@ -194,7 +194,7 @@ export function Player(): JSX.Element {
             <button
               type="button"
               className="player__full-screen"
-              onClick={onClickFullscreenButton}
+              onClick={onFullscreenButtonClick}
             >
               <svg viewBox="0 0 27 27" width="27" height="27">
                 <use xlinkHref="#full-screen"></use>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { DEFAULT_GENRE } from '../consts/films';
 import { TFilm } from '../types/films';
 
-function actualizeFilmsList(allFilms: TFilm[], genre: string) {
+function getActualized(allFilms: TFilm[], genre: string) {
   if (genre === DEFAULT_GENRE) {
     return allFilms;
   }
@@ -24,7 +24,7 @@ export function GenresList({
   const genresSet = new Set([DEFAULT_GENRE]);
 
   useEffect(() => {
-    const actualFilms = actualizeFilmsList(allFilms, activeGenre);
+    const actualFilms = getActualized(allFilms, activeGenre);
     setActualFilms(actualFilms);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeGenre]);

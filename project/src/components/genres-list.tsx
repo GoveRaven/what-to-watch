@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { DEFAULT_GENRE } from '../consts/films';
 import { TFilm } from '../types/films';
 
-function getActualized(allFilms: TFilm[], genre: string) {
+function getActualizedFilms(allFilms: TFilm[], genre: string) {
   if (genre === DEFAULT_GENRE) {
     return allFilms;
   }
@@ -24,10 +24,9 @@ export function GenresList({
   const genresSet = new Set([DEFAULT_GENRE]);
 
   useEffect(() => {
-    const actualFilms = getActualized(allFilms, activeGenre);
+    const actualFilms = getActualizedFilms(allFilms, activeGenre);
     setActualFilms(actualFilms);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeGenre]);
+  }, [activeGenre, allFilms, setActualFilms]);
 
   allFilms.forEach((film) => genresSet.add(film.genre));
   const genres = Array.from(genresSet);

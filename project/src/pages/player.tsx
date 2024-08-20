@@ -2,8 +2,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { fetchChosenFilm } from '../store/api-action';
-import { selectChosenFilm } from '../store/slices/data-slice/selector';
+import {
+  selectChosenFilm,
+  selectIsFilmLoading,
+} from '../store/slices/data-slice/selector';
 import { Loader } from '../components/loader';
+import { NotFound } from './not-found';
 
 function getLeftTime(runTime: number): string {
   const hours = Math.floor(runTime / 60);
@@ -21,14 +25,19 @@ export function Player(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const film = useAppSelector(selectChosenFilm);
+  const isFilmLoading = useAppSelector(selectIsFilmLoading);
   const playerRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     dispatch(fetchChosenFilm(Number(id)));
   }, [dispatch, id]);
 
-  if (!film) {
+  if (isFilmLoading) {
     return <Loader />;
+  }
+
+  if (!film) {
+    return <NotFound/>;
   }
 
   const { previewImage, videoLink, runTime } = film;
@@ -160,9 +169,7 @@ export function Player(): JSX.Element {
                 Toggler
               </div>
             </div>
-            <div className="player__time-value">
-              {getLeftTime(runTime)}
-            </div>
+            <div className="player__time-value">{getLeftTime(runTime)}</div>
           </div>
 
           <div className="player__controls-row">

@@ -17,7 +17,7 @@ import {
   selectAreFilmsLoading,
   selectIsPromoLoading,
 } from '../../store/slices/data-slice/selector';
-import { checkAuth, fetchFavoriteFilms } from '../../store/api-action';
+import { checkAuth } from '../../store/api-action';
 import { useEffect } from 'react';
 
 function App(): JSX.Element {
@@ -28,7 +28,6 @@ function App(): JSX.Element {
 
   useEffect(() => {
     dispatch(checkAuth());
-    dispatch(fetchFavoriteFilms());
   }, [dispatch]);
 
   if (areFilmsLoading && isPromoLoading && !isAuthStatusChecked) {

@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { selectAuthStatus } from '../store/slices/user-slice/selector';
 import { makePathWithParams } from '../utils/makePath';
 import { AppRoute } from '../consts/routes';
-import { memo, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { selectFavoriteFilms } from '../store/slices/data-slice/selector';
 import { fetchFavoriteFilms, toogleFavoriteFilms } from '../store/api-action';
 
@@ -20,9 +20,12 @@ export function FilmCardButtonsComponent({
   showAddReviewButton,
 }: TFilmCardButtonsProps): JSX.Element {
   const [isFavoriteState, setIsFavoriteState] = useState(isInMyList);
+  const [addedNumberToCount, setAddedNumberToCount] = useState(0);
   const navigate = useNavigate();
   const authStatus = useAppSelector(selectAuthStatus);
   const favoriteFilms = useAppSelector(selectFavoriteFilms);
+  const toogleFavoriteFilmsRef = useRef<{ abort: VoidFunction } | null>(null);
+
   const dispatch = useAppDispatch();
 
   const playerRoute = makePathWithParams(AppRoute.Player, { id });
@@ -33,18 +36,28 @@ export function FilmCardButtonsComponent({
 
   function onMyListButtonClick() {
     if (authStatus === AuthorizationStatus.Auth) {
-      dispatch(
+      toogleFavoriteFilmsRef.current?.abort();
+      toogleFavoriteFilmsRef.current = dispatch(
         toogleFavoriteFilms({
           status: Number(!isFavoriteState),
           id: Number(id),
         })
       );
-      dispatch(fetchFavoriteFilms());
+      setAddedNumberToCount(addedNumberToCount + (isFavoriteState ? -1 : 1));
       setIsFavoriteState(!isFavoriteState);
     } else {
       navigate(AppRoute.SignIn);
     }
   }
+
+  useEffect(() => {
+    dispatch(fetchFavoriteFilms());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setAddedNumberToCount(0);
+  }, [favoriteFilms]);
 
   return (
     <div className="film-card__buttons">
@@ -71,7 +84,9 @@ export function FilmCardButtonsComponent({
           )}
         </svg>
         <span>My list</span>
-        <span className="film-card__count">{favoriteFilms.length}</span>
+        <span className="film-card__count">
+          {favoriteFilms.length + addedNumberToCount}
+        </span>
       </button>
       {canShowReviewButton && (
         <Link to={reviewRoute} className="btn film-card__button">

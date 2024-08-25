@@ -96,9 +96,9 @@ export const authLogin = createAsyncThunk<TUser, TUserRequest, TThunkApiConfig>(
       APIRoute.Login,
       UserData
     );
-  saveToken(data.token);
-  dispatch(redirectToRoute(AppRoute.Main));
-  return data;
+    saveToken(data.token);
+    dispatch(redirectToRoute(AppRoute.Main));
+    return data;
   }
 );
 
@@ -123,7 +123,11 @@ export const toogleFavoriteFilms = createAsyncThunk<
   void,
   { status: number; id: number },
   TThunkApiConfig
->('data/toogleFavoriteFilms', async (data, { extra: api }) => {
-  const apiRoute = makePathWithParams(APIRoute.ToogleFavoriteFilm, data);
-  await api.post(apiRoute);
-});
+>(
+  'data/toogleFavoriteFilms',
+  async (data, { dispatch, extra: api, signal }) => {
+    const apiRoute = makePathWithParams(APIRoute.ToogleFavoriteFilm, data);
+    await api.post(apiRoute, undefined, { signal });
+    dispatch(fetchFavoriteFilms());
+  }
+);

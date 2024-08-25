@@ -21,7 +21,7 @@ const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.NOT_FOUND]: true,
 };
 
-const shouldDisplayError = (response: AxiosResponse) =>
+const shouldDisplayError = (response: AxiosResponse<DetailMessageType>) =>
   !!StatusCodeMapping[response.status];
 
 export const createApi = (): AxiosInstance => {
@@ -33,6 +33,9 @@ export const createApi = (): AxiosInstance => {
   api.interceptors.request.use((config: AxiosRequestConfig) => {
     const token = getToken();
     if (token) {
+      if (!config.headers) {
+        config.headers = {};
+      }
       config.headers['X-Token'] = token;
     }
     return config;

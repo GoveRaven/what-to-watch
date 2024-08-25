@@ -1,6 +1,3 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { AppRoute } from '../consts/routes';
-import { makePathWithParams } from '../utils/makePath';
 import { Tabs } from '../components/tabs/tabs';
 import { FilmList } from '../components/films-list';
 import { useAppDispatch, useAppSelector } from '../hooks';
@@ -14,16 +11,20 @@ import {
 import { Loader } from '../components/loader';
 import { useEffect } from 'react';
 import { NotFound } from './not-found';
-import { AuthorizationStatus } from '../consts/authhorization-status';
+import {
+  selectChosenFilm,
+  selectIsFilmLoading,
+  selectSimilarFilms,
+} from '../store/slices/data-slice/selector';
+import { FilmCardButtons } from '../components/film-card-buttons';
+import { useParams } from 'react-router-dom';
 
 export function MoviePage(): JSX.Element {
   const { id } = useParams();
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const film = useAppSelector((state) => state.chosenFilm);
-  const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
-  const similarFilms = useAppSelector((state) => state.similarFilms);
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const film = useAppSelector(selectChosenFilm);
+  const isFilmLoading = useAppSelector(selectIsFilmLoading);
+  const similarFilms = useAppSelector(selectSimilarFilms);
 
   const numberId = Number(id);
   const filteredsimilarFilms = similarFilms
@@ -49,10 +50,8 @@ export function MoviePage(): JSX.Element {
     genre,
     released,
     backgroundColor,
+    isFavorite,
   } = film;
-
-  const playerRoute = makePathWithParams(AppRoute.Player, { id });
-  const reviewRoute = makePathWithParams(AppRoute.AddReview, { id });
 
   return (
     <>
@@ -175,34 +174,11 @@ export function MoviePage(): JSX.Element {
                 <span className="film-card__genre">{genre}</span>
                 <span className="film-card__year">{released}</span>
               </p>
-
-              <div className="film-card__buttons">
-                <button
-                  className="btn btn--play film-card__button"
-                  type="button"
-                  onClick={() => navigate(playerRoute)}
-                >
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button
-                  className="btn btn--list film-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
-                {authStatus === AuthorizationStatus.Auth && (
-                  <Link to={reviewRoute} className="btn film-card__button">
-                    Add review
-                  </Link>
-                )}
-              </div>
+              <FilmCardButtons
+                isInMyList={isFavorite}
+                id={film.id}
+                showAddReviewButton
+              />
             </div>
           </div>
         </div>

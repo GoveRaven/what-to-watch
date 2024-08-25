@@ -8,18 +8,27 @@ import { NotFound } from '../../pages/not-found';
 import { Player } from '../../pages/player';
 import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Loader } from '../loader';
 import { HistoryRouter } from '../history-routes/history-routes';
 import { browserHistory } from '../history-routes/browser-history';
+import { selectIsAuthStatusChecked } from '../../store/slices/user-slice/selector';
+import {
+  selectAreFilmsLoading,
+  selectIsPromoLoading,
+} from '../../store/slices/data-slice/selector';
+import { checkAuth } from '../../store/api-action';
+import { useEffect } from 'react';
 
 function App(): JSX.Element {
-  const allFilms = useAppSelector((state) => state.allFilms);
-  const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
-  const isPromoLoading = useAppSelector((state) => state.isPromoLoading);
-  const isAuthStatusChecked = useAppSelector(
-    (state) => state.isAuthStatusChecked
-  );
+  const areFilmsLoading = useAppSelector(selectAreFilmsLoading);
+  const isPromoLoading = useAppSelector(selectIsPromoLoading);
+  const isAuthStatusChecked = useAppSelector(selectIsAuthStatusChecked);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
 
   if (areFilmsLoading && isPromoLoading && !isAuthStatusChecked) {
     return <Loader />;
@@ -34,7 +43,7 @@ function App(): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute>
-              <MyList films={allFilms} />
+              <MyList />
             </PrivateRoute>
           }
         />
@@ -47,7 +56,7 @@ function App(): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Player} element={<Player film={allFilms[0]} />} />
+        <Route path={AppRoute.Player} element={<Player />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </HistoryRouter>

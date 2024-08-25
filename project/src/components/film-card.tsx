@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../consts/routes';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { makePathWithParams } from '../utils/makePath';
 import { VideoPlayer, TVideoPlayerProps } from './video-player';
 
@@ -10,7 +10,7 @@ type TFilmCardProps = {
   id: number;
 } & TVideoPlayerProps;
 
-export function FilmCard({ name, previewImage, id, video }: TFilmCardProps) {
+function FilmCardComponent({ name, previewImage, id, video }: TFilmCardProps) {
   const [activeCardID, setActiveCardID] = useState<number | null>(null);
   const to = makePathWithParams(AppRoute.Film, { id });
   const navigate = useNavigate();
@@ -42,3 +42,5 @@ export function FilmCard({ name, previewImage, id, video }: TFilmCardProps) {
     </article>
   );
 }
+
+export const FilmCard = memo(FilmCardComponent);

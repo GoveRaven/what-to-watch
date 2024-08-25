@@ -1,13 +1,28 @@
 import { FilmList } from '../components/films-list';
-import { TFilm } from '../types/films';
 import { UserBlock } from '../components/user-block';
 import { Logo } from '../components/logo';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import {
+  selectAreFavoriteFilmsLoading,
+  selectFavoriteFilms,
+} from '../store/slices/data-slice/selector';
+import { Loader } from '../components/loader';
+import { fetchFavoriteFilms } from '../store/api-action';
+import { useEffect } from 'react';
 
-type TMyListProps = {
-  films: TFilm[];
-};
+export function MyList(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const favoriteFilms = useAppSelector(selectFavoriteFilms);
+  const areFavoriteFilmsLoading = useAppSelector(selectAreFavoriteFilmsLoading);
 
-export function MyList({ films }: TMyListProps): JSX.Element {
+  useEffect(() => {
+    dispatch(fetchFavoriteFilms());
+  }, [dispatch]);
+
+  if (areFavoriteFilmsLoading) {
+    return <Loader />;
+  }
+
   return (
     <>
       <div className="visually-hidden">
@@ -103,14 +118,16 @@ export function MyList({ films }: TMyListProps): JSX.Element {
 
           <h1 className="page-title user-page__title">
             My list{' '}
-            <span className="user-page__film-count">{films.length}</span>
+            <span className="user-page__film-count">
+              {favoriteFilms.length}
+            </span>
           </h1>
           <UserBlock />
         </header>
 
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <FilmList films={films} />
+          <FilmList films={favoriteFilms} />
         </section>
 
         <footer className="page-footer">

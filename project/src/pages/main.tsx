@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { FilmList } from '../components/films-list';
 import { GenresList } from '../components/genres-list';
 import { ShowMoreButton } from '../components/showMoreButton';
-import { AppRoute } from '../consts/routes';
 import { DEFAULT_SHOWN_COUNT } from '../consts/films';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { UserBlock } from '../components/user-block';
@@ -11,6 +9,13 @@ import { Logo } from '../components/logo';
 import { NotFound } from './not-found';
 import { Loader } from '../components/loader';
 import { fetchFilmList, fetchPromoFilm } from '../store/api-action';
+import {
+  selectAllFilms,
+  selectAreFilmsLoading,
+  selectIsPromoLoading,
+  selectPromoFilm,
+} from '../store/slices/data-slice/selector';
+import { FilmCardButtons } from '../components/film-card-buttons';
 
 export type TMainProps = {
   title: string;
@@ -19,24 +24,21 @@ export type TMainProps = {
 };
 
 export function Main(): JSX.Element {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const filmsByCurrentGenre = useAppSelector(
-    (state) => state.filmsByCurrentGenre
-  );
-  const allFilms = useAppSelector((state) => state.allFilms);
-  const promo = useAppSelector((state) => state.promoFilm);
-  const isPromoLoading = useAppSelector((state) => state.isPromoLoading);
-  const areFilmsLoading = useAppSelector((state) => state.areFilmsLoading);
+  const promo = useAppSelector(selectPromoFilm);
+  const isPromoLoading = useAppSelector(selectIsPromoLoading);
+  const areFilmsLoading = useAppSelector(selectAreFilmsLoading);
+  const allFilms = useAppSelector(selectAllFilms);
   const [shownCount, setShownCount] = useState(DEFAULT_SHOWN_COUNT);
-  const showMoreButton = shownCount <= filmsByCurrentGenre.length;
+  const [actualFilms, setActualFilms] = useState(allFilms);
+  const showMoreButton = shownCount <= actualFilms.length;
 
   useEffect(() => {
     if (!isPromoLoading && !areFilmsLoading) {
       dispatch(fetchPromoFilm());
       dispatch(fetchFilmList());
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (isPromoLoading) {
@@ -47,7 +49,8 @@ export function Main(): JSX.Element {
     return <NotFound />;
   }
 
-  const { name, genre, released, posterImage, backgroundImage } = promo;
+  const { name, genre, released, posterImage, backgroundImage, isFavorite } =
+    promo;
 
   function showMoreFilms() {
     setShownCount(shownCount + DEFAULT_SHOWN_COUNT);
@@ -174,29 +177,7 @@ export function Main(): JSX.Element {
                 <span className="film-card__genre">{genre}</span>
                 <span className="film-card__year">{released}</span>
               </p>
-
-              <div className="film-card__buttons">
-                <button
-                  className="btn btn--play film-card__button"
-                  type="button"
-                  onClick={() => navigate(AppRoute.Player)}
-                >
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button
-                  className="btn btn--list film-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
-              </div>
+              <FilmCardButtons isInMyList={isFavorite} id={promo.id} />
             </div>
           </div>
         </div>
@@ -206,10 +187,11 @@ export function Main(): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenresList
-            films={allFilms}
             onGenreChange={() => setShownCount(DEFAULT_SHOWN_COUNT)}
+            allFilms={allFilms}
+            setActualFilms={setActualFilms}
           />
-          <FilmList films={filmsByCurrentGenre.slice(0, shownCount)} />
+          <FilmList films={actualFilms.slice(0, shownCount)} />
           {showMoreButton && <ShowMoreButton onClick={showMoreFilms} />}
         </section>
         <footer className="page-footer">

@@ -1,4 +1,4 @@
-function culcRunTime(runTime: number): string {
+function calcRunTime(runTime: number): string {
   const hours = Math.floor(runTime / 60);
   const minutes = runTime - hours * 60;
   return `${hours}h ${minutes}m`;
@@ -35,7 +35,7 @@ export function Details({ director, starring, runTime, genre, released }: TDetai
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
           <span className="film-card__details-value">
-            {culcRunTime(runTime)}
+            {calcRunTime(runTime)}
           </span>
         </p>
         <p className="film-card__details-item">

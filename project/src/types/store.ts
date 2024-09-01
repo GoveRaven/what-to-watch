@@ -26,6 +26,7 @@ export type TDataSlice = {
   chosenFilm: TFilm | null;
   isFilmLoading: boolean;
   similarFilms: TFilm[];
+  isSimilarFilmsLoading: boolean;
   filmComments: TReview[];
   areFilmCommentsLoading: boolean;
   favoriteFilms: TFilm[];

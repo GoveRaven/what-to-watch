@@ -3,35 +3,49 @@ import { TFilm } from '../../../types/films';
 import { TReview } from '../../../types/reviews';
 import { TState } from '../../../types/store';
 
-export const selectPromoFilm = (state: TState): TFilm | null =>
-  state[SliceName.Data].promoFilm;
+export const selectPromoFilm = (
+  state: Pick<TState, SliceName.Data>
+): TFilm | null => state[SliceName.Data].promoFilm;
 
-export const selectIsPromoLoading = (state: TState): boolean =>
-  state[SliceName.Data].isPromoLoading;
+export const selectIsPromoLoading = (
+  state: Pick<TState, SliceName.Data>
+): boolean => state[SliceName.Data].isPromoLoading;
 
-export const selectAllFilms = (state: TState): TFilm[] =>
+export const selectAllFilms = (state: Pick<TState, SliceName.Data>): TFilm[] =>
   state[SliceName.Data].allFilms;
 
-export const selectAreFilmsLoading = (state: TState): boolean =>
-  state[SliceName.Data].areFilmsLoading;
+export const selectAreFilmsLoading = (
+  state: Pick<TState, SliceName.Data>
+): boolean => state[SliceName.Data].areFilmsLoading;
 
-export const selectChosenFilm = (state: TState): TFilm | null =>
-  state[SliceName.Data].chosenFilm;
+export const selectChosenFilm = (
+  state: Pick<TState, SliceName.Data>
+): TFilm | null => state[SliceName.Data].chosenFilm;
 
-export const selectIsFilmLoading = (state: TState): boolean =>
-  state[SliceName.Data].isFilmLoading;
+export const selectIsFilmLoading = (
+  state: Pick<TState, SliceName.Data>
+): boolean => state[SliceName.Data].isFilmLoading;
 
-export const selectSimilarFilms = (state: TState): TFilm[] =>
-  state[SliceName.Data].similarFilms;
+export const selectSimilarFilms = (
+  state: Pick<TState, SliceName.Data>
+): TFilm[] => state[SliceName.Data].similarFilms;
 
-export const selectFilmComments = (state: TState): TReview[] =>
-  state[SliceName.Data].filmComments;
+export const selectisSimilarFilmsLoading = (
+  state: Pick<TState, SliceName.Data>
+): boolean => state[SliceName.Data].isSimilarFilmsLoading;
 
-export const selectAreFilmCommentsLoading = (state: TState): boolean =>
-  state[SliceName.Data].areFilmCommentsLoading;
+export const selectFilmComments = (
+  state: Pick<TState, SliceName.Data>
+): TReview[] => state[SliceName.Data].filmComments;
 
-export const selectFavoriteFilms = (state: TState): TFilm[] =>
-  state[SliceName.Data].favoriteFilms;
+export const selectAreFilmCommentsLoading = (
+  state: Pick<TState, SliceName.Data>
+): boolean => state[SliceName.Data].areFilmCommentsLoading;
 
-export const selectAreFavoriteFilmsLoading = (state: TState): boolean =>
-  state[SliceName.Data].areFavoriteFilmsLoading;
+export const selectFavoriteFilms = (
+  state: Pick<TState, SliceName.Data>
+): TFilm[] => state[SliceName.Data].favoriteFilms;
+
+export const selectAreFavoriteFilmsLoading = (
+  state: Pick<TState, SliceName.Data>
+): boolean => state[SliceName.Data].areFavoriteFilmsLoading;

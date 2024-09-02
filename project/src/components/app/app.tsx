@@ -11,7 +11,7 @@ import { PrivateRoute } from '../private-route';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Loader } from '../loader';
 import { HistoryRouter } from '../history-routes/history-routes';
-import { browserHistory } from '../history-routes/browser-history';
+import browserHistory from '../history-routes/browser-history';
 import { selectIsAuthStatusChecked } from '../../store/slices/user-slice/selector';
 import {
   selectAreFilmsLoading,

@@ -1,8 +1,8 @@
 import { internet } from 'faker';
 import { AuthorizationStatus } from '../../../consts/authhorization-status';
-import { TUser } from '../../../types/user';
 import { authLogin, authLogout, checkAuth } from '../../api-action';
 import { userSlice } from './user-slice';
+import { createMockUser } from '../../../utils/createMockUser';
 
 describe('User slice', () => {
   it('should set "authStatus" to "Auth", "isAuthStatusChecked" to "true", "user" to "null"', () => {
@@ -28,13 +28,7 @@ describe('User slice', () => {
   });
 
   it('should set "authStatus" to "Auth", "isAuthStatusChecked" to "true", "user" to "object"', () => {
-    const currentUser: TUser = {
-      avatarUrl: internet.avatar(),
-      email: internet.email(),
-      id: Math.round(Math.random() * (100 - 1) + 1),
-      name: internet.userName(),
-      token: internet.ip(),
-    };
+    const mockUser = createMockUser();
     const userRequest = {
       email: internet.email(),
       password: internet.password(),
@@ -42,11 +36,11 @@ describe('User slice', () => {
     const expectedState = {
       authStatus: AuthorizationStatus.Auth,
       isAuthStatusChecked: true,
-      user: currentUser,
+      user: mockUser,
     };
     const result = userSlice.reducer(
       undefined,
-      authLogin.fulfilled(currentUser, '', userRequest)
+      authLogin.fulfilled(mockUser, '', userRequest)
     );
 
     expect(result).toEqual(expectedState);

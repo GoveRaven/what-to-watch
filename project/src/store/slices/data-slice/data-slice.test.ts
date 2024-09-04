@@ -1,4 +1,4 @@
-import { datatype, date, internet, name, random } from 'faker';
+import { datatype } from 'faker';
 import { TDataSlice } from '../../../types/store';
 import {
   fetchChosenFilm,
@@ -9,45 +9,14 @@ import {
   fetchSimilarFilms,
 } from '../../api-action';
 import { dataSlice } from './data-slice';
-import { TFilm } from '../../../types/films';
-import { TReview } from '../../../types/reviews';
-
+import { createMockFilm } from '../../../utils/createMockFilm';
+import { createMockComments } from '../../../utils/createMockComments';
 describe('data slice', () => {
   let state: TDataSlice;
 
-  const mockFilm: TFilm = {
-    id: datatype.number(),
-    name: random.words(),
-    posterImage: random.image(),
-    previewImage: random.image(),
-    backgroundImage: random.image(),
-    backgroundColor: internet.color(),
-    videoLink: internet.url(),
-    previewVideoLink: internet.url(),
-    description: random.words(),
-    rating: datatype.number(),
-    scoresCount: datatype.number(),
-    director: `${name.firstName()} ${name.lastName()}`,
-    starring: [
-      `${name.firstName()} ${name.lastName()}`,
-      `${name.firstName()} ${name.lastName()}`,
-    ],
-    runTime: datatype.number(),
-    genre: random.word(),
-    released: datatype.number(),
-    isFavorite: datatype.boolean(),
-  };
+  const mockFilm = createMockFilm();
 
-  const mockComments: TReview = {
-    comment: random.words(),
-    date: date.past().toString(),
-    id: datatype.number(),
-    rating: datatype.number(),
-    user: {
-      id: datatype.number(),
-      name: internet.userName(),
-    },
-  };
+  const mockComments = createMockComments();
 
   beforeEach(() => {
     state = {

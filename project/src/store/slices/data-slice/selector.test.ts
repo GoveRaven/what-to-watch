@@ -1,5 +1,4 @@
-import { datatype, date, internet, name, random } from 'faker';
-import { TFilm } from '../../../types/films';
+import { datatype } from 'faker';
 import {
   selectAllFilms,
   selectAreFavoriteFilmsLoading,
@@ -15,42 +14,13 @@ import {
   selectSimilarFilms,
 } from './selector';
 import { SliceName } from '../../../consts/store-action';
-import { TReview } from '../../../types/reviews';
+import { createMockFilm } from '../../../utils/createMockFilm';
+import { createMockComments } from '../../../utils/createMockComments';
 
 describe('data selector', () => {
-  const mockFilm: TFilm = {
-    id: datatype.number(),
-    name: random.words(),
-    posterImage: random.image(),
-    previewImage: random.image(),
-    backgroundImage: random.image(),
-    backgroundColor: internet.color(),
-    videoLink: internet.url(),
-    previewVideoLink: internet.url(),
-    description: random.words(),
-    rating: datatype.number(),
-    scoresCount: datatype.number(),
-    director: `${name.firstName()} ${name.lastName()}`,
-    starring: [
-      `${name.firstName()} ${name.lastName()}`,
-      `${name.firstName()} ${name.lastName()}`,
-    ],
-    runTime: datatype.number(),
-    genre: random.word(),
-    released: datatype.number(),
-    isFavorite: datatype.boolean(),
-  };
+  const mockFilm = createMockFilm();
 
-  const mockComments: TReview = {
-    comment: random.words(),
-    date: date.past().toString(),
-    id: datatype.number(),
-    rating: datatype.number(),
-    user: {
-      id: datatype.number(),
-      name: internet.userName(),
-    },
-  };
+  const mockComments = createMockComments();
 
   const state = {
     [SliceName.Data]: {

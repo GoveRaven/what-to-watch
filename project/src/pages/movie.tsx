@@ -25,7 +25,7 @@ export function MoviePage(): JSX.Element {
   const dispatch = useAppDispatch();
   const film = useAppSelector(selectChosenFilm);
   const isFilmLoading = useAppSelector(selectIsFilmLoading);
-  const isSimilarFilms = useAppSelector(selectisSimilarFilmsLoading);
+  const isSimilarFilmsLoading = useAppSelector(selectisSimilarFilmsLoading);
   const similarFilms = useAppSelector(selectSimilarFilms);
 
   const numberId = Number(id);
@@ -39,7 +39,7 @@ export function MoviePage(): JSX.Element {
     dispatch(fetchFilmComment(numberId));
   }, [dispatch, numberId]);
 
-  if (isFilmLoading && isSimilarFilms) {
+  if (isFilmLoading && isSimilarFilmsLoading) {
     return <Loader />;
   } else if (!film) {
     return <NotFound />;

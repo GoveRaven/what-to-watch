@@ -9,8 +9,7 @@ import {
   fetchSimilarFilms,
 } from '../../api-action';
 import { dataSlice } from './data-slice';
-import { createMockFilm } from '../../../utils/createMockFilm';
-import { createMockComments } from '../../../utils/createMockComments';
+import { createMockComments, createMockFilm } from '../../../utils/mockcreaters';
 
 describe('data slice', () => {
   let state: TDataSlice;

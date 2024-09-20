@@ -1,5 +1,20 @@
-import { datatype, random, internet, name } from 'faker';
+import { TReview } from '../types/reviews';
 import { TFilm } from '../types/films';
+import { TUser } from '../types/user';
+import { datatype, date, internet, random, name } from 'faker';
+
+export function createMockComments(): TReview {
+  return {
+    comment: random.words(),
+    date: date.past().toString(),
+    id: datatype.number(),
+    rating: datatype.number(),
+    user: {
+      id: datatype.number(),
+      name: internet.userName(),
+    },
+  };
+}
 
 export function createMockFilm(): TFilm {
   return {
@@ -23,5 +38,15 @@ export function createMockFilm(): TFilm {
     genre: random.word(),
     released: datatype.number(),
     isFavorite: datatype.boolean(),
+  };
+}
+
+export function createMockUser(): TUser {
+  return {
+    avatarUrl: internet.avatar(),
+    email: internet.email(),
+    id: Math.round(Math.random() * (100 - 1) + 1),
+    name: internet.userName(),
+    token: internet.ip(),
   };
 }

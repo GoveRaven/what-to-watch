@@ -14,15 +14,14 @@ import {
   selectSimilarFilms,
 } from './selector';
 import { SliceName } from '../../../consts/store-action';
-import { createMockFilm } from '../../../utils/createMockFilm';
-import { createMockComments } from '../../../utils/createMockComments';
+import { createMockComments, createMockFilm } from '../../../utils/mockcreaters';
 
 describe('data selector', () => {
   const mockFilm = createMockFilm();
 
   const mockComments = createMockComments();
 
-  const state = {
+  const mockState = {
     [SliceName.Data]: {
       promoFilm: mockFilm,
       isPromoLoading: datatype.boolean(),
@@ -40,74 +39,74 @@ describe('data selector', () => {
   };
 
   it('should return promoFilm', () => {
-    const { promoFilm } = state[SliceName.Data];
-    const result = selectPromoFilm(state);
+    const { promoFilm } = mockState[SliceName.Data];
+    const result = selectPromoFilm(mockState);
     expect(result).toBe(promoFilm);
   });
 
   it('should return isPromoLoading', () => {
-    const { isPromoLoading } = state[SliceName.Data];
-    const result = selectIsPromoLoading(state);
+    const { isPromoLoading } = mockState[SliceName.Data];
+    const result = selectIsPromoLoading(mockState);
     expect(result).toBe(isPromoLoading);
   });
 
   it('should return allFilms', () => {
-    const { allFilms } = state[SliceName.Data];
-    const result = selectAllFilms(state);
+    const { allFilms } = mockState[SliceName.Data];
+    const result = selectAllFilms(mockState);
     expect(result).toBe(allFilms);
   });
 
   it('should return areFilmsLoading', () => {
-    const { areFilmsLoading } = state[SliceName.Data];
-    const result = selectAreFilmsLoading(state);
+    const { areFilmsLoading } = mockState[SliceName.Data];
+    const result = selectAreFilmsLoading(mockState);
     expect(result).toBe(areFilmsLoading);
   });
 
   it('should return chosenFilm', () => {
-    const { chosenFilm } = state[SliceName.Data];
-    const result = selectChosenFilm(state);
+    const { chosenFilm } = mockState[SliceName.Data];
+    const result = selectChosenFilm(mockState);
     expect(result).toBe(chosenFilm);
   });
 
   it('should return isFilmLoading', () => {
-    const { isFilmLoading } = state[SliceName.Data];
-    const result = selectIsFilmLoading(state);
+    const { isFilmLoading } = mockState[SliceName.Data];
+    const result = selectIsFilmLoading(mockState);
     expect(result).toBe(isFilmLoading);
   });
 
   it('should return similarFilms', () => {
-    const { similarFilms } = state[SliceName.Data];
-    const result = selectSimilarFilms(state);
+    const { similarFilms } = mockState[SliceName.Data];
+    const result = selectSimilarFilms(mockState);
     expect(result).toBe(similarFilms);
   });
 
   it('should return areSimilarFilmsLoading', () => {
-    const { areSimilarFilmsLoading } = state[SliceName.Data];
-    const result = selectAreSimilarFilmsLoading(state);
+    const { areSimilarFilmsLoading } = mockState[SliceName.Data];
+    const result = selectAreSimilarFilmsLoading(mockState);
     expect(result).toBe(areSimilarFilmsLoading);
   });
 
   it('should return filmComments', () => {
-    const { filmComments } = state[SliceName.Data];
-    const result = selectFilmComments(state);
+    const { filmComments } = mockState[SliceName.Data];
+    const result = selectFilmComments(mockState);
     expect(result).toBe(filmComments);
   });
 
   it('should return areFilmCommentsLoading', () => {
-    const { areFilmCommentsLoading } = state[SliceName.Data];
-    const result = selectAreFilmCommentsLoading(state);
+    const { areFilmCommentsLoading } = mockState[SliceName.Data];
+    const result = selectAreFilmCommentsLoading(mockState);
     expect(result).toBe(areFilmCommentsLoading);
   });
 
   it('should return favoriteFilms', () => {
-    const { favoriteFilms } = state[SliceName.Data];
-    const result = selectFavoriteFilms(state);
+    const { favoriteFilms } = mockState[SliceName.Data];
+    const result = selectFavoriteFilms(mockState);
     expect(result).toBe(favoriteFilms);
   });
 
   it('should return areFavoriteFilmsLoading', () => {
-    const { areFavoriteFilmsLoading } = state[SliceName.Data];
-    const result = selectAreFavoriteFilmsLoading(state);
+    const { areFavoriteFilmsLoading } = mockState[SliceName.Data];
+    const result = selectAreFavoriteFilmsLoading(mockState);
     expect(result).toBe(areFavoriteFilmsLoading);
   });
 });

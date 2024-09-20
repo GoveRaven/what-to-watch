@@ -2,7 +2,7 @@ import { internet } from 'faker';
 import { AuthorizationStatus } from '../../../consts/authhorization-status';
 import { authLogin, authLogout, checkAuth } from '../../api-action';
 import { userSlice } from './user-slice';
-import { createMockUser } from '../../../utils/createMockUser';
+import { createMockUser } from '../../../utils/mockcreaters';
 
 describe('User slice', () => {
   it('should set "authStatus" to "Auth", "isAuthStatusChecked" to "true", "user" to "null"', () => {
@@ -29,7 +29,7 @@ describe('User slice', () => {
 
   it('should set "authStatus" to "Auth", "isAuthStatusChecked" to "false", "user" to "object"', () => {
     const mockUser = createMockUser();
-    const userRequest = {
+    const mockUserRequest = {
       email: internet.email(),
       password: internet.password(),
     };
@@ -40,7 +40,7 @@ describe('User slice', () => {
     };
     const result = userSlice.reducer(
       undefined,
-      authLogin.fulfilled(mockUser, '', userRequest)
+      authLogin.fulfilled(mockUser, '', mockUserRequest)
     );
 
     expect(result).toEqual(expectedState);

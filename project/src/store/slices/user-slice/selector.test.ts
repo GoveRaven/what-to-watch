@@ -1,4 +1,3 @@
-import { internet } from 'faker';
 import { AuthorizationStatus } from '../../../consts/authhorization-status';
 import { SliceName } from '../../../consts/store-action';
 import { TUserSlice } from '../../../types/store';
@@ -9,7 +8,7 @@ import {
   selectUser,
 } from './selector';
 import { userSlice } from './user-slice';
-import { TUser } from '../../../types/user';
+import { createMockUser } from '../../../utils/createMockUser';
 
 describe('User selectors', () => {
   let state: TUserSlice;
@@ -54,13 +53,7 @@ describe('User selectors', () => {
     });
 
     it('should return object', () => {
-      const currentUser: TUser = {
-        avatarUrl: internet.avatar(),
-        email: internet.email(),
-        id: Math.round(Math.random() * (100 - 1) + 1),
-        name: internet.userName(),
-        token: internet.ip(),
-      };
+      const currentUser = createMockUser();
       state.user = currentUser;
       const result = selectUser({ [SliceName.User]: state });
 
@@ -68,13 +61,7 @@ describe('User selectors', () => {
     });
 
     it('should return null after logout', () => {
-      const currentUser: TUser = {
-        avatarUrl: internet.avatar(),
-        email: internet.email(),
-        id: Math.round(Math.random() * (100 - 1) + 1),
-        name: internet.userName(),
-        token: internet.ip(),
-      };
+      const currentUser = createMockUser();
       state.user = currentUser;
       state = userSlice.reducer(state, authLogout.fulfilled);
       const result = selectUser({ [SliceName.User]: state });

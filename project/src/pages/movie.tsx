@@ -14,7 +14,7 @@ import { NotFound } from './not-found';
 import {
   selectChosenFilm,
   selectIsFilmLoading,
-  selectisSimilarFilmsLoading,
+  selectareSimilarFilmsLoading,
   selectSimilarFilms,
 } from '../store/slices/data-slice/selector';
 import { FilmCardButtons } from '../components/film-card-buttons';
@@ -25,7 +25,7 @@ export function MoviePage(): JSX.Element {
   const dispatch = useAppDispatch();
   const film = useAppSelector(selectChosenFilm);
   const isFilmLoading = useAppSelector(selectIsFilmLoading);
-  const isSimilarFilmsLoading = useAppSelector(selectisSimilarFilmsLoading);
+  const areSimilarFilmsLoading = useAppSelector(selectareSimilarFilmsLoading);
   const similarFilms = useAppSelector(selectSimilarFilms);
 
   const numberId = Number(id);
@@ -39,7 +39,7 @@ export function MoviePage(): JSX.Element {
     dispatch(fetchFilmComment(numberId));
   }, [dispatch, numberId]);
 
-  if (isFilmLoading && isSimilarFilmsLoading) {
+  if (isFilmLoading && areSimilarFilmsLoading) {
     return <Loader />;
   } else if (!film) {
     return <NotFound />;

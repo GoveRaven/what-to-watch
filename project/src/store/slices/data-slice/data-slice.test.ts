@@ -28,7 +28,7 @@ describe('data slice', () => {
       chosenFilm: null,
       isFilmLoading: false,
       similarFilms: [],
-      isSimilarFilmsLoading: false,
+      areSimilarFilmsLoading: false,
       filmComments: [],
       areFilmCommentsLoading: false,
       favoriteFilms: [],
@@ -84,14 +84,14 @@ describe('data slice', () => {
     expect(result).toEqual(state);
   });
 
-  it('should set "isSimilarFilmsLoading" to "true"', () => {
-    state.isSimilarFilmsLoading = true;
+  it('should set "areSimilarFilmsLoading" to "true"', () => {
+    state.areSimilarFilmsLoading = true;
     const result = dataSlice.reducer(state, fetchSimilarFilms.pending);
     expect(result).toEqual(state);
   });
 
-  it('should set "isSimilarFilmsLoading" to "false", "similarFilms" to film object', () => {
-    state.isSimilarFilmsLoading = false;
+  it('should set "areSimilarFilmsLoading" to "false", "similarFilms" to film object', () => {
+    state.areSimilarFilmsLoading = false;
     state.similarFilms = [mockFilm, mockFilm];
     const result = dataSlice.reducer(
       state,

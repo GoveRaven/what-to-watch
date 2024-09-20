@@ -9,7 +9,7 @@ import {
   selectFilmComments,
   selectIsFilmLoading,
   selectIsPromoLoading,
-  selectisSimilarFilmsLoading,
+  selectareSimilarFilmsLoading,
   selectPromoFilm,
   selectSimilarFilms,
 } from './selector';
@@ -30,7 +30,7 @@ describe('data selector', () => {
       areFilmsLoading: datatype.boolean(),
       chosenFilm: mockFilm,
       isFilmLoading: datatype.boolean(),
-      isSimilarFilmsLoading: datatype.boolean(),
+      areSimilarFilmsLoading: datatype.boolean(),
       similarFilms: [mockFilm, mockFilm],
       filmComments: [mockComments, mockComments],
       areFilmCommentsLoading: datatype.boolean(),
@@ -81,10 +81,11 @@ describe('data selector', () => {
     expect(result).toBe(similarFilms);
   });
 
-  it('should return isSimilarFilmsLoading', () => {
-    const { isSimilarFilmsLoading } = state[SliceName.Data];
-    const result = selectisSimilarFilmsLoading(state);
-    expect(result).toBe(isSimilarFilmsLoading);
+  it('should return areSimilarFilmsLoading', () => {
+    const { areSimilarFilmsLoading } =
+      state[SliceName.Data];
+    const result = selectareSimilarFilmsLoading(state);
+    expect(result).toBe(areSimilarFilmsLoading);
   });
 
   it('should return filmComments', () => {

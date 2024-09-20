@@ -21,6 +21,7 @@ describe('User selectors', () => {
       user: null,
     };
   });
+
   it('should return authorization status from store', () => {
     const currentAthStatus = AuthorizationStatus.Auth;
     state.authStatus = currentAthStatus;

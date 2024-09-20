@@ -39,7 +39,7 @@ export function MoviePage(): JSX.Element {
     dispatch(fetchFilmComment(numberId));
   }, [dispatch, numberId]);
 
-  if (isFilmLoading && areSimilarFilmsLoading) {
+  if (isFilmLoading || areSimilarFilmsLoading) {
     return <Loader />;
   } else if (!film) {
     return <NotFound />;

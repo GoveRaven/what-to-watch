@@ -11,6 +11,7 @@ import {
 import { dataSlice } from './data-slice';
 import { createMockFilm } from '../../../utils/createMockFilm';
 import { createMockComments } from '../../../utils/createMockComments';
+
 describe('data slice', () => {
   let state: TDataSlice;
 

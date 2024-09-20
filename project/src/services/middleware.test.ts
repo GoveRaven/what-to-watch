@@ -24,9 +24,10 @@ describe('middleware: redirect', () => {
   });
 
   it('should redirect to "/login" with redirectRouter action', () => {
-    store.dispatch(redirectToRoute(AppRoute.SignIn));
+    const redirectToSignIn = redirectToRoute(AppRoute.SignIn);
+    store.dispatch(redirectToSignIn);
     expect(fakeHistory.location.pathname).toBe(AppRoute.SignIn);
-    expect(store.getActions()).toEqual([redirectToRoute(AppRoute.SignIn)]);
+    expect(store.getActions()).toEqual([redirectToSignIn]);
   });
 
   it('should not to be redirect "/login" because bad acction', () => {

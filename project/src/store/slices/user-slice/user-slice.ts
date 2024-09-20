@@ -27,16 +27,13 @@ export const userSlice = createSlice({
       .addCase(authLogin.fulfilled, (state, action) => {
         state.authStatus = AuthorizationStatus.Auth;
         state.user = action.payload;
-        state.isAuthStatusChecked = true;
       })
       .addCase(authLogin.rejected, (state) => {
         state.authStatus = AuthorizationStatus.NoAuth;
-        state.isAuthStatusChecked = true;
       })
       .addCase(authLogout.fulfilled, (state) => {
         state.authStatus = AuthorizationStatus.NoAuth;
         state.user = null;
-        state.isAuthStatusChecked = true;
       });
   },
 });

@@ -27,7 +27,7 @@ describe('User slice', () => {
     expect(result).toEqual(expectedState);
   });
 
-  it('should set "authStatus" to "Auth", "isAuthStatusChecked" to "true", "user" to "object"', () => {
+  it('should set "authStatus" to "Auth", "isAuthStatusChecked" to "false", "user" to "object"', () => {
     const mockUser = createMockUser();
     const userRequest = {
       email: internet.email(),
@@ -35,7 +35,7 @@ describe('User slice', () => {
     };
     const expectedState = {
       authStatus: AuthorizationStatus.Auth,
-      isAuthStatusChecked: true,
+      isAuthStatusChecked: false,
       user: mockUser,
     };
     const result = userSlice.reducer(
@@ -46,10 +46,10 @@ describe('User slice', () => {
     expect(result).toEqual(expectedState);
   });
 
-  it('should set "authStatus" to "NoAuth", "isAuthStatusChecked" to "true", "user" to "null" after authLogin.rejected', () => {
+  it('should set "authStatus" to "NoAuth", "isAuthStatusChecked" to "false", "user" to "null" after authLogin.rejected', () => {
     const expectedState = {
       authStatus: AuthorizationStatus.NoAuth,
-      isAuthStatusChecked: true,
+      isAuthStatusChecked: false,
       user: null,
     };
     const result = userSlice.reducer(undefined, authLogin.rejected);
@@ -57,10 +57,10 @@ describe('User slice', () => {
     expect(result).toEqual(expectedState);
   });
 
-  it('should set "authStatus" to "NoAuth", "isAuthStatusChecked" to "true", "user" to "null" after authLogin.rejected after authLogout', () => {
+  it('should set "authStatus" to "NoAuth", "isAuthStatusChecked" to "false", "user" to "null" after authLogin.rejected after authLogout', () => {
     const expectedState = {
       authStatus: AuthorizationStatus.NoAuth,
-      isAuthStatusChecked: true,
+      isAuthStatusChecked: false,
       user: null,
     };
     const result = userSlice.reducer(undefined, authLogout.fulfilled);

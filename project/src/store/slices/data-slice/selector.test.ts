@@ -9,7 +9,7 @@ import {
   selectFilmComments,
   selectIsFilmLoading,
   selectIsPromoLoading,
-  selectareSimilarFilmsLoading,
+  selectAreSimilarFilmsLoading,
   selectPromoFilm,
   selectSimilarFilms,
 } from './selector';
@@ -82,9 +82,8 @@ describe('data selector', () => {
   });
 
   it('should return areSimilarFilmsLoading', () => {
-    const { areSimilarFilmsLoading } =
-      state[SliceName.Data];
-    const result = selectareSimilarFilmsLoading(state);
+    const { areSimilarFilmsLoading } = state[SliceName.Data];
+    const result = selectAreSimilarFilmsLoading(state);
     expect(result).toBe(areSimilarFilmsLoading);
   });
 

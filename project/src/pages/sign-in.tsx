@@ -110,7 +110,12 @@ export function SignIn(): JSX.Element {
         <header className="page-header user-page__head">
           <Logo />
 
-          <h1 className="page-title user-page__title">Sign in</h1>
+          <h1
+            className="page-title user-page__title"
+            data-testid="signInHeader"
+          >
+            Sign in
+          </h1>
         </header>
 
         <div className="sign-in user-page__content">
@@ -129,6 +134,7 @@ export function SignIn(): JSX.Element {
                   id="user-email"
                   required
                   ref={emailInputRef}
+                  data-testid="emailAddress"
                 />
                 <label
                   className="sign-in__label visually-hidden"
@@ -146,6 +152,7 @@ export function SignIn(): JSX.Element {
                   id="user-password"
                   required
                   ref={passwordInputRef}
+                  data-testid="password"
                 />
                 <label
                   className="sign-in__label visually-hidden"

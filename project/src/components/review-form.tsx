@@ -23,7 +23,7 @@ export function ReviewForm(): JSX.Element {
     comment.length < 50 || comment.length > 400 || !rating;
 
   return (
-    <div className="add-review">
+    <div className="add-review" >
       <form action="#" className="add-review__form" onSubmit={onSumbit}>
         <div className="rating">
           <RatingInput rating={rating} onInputChange={handleInputChange} />
@@ -37,12 +37,14 @@ export function ReviewForm(): JSX.Element {
             placeholder="Review text"
             onChange={(event) => setComment(event.target.value)}
             value={comment}
+            data-testid='review-textarea'
           />
           <div className="add-review__submit">
             <button
               className="add-review__btn"
               type="submit"
               disabled={isButtonDisabled}
+              data-testid='review-post-button'
             >
               Post
             </button>

@@ -88,7 +88,7 @@ export function createMockComponentwithStore(
     Action<string>,
     ThunkDispatch<TState, typeof axios, Action>
   >(middleware);
-  const mockStore = mockStoreCreator(initialState);
+  const mockStore: ReturnType<typeof mockStoreCreator> = mockStoreCreator(initialState);
 
   return {
     mockComponentWithStore: <Provider store={mockStore}>{component}</Provider>,

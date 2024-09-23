@@ -112,7 +112,7 @@ export function SignIn(): JSX.Element {
 
           <h1
             className="page-title user-page__title"
-            data-testid="signInHeader"
+            data-testid="sign-in-header"
           >
             Sign in
           </h1>
@@ -134,7 +134,7 @@ export function SignIn(): JSX.Element {
                   id="user-email"
                   required
                   ref={emailInputRef}
-                  data-testid="emailAddress"
+                  data-testid="email-address"
                 />
                 <label
                   className="sign-in__label visually-hidden"

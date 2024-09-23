@@ -76,7 +76,7 @@ export function createMockComponent(
   return <HistoryRouter history={memoryHistory}>{component}</HistoryRouter>;
 }
 
-export function createMockComponentwithStore(
+export function createMockComponentWithStore(
   component: JSX.Element,
   initialState: Partial<TState> = {}
 ): TMockComponentWithStore {
@@ -88,7 +88,8 @@ export function createMockComponentwithStore(
     Action<string>,
     ThunkDispatch<TState, typeof axios, Action>
   >(middleware);
-  const mockStore: ReturnType<typeof mockStoreCreator> = mockStoreCreator(initialState);
+  const mockStore: ReturnType<typeof mockStoreCreator> =
+    mockStoreCreator(initialState);
 
   return {
     mockComponentWithStore: <Provider store={mockStore}>{component}</Provider>,

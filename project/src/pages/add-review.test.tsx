@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { AddReview } from './add-review';
 import {
   createMockComponent,
-  createMockComponentwithStore,
+  createMockComponentWithStore,
 } from '../utils/mock-creaters';
 import { createMockStore } from '../utils/mock-store';
 import userEvent from '@testing-library/user-event';
@@ -14,7 +14,7 @@ describe('Компонент: add-review', () => {
   let component: JSX.Element;
   let store: MockStore<unknown, AnyAction>;
   beforeEach(() => {
-    const { mockComponentWithStore, mockStore } = createMockComponentwithStore(
+    const { mockComponentWithStore, mockStore } = createMockComponentWithStore(
       <AddReview />,
       myMockStore
     );

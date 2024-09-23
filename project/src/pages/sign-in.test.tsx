@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import {
   createMockComponent,
-  createMockComponentwithStore,
+  createMockComponentWithStore,
 } from '../utils/mock-creaters';
 import { SignIn } from './sign-in';
 import userEvent from '@testing-library/user-event';
@@ -9,7 +9,7 @@ import userEvent from '@testing-library/user-event';
 describe('Компонент: sign-in', () => {
   let component: JSX.Element;
   beforeEach(() => {
-    const { mockComponentWithStore } = createMockComponentwithStore(
+    const { mockComponentWithStore } = createMockComponentWithStore(
       <SignIn />,
       {}
     );

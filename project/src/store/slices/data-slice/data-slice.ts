@@ -57,6 +57,7 @@ export const dataSlice = createSlice({
       })
       .addCase(fetchSimilarFilms.fulfilled, (state, action) => {
         state.similarFilms = action.payload;
+        state.areSimilarFilmsLoading = false;
       })
       .addCase(fetchFilmComment.pending, (state) => {
         state.areFilmCommentsLoading = true;

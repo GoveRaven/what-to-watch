@@ -21,7 +21,11 @@ import {
 import { makePathWithParams } from '../utils/makePath';
 import { redirectToRoute } from './actions';
 import * as tokenStorage from '../services/token';
-import { createMockComments, createMockFilm, createMockUser } from '../utils/mockcreaters';
+import {
+  createMockComments,
+  createMockFilm,
+  createMockUser,
+} from '../utils/mock-creaters';
 
 function getActionsInArray(actions: Action<string>[]) {
   return actions.map(({ type }) => type);

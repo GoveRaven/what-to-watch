@@ -14,7 +14,10 @@ import {
   selectSimilarFilms,
 } from './selector';
 import { SliceName } from '../../../consts/store-action';
-import { createMockComments, createMockFilm } from '../../../utils/mockcreaters';
+import {
+  createMockComments,
+  createMockFilm,
+} from '../../../utils/mock-creaters';
 
 describe('data selector', () => {
   const mockFilm = createMockFilm();

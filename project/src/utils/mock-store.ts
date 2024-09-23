@@ -1,6 +1,6 @@
 import { AuthorizationStatus } from '../consts/authhorization-status';
 import { TDataSlice, TUserSlice } from '../types/store';
-import { createMockComments, createMockFilm } from './mockcreaters';
+import { createMockComments, createMockFilm } from './mock-creaters';
 
 export function createMockStore() {
   const mockUserSlice = createMockUserSlice();

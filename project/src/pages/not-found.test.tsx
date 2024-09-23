@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { createMockComponent } from '../utils/mockcreaters';
+import { createMockComponent } from '../utils/mock-creaters';
 import { NotFound } from './not-found';
 
 describe('Компонент: not-found', () => {

@@ -8,7 +8,7 @@ import {
   selectUser,
 } from './selector';
 import { userSlice } from './user-slice';
-import { createMockUser } from '../../../utils/mockcreaters';
+import { createMockUser } from '../../../utils/mock-creaters';
 
 describe('User selectors', () => {
   let state: TUserSlice;

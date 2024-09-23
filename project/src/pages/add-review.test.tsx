@@ -3,8 +3,8 @@ import { AddReview } from './add-review';
 import {
   createMockComponent,
   createMockComponentwithStore,
-} from '../utils/mockcreaters';
-import { createMockStore } from '../utils/mockStore';
+} from '../utils/mock-creaters';
+import { createMockStore } from '../utils/mock-store';
 import userEvent from '@testing-library/user-event';
 import { AnyAction } from '@reduxjs/toolkit';
 import { MockStore } from '@jedmao/redux-mock-store';

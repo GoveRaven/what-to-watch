@@ -17,19 +17,19 @@ describe('Компонент: sign-in', () => {
   });
 
   it('Компонент должен правильно отрендериться', () => {
-    const expectedHeaderText = 'signInHeader';
+    const headerElementTestId = 'sign-in-header';
     const expectedLoginText = 'Email address';
     const expectedPasswordText = 'Password';
 
     render(component);
 
-    expect(screen.getByTestId(expectedHeaderText)).toBeInTheDocument();
+    expect(screen.getByTestId(headerElementTestId)).toBeInTheDocument();
     expect(screen.getByText(expectedLoginText)).toBeInTheDocument();
     expect(screen.getByText(expectedPasswordText)).toBeInTheDocument();
   });
 
   it('Компонент должен правильно отрендериться при введённых данных в поля', async () => {
-    const emailElementTestId = 'emailAddress';
+    const emailElementTestId = 'email-address';
     const passwordElementTestId = 'password';
     const expectedEmailValue = 'test@mail.ru';
     const expectedPasswordValue = '123456';

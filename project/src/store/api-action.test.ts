@@ -25,7 +25,7 @@ import {
   createMockComments,
   createMockFilm,
   createMockUser,
-} from '../utils/mock-creaters';
+} from '../utils/mock-creators';
 
 function getActionsInArray(actions: Action<string>[]) {
   return actions.map(({ type }) => type);

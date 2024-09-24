@@ -12,7 +12,7 @@ import { dataSlice } from './data-slice';
 import {
   createMockComments,
   createMockFilm,
-} from '../../../utils/mock-creaters';
+} from '../../../utils/mock-creators';
 
 describe('data slice', () => {
   let state: TDataSlice;

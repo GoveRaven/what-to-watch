@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import {
   createMockComponent,
   createMockComponentWithStore,
-} from '../utils/mock-creaters';
+} from '../utils/mock-creators';
 import { SignIn } from './sign-in';
 import userEvent from '@testing-library/user-event';
 

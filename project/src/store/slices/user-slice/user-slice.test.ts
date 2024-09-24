@@ -2,7 +2,7 @@ import { internet } from 'faker';
 import { AuthorizationStatus } from '../../../consts/authhorization-status';
 import { authLogin, authLogout, checkAuth } from '../../api-action';
 import { userSlice } from './user-slice';
-import { createMockUser } from '../../../utils/mock-creaters';
+import { createMockUser } from '../../../utils/mock-creators';
 
 describe('User slice', () => {
   it('should set "authStatus" to "Auth", "isAuthStatusChecked" to "true", "user" to "null"', () => {

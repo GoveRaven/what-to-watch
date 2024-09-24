@@ -17,7 +17,7 @@ import { SliceName } from '../../../consts/store-action';
 import {
   createMockComments,
   createMockFilm,
-} from '../../../utils/mock-creaters';
+} from '../../../utils/mock-creators';
 
 describe('data selector', () => {
   const mockFilm = createMockFilm();

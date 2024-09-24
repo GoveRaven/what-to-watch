@@ -13,6 +13,7 @@ describe('Компонент: add-review', () => {
   const myMockStore = createMockStore();
   let component: JSX.Element;
   let store: MockStore<unknown, AnyAction>;
+
   beforeEach(() => {
     const { mockComponentWithStore, mockStore } = createMockComponentWithStore(
       <AddReview />,

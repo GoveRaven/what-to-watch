@@ -23,7 +23,7 @@ export function ReviewForm(): JSX.Element {
     comment.length < 50 || comment.length > 400 || !rating;
 
   return (
-    <div className="add-review" >
+    <div className="add-review">
       <form action="#" className="add-review__form" onSubmit={onSumbit}>
         <div className="rating">
           <RatingInput rating={rating} onInputChange={handleInputChange} />

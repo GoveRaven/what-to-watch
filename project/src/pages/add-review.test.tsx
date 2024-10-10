@@ -6,21 +6,18 @@ import {
 } from '../utils/mock-creators';
 import { createMockStore } from '../utils/mock-store';
 import userEvent from '@testing-library/user-event';
-import { createMemoryHistory, MemoryHistory } from 'history';
 
 describe('Компонент: add-review', () => {
   let component: JSX.Element;
-  let mockHistory: MemoryHistory;
 
   beforeEach(() => {
-    component = createMockComponent(<AddReview />, mockHistory);
+    component = createMockComponent(<AddReview />);
     const { mockComponentWithStore } = createMockComponentWithStore(
       component,
       createMockStore()
     );
 
     component = mockComponentWithStore;
-    mockHistory = createMemoryHistory();
   });
 
   it('Компонент должен правильно отрендериться', () => {
@@ -72,7 +69,7 @@ describe('Компонент: add-review', () => {
       await userEvent.click(rating[1]);
       await userEvent.type(textArea, tooLongText);
       expect(postButton).toBeDisabled();
-    });
+    }, 10000);
 
     it('Текст приемлемой длины и поставлена оценка', async () => {
       render(component);

@@ -14,11 +14,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12'
+
       - uses: actions/checkout@master
         name: Checkout
+
       - name: Install dependencies
         run: |
           if [ -d 'project' ]; then cd project && npm install; else echo 'Skip. The project directory does not exist'; fi
+      
       - name: Run checks
         run: |
           if [ -d 'project' ]; then cd project && npm test && npm run lint; else echo 'Skip. The project directory does not exist'; fi

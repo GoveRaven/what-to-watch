@@ -23,7 +23,7 @@ export function AddReview(): JSX.Element {
   const isFilmLoading = useAppSelector(selectIsFilmLoading);
 
   useEffect(() => {
-    dispatch(fetchChosenFilm(Number(id)));
+    id && dispatch(fetchChosenFilm(Number(id)));
   }, [dispatch, id]);
 
   if (isFilmLoading) {

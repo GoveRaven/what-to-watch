@@ -18,6 +18,7 @@ const initialState: TDataSlice = {
   chosenFilm: null,
   isFilmLoading: false,
   similarFilms: [],
+  areSimilarFilmsLoading: false,
   filmComments: [],
   areFilmCommentsLoading: false,
   favoriteFilms: [],
@@ -51,8 +52,12 @@ export const dataSlice = createSlice({
         state.isFilmLoading = false;
         state.chosenFilm = action.payload;
       })
+      .addCase(fetchSimilarFilms.pending, (state) => {
+        state.areSimilarFilmsLoading = true;
+      })
       .addCase(fetchSimilarFilms.fulfilled, (state, action) => {
         state.similarFilms = action.payload;
+        state.areSimilarFilmsLoading = false;
       })
       .addCase(fetchFilmComment.pending, (state) => {
         state.areFilmCommentsLoading = true;

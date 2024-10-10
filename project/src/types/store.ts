@@ -14,10 +14,6 @@ export type TUserSlice = {
   user: null | TUser;
 };
 
-export type TFilmsSlice = {
-  filmsByCurrentGenre: TFilm[];
-};
-
 export type TDataSlice = {
   promoFilm: TFilm | null;
   isPromoLoading: boolean;
@@ -26,6 +22,7 @@ export type TDataSlice = {
   chosenFilm: TFilm | null;
   isFilmLoading: boolean;
   similarFilms: TFilm[];
+  areSimilarFilmsLoading: boolean;
   filmComments: TReview[];
   areFilmCommentsLoading: boolean;
   favoriteFilms: TFilm[];

@@ -1,5 +1,5 @@
 import { Middleware, PayloadAction } from '@reduxjs/toolkit';
-import { browserHistory } from '../components/history-routes/browser-history';
+import browserHistory from '../components/history-routes/browser-history';
 import { redirectToRoute } from '../store/actions';
 import { rootReducer } from '../store/slices/root-reducer';
 

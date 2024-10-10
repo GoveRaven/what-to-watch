@@ -37,12 +37,14 @@ export function ReviewForm(): JSX.Element {
             placeholder="Review text"
             onChange={(event) => setComment(event.target.value)}
             value={comment}
+            data-testid='review-textarea'
           />
           <div className="add-review__submit">
             <button
               className="add-review__btn"
               type="submit"
               disabled={isButtonDisabled}
+              data-testid='review-post-button'
             >
               Post
             </button>

@@ -4,6 +4,7 @@ on:
       - master
   pull_request:
     branches: '*'
+
 name: Project check
 jobs:
   check:
@@ -17,7 +18,7 @@ jobs:
 
       - uses: actions/checkout@master
         name: Checkout
-
+      
       - name: Install dependencies
         run: |
           if [ -d 'project' ]; then cd project && npm install; else echo 'Skip. The project directory does not exist'; fi

@@ -12,6 +12,7 @@ import thunk from 'redux-thunk';
 import { Action } from 'redux';
 import { ThunkDispatch } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import { HelmetProvider } from 'react-helmet-async';
 
 type TMockComponentWithStore = {
   mockComponentWithStore: JSX.Element;
@@ -73,7 +74,11 @@ export function createMockComponent(
 ) {
   const memoryHistory = history ?? createMemoryHistory();
 
-  return <HistoryRouter history={memoryHistory}>{component}</HistoryRouter>;
+  return (
+    <HistoryRouter history={memoryHistory}>
+      <HelmetProvider>{component}</HelmetProvider>
+    </HistoryRouter>
+  );
 }
 
 export function createMockComponentWithStore(

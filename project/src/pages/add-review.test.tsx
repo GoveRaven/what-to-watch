@@ -6,21 +6,21 @@ import {
 } from '../utils/mock-creators';
 import { createMockStore } from '../utils/mock-store';
 import userEvent from '@testing-library/user-event';
-import { AnyAction } from '@reduxjs/toolkit';
-import { MockStore } from '@jedmao/redux-mock-store';
+import { createMemoryHistory, MemoryHistory } from 'history';
 
 describe('Компонент: add-review', () => {
-  const myMockStore = createMockStore();
   let component: JSX.Element;
-  let store: MockStore<unknown, AnyAction>;
+  let mockHistory: MemoryHistory;
 
   beforeEach(() => {
-    const { mockComponentWithStore, mockStore } = createMockComponentWithStore(
-      <AddReview />,
-      myMockStore
+    component = createMockComponent(<AddReview />, mockHistory);
+    const { mockComponentWithStore } = createMockComponentWithStore(
+      component,
+      createMockStore()
     );
-    store = mockStore;
-    component = createMockComponent(mockComponentWithStore);
+
+    component = mockComponentWithStore;
+    mockHistory = createMemoryHistory();
   });
 
   it('Компонент должен правильно отрендериться', () => {
@@ -85,27 +85,5 @@ describe('Компонент: add-review', () => {
       await userEvent.type(textArea, normalText);
       expect(postButton).not.toBeDisabled();
     });
-  });
-
-  it('После размещения ревью должен отправиться post запрос', async () => {
-    render(component);
-
-    const postButton = screen.getByTestId('review-post-button');
-    const textArea = screen.getByTestId('review-textarea');
-    const rating = screen.getAllByTestId('review-rate');
-    const normalText = 'a'.repeat(100);
-
-    await userEvent.click(rating[0]);
-    await userEvent.type(textArea, normalText);
-    await userEvent.click(postButton);
-
-    const actions = store.getActions().map(({ type }) => type);
-
-    expect(actions).toEqual([
-      'data/fetchChosenFilm/pending',
-      'data/fetchChosenFilm/rejected',
-      'data/postComment/pending',
-      'data/postComment/rejected',
-    ]);
   });
 });

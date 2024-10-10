@@ -10,8 +10,6 @@ import { SignIn } from '../../pages/sign-in';
 import { PrivateRoute } from '../private-route';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Loader } from '../loader';
-import { HistoryRouter } from '../history-routes/history-routes';
-import { browserHistory } from '../history-routes/browser-history';
 import { selectIsAuthStatusChecked } from '../../store/slices/user-slice/selector';
 import {
   selectAreFilmsLoading,
@@ -19,6 +17,7 @@ import {
 } from '../../store/slices/data-slice/selector';
 import { checkAuth } from '../../store/api-action';
 import { useEffect } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 
 function App(): JSX.Element {
   const areFilmsLoading = useAppSelector(selectAreFilmsLoading);
@@ -35,7 +34,7 @@ function App(): JSX.Element {
   }
 
   return (
-    <HistoryRouter history={browserHistory}>
+    <HelmetProvider>
       <Routes>
         <Route path={AppRoute.Main} element={<Main />} />
         <Route path={AppRoute.SignIn} element={<SignIn />} />
@@ -59,7 +58,7 @@ function App(): JSX.Element {
         <Route path={AppRoute.Player} element={<Player />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </HistoryRouter>
+    </HelmetProvider>
   );
 }
 
